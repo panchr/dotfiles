@@ -37,3 +37,8 @@ compinit
 
 # menu-style completion
 zstyle ':completion:*' menu select
+
+# Local Configuration
+if [ -f ~/.zshrc.local ]; then
+    source ~/.zshrc.local
+fi
