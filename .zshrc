@@ -16,7 +16,7 @@ PROMPT='%F{green}%n%f@%F{39}%m%f:%F{yellow}%~%f %F{cyan}$git_branch%f
 export TERM=xterm-256color
 export CLICOLOR=1
 export LSCOLORS=HxfxBxdx
-export EDITOR=emacs
+export EDITOR="emacsclient --alternate-editor=''"
 
 # Functions
 zcompile ~/.sh_functions
@@ -24,6 +24,7 @@ source ~/.sh_functions
 
 # Aliases
 alias grep='grep --color=always'
+alias edit="$EDITOR"
 
 # Environment variables
 if [ -f ~/.env_variables ]; then
