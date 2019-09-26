@@ -12,6 +12,13 @@ setopt PROMPT_SUBST
 PROMPT='%F{green}%n%f@%F{39}%m%f:%F{yellow}%~%f %F{cyan}$git_branch%f
 %F{214}λ%f '
 
+### Completions ###
+autoload -U compinit
+compinit
+
+# menu-style completion
+zstyle ':completion:*' menu select
+
 ### User configuration ###
 export TERM=xterm-256color
 export CLICOLOR=1
@@ -30,13 +37,6 @@ alias edit="$EDITOR"
 if [ -f ~/.env_variables ]; then
     source ~/.env_variables
 fi
-
-### Completions ###
-autoload -U compinit
-compinit
-
-# menu-style completion
-zstyle ':completion:*' menu select
 
 # Local Configuration
 if [ -f ~/.zshrc.local ]; then
