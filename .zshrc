@@ -22,7 +22,6 @@ zstyle ':completion:*' menu select
 ### User configuration ###
 export TERM=xterm-256color
 export CLICOLOR=1
-export LSCOLORS=HxfxBxdx
 export EDITOR="emacsclient --alternate-editor=''"
 
 # Functions
@@ -36,9 +35,11 @@ alias edit="$EDITOR"
 case `uname` in
     Darwin)
 	alias  ls='ls -G'
+	export LSCOLORS=HxfxBxdx
     ;;
     Linux)
 	alias ls='ls --color=auto'
+	export LS_COLORS='no=00;36:di=01;37:ex=01;31:ln=00;35'
     ;;
     FreeBSD)
 	# do nothing
