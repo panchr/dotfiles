@@ -30,7 +30,8 @@ zcompile ~/.sh_functions
 source ~/.sh_functions
 
 # Aliases
-alias grep='grep --color=always'
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
 alias edit="$EDITOR"
 
 # Environment variables
