@@ -30,9 +30,20 @@ zcompile ~/.sh_functions
 source ~/.sh_functions
 
 # Aliases
-alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias edit="$EDITOR"
+
+case `uname` in
+    Darwin)
+	alias  ls='ls -G'
+    ;;
+    Linux)
+	alias ls='ls --color=auto'
+    ;;
+    FreeBSD)
+	# do nothing
+    ;;
+esac
 
 # Environment variables
 if [ -f ~/.env_variables ]; then
