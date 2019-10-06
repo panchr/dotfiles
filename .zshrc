@@ -23,6 +23,7 @@ zstyle ':completion:*' menu select
 export TERM=xterm-256color
 export CLICOLOR=1
 export EDITOR="emacsclient --alternate-editor=''"
+export PAGER='less'
 
 # Functions
 zcompile ~/.sh_functions
