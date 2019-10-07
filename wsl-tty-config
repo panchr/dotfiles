@@ -1,0 +1,11 @@
+# To use common configuration in %APPDATA%\mintty, simply remove this file
+RightClickAction=paste
+ClickTargetMod=ctrl
+CtrlShiftShortcuts=yes
+FontHeight=12
+ThemeFile=xterm
+Transparency=medium
+ForegroundColour=255,255,255
+Font=Inconsolata
+AllowSetSelection=yes
+BellType=0
