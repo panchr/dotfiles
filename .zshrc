@@ -20,9 +20,13 @@ compinit
 zstyle ':completion:*' menu select
 
 ### User configuration ###
-export TERM=xterm-256color
+if [ -n "${TMUX+1}" ]; then
+    export TERM=tmux-256color
+else
+    export TERM=xterm-256color
+fi
 export CLICOLOR=1
-export EDITOR="emacsclient --alternate-editor=''"
+export EDITOR="emacsclient --alternate-editor='' --create-frame"
 export PAGER='less'
 
 # Functions
