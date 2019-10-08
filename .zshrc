@@ -25,7 +25,7 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
 ### User configuration ###
-if [ -n "${TMUX+1}" ]; then
+if [ -n "${TMUX+1}" ] && [ `uname` = 'Linux' ]; then
     export TERM=tmux-256color
 else
     export TERM=xterm-256color
