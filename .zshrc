@@ -19,6 +19,11 @@ compinit
 # menu-style completion
 zstyle ':completion:*' menu select
 
+# Emacs-style key bindings
+bindkey -e
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
+
 ### User configuration ###
 if [ -n "${TMUX+1}" ]; then
     export TERM=tmux-256color
