@@ -25,11 +25,7 @@ bindkey "^[[1;5C" forward-word
 bindkey "^[[1;5D" backward-word
 
 ### User configuration ###
-if [ -n "${TMUX+1}" ] && [ `uname` = 'Linux' ]; then
-    export TERM=tmux-256color
-else
-    export TERM=xterm-256color
-fi
+export TERM=xterm-256color
 export CLICOLOR=1
 export EDITOR="emacsclient --alternate-editor='' --create-frame"
 export PAGER='less'
