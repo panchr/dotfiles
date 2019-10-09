@@ -4,6 +4,8 @@
 
 (require 'package)
 
+;;; Ignore package checks because the GPG key for MELPA is often broken
+(setq package-check-signature nil)
 
 ;;; Install into separate package dirs for each Emacs version, to prevent bytecode incompatibility
 (let ((versioned-package-dir
