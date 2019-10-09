@@ -7,7 +7,8 @@ $PACKAGE_MANAGER install \
 		 emacs \
 		 htop \
 		 tree \
-		 libpq-dev
+		 libpq-dev \
+		 silversearcher-ag
 
 case `uname` in
     Darwin)
