@@ -62,6 +62,21 @@ age rm -f
     docker rm $(docker ps -aq)
 }
 
+docker_postgres() {
+    mkdir -p "$HOME/docker/volumes/postgres"
+    docker \
+        run \
+        --rm \
+        --name \
+        pg-docker \
+        --env POSTGRES_USER \
+        --env POSTGRES_PASSWORD \
+        --detach \
+        --publish 5432:5432 \
+        --volume="$HOME/docker/volumes/postgres:/var/lib/postgresql/data" \
+        postgres
+}
+
 replace_all() {
     # Replace all occurrences of $1 with $2
     ag -0 -l $1 | xargs -0 sed -i '' -e "s/$1/$2/g"
