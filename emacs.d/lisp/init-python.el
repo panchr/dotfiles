@@ -9,6 +9,12 @@
 
 (require-package 'pip-requirements)
 
+;; Allow tabs
+(add-hook 'python-mode-hook
+	  (lambda () (setq indent-tabs-mode t
+			   python-indent-offset 4
+			   python-indent-guess-indent-offset t)))
+
 (when (maybe-require-package 'anaconda-mode)
   (after-load 'python
     (add-hook 'python-mode-hook 'anaconda-mode)
