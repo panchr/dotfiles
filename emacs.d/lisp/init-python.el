@@ -11,7 +11,7 @@
 
 ;; Allow tabs
 (add-hook 'python-mode-hook
-	  (lambda () (setq indent-tabs-mode t
+	  (lambda () (setq indent-tabs-mode nil
 			   python-indent-offset 4
 			   python-indent-guess-indent-offset t)))
 
