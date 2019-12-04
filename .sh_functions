@@ -106,3 +106,13 @@ git_cloc() {
 clean_icon() {
     find -X . -name '*Icon*' -delete
 }
+
+ag_group() {
+    start=$1
+    pattern=$2
+    end=$3
+    shift 3
+
+    ag --nonumbers -o "$start\K$pattern(?=$end)" $@
+}
+
