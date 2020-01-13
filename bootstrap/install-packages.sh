@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PACKAGE_MANAGER='apt-get'
+PACKAGE_MANAGER='sudo apt-get'
 
 $PACKAGE_MANAGER install \
 		 tmux \
@@ -39,3 +39,11 @@ case `uname` in
 	# do nothing
     ;;
 esac
+
+# Other installations
+git clone https://github.com/pyenv/pyenv.git ~/.pyenv
+pyenv install --skip-existing 3.8.1
+pyenv local 3.8.1
+pip install --upgrade \
+    pip \
+    pipenv
