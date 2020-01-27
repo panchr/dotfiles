@@ -136,3 +136,15 @@ ag_group() {
     ag --nonumbers -o "$start\K$pattern(?=$end)" $@
 }
 
+local_tcp_server() {
+    port=$1
+
+    nc -lv $port
+}
+
+local_udp_server() {
+    port=$1
+
+    nc -lvu $port
+}
+
