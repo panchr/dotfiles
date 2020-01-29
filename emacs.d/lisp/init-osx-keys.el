@@ -18,6 +18,17 @@
   (after-load 'nxml-mode
     (define-key nxml-mode-map (kbd "M-h") nil))
   (global-set-key (kbd "M-ˍ") 'ns-do-hide-others) ;; what describe-key reports for cmd-option-h
+
+  ;; Bind keys for copy/paste to clipboard
+  (defun osx-copy-pasteboard (start end)
+    "Copies to the OSX keyboard"
+    (interactive "r")
+    (if (use-region-p)
+	(shell-command-on-region start end "pbcopy")
+      ())
+    )
+
+  (global-set-key (kbd "C-x C-y") 'osx-copy-pasteboard)
   )
 
 
