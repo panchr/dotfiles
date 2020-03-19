@@ -53,36 +53,27 @@
 (maybe-require-package 'scratch)
 (require-package 'command-log-mode)
 
-;; (require 'init-frame-hooks)
+(require 'init-frame-hooks)
 (require 'init-xterm)
 (require 'init-themes)
 (require 'init-osx-keys)
-;; (require 'init-gui-frames)
-(require 'init-dired)
 (require 'init-isearch)
+(require 'init-dired)
 (require 'init-grep)
 (require 'init-uniquify)
-(require 'init-ibuffer)
-(require 'init-flycheck)
-
+;; (require 'init-flycheck)
 (require 'init-recentf)
-(require 'init-smex)
 (require 'init-ivy)
 (require 'init-hippie-expand)
 (require 'init-company)
-;; (require 'init-windows)
-;;(require 'init-sessions)
 (require 'init-mmm)
 
 (require 'init-editing-utils)
 (require 'init-whitespace)
 
-(require 'init-vc)
-(require 'init-darcs)
 (require 'init-git)
 
 (require 'init-projectile)
-
 (require 'init-compile)
 (require 'init-markdown)
 (require 'init-csv)
@@ -97,31 +88,27 @@
 (require 'init-go)
 (maybe-require-package 'nginx-mode)
 
-(require 'init-paredit)
-(require 'init-lisp)
-(require 'init-common-lisp)
+;; (require 'init-paredit)
+;; (require 'init-lisp)
+;; (require 'init-common-lisp)
 
 (when *spell-check-support-enabled*
   (require 'init-spelling))
 
 (require 'init-misc)
 
-(require 'init-folding)
-(require 'init-dash)
 
-(require 'init-ledger)
-
-;; Extra packages which don't require any configuration
-(when *is-a-mac*
-  (require-package 'osx-location))
-(unless (eq system-type 'windows-nt)
-  (maybe-require-package 'daemons))
-(maybe-require-package 'dotenv-mode)
-
-(when (maybe-require-package 'uptimes)
-  (setq-default uptimes-keep-count 200)
-  (add-hook 'after-init-hook (lambda () (require 'uptimes))))
-
+;; NOT USED
+;; (require 'init-smex)
+;; (require 'init-ibuffer)
+;; (require 'init-gui-frames)
+;; (require 'init-windows)
+;; (require 'init-sessions)
+;; (require 'init-vc)
+;; (require 'init-darcs)
+;; (require 'init-folding)
+;; (require 'init-dash)
+;; (require 'init-ledger)
 
 ;;----------------------------------------------------------------------------
 ;; Allow access from emacsclient

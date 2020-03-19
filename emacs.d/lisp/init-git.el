@@ -15,44 +15,44 @@
 
 
 
-;; (when (maybe-require-package 'magit)
-;;   (setq-default magit-diff-refine-hunk t)
+(when (maybe-require-package 'magit)
+  (setq-default magit-diff-refine-hunk t)
 
-;;   ;; Hint: customize `magit-repository-directories' so that you can use C-u M-F12 to
-;;   ;; quickly open magit on any one of your projects.
-;;   (global-set-key [(meta f12)] 'magit-status)
-;;   (global-set-key (kbd "C-x g") 'magit-status)
-;;   (global-set-key (kbd "C-x M-g") 'magit-dispatch)
+  ;; Hint: customize `magit-repository-directories' so that you can use C-u M-F12 to
+  ;; quickly open magit on any one of your projects.
+  (global-set-key [(meta f12)] 'magit-status)
+  (global-set-key (kbd "C-x g") 'magit-status)
+  (global-set-key (kbd "C-x M-g") 'magit-dispatch)
 
-;;   (defun sanityinc/magit-or-vc-log-file (&optional prompt)
-;;     (interactive "P")
-;;     (if (and (buffer-file-name)
-;;              (eq 'Git (vc-backend (buffer-file-name))))
-;;         (if prompt
-;;             (magit-log-buffer-file-popup)
-;;           (magit-log-buffer-file t))
-;;       (vc-print-log)))
+  (defun sanityinc/magit-or-vc-log-file (&optional prompt)
+    (interactive "P")
+    (if (and (buffer-file-name)
+             (eq 'Git (vc-backend (buffer-file-name))))
+        (if prompt
+            (magit-log-buffer-file-popup)
+          (magit-log-buffer-file t))
+      (vc-print-log)))
 
-;;   (after-load 'vc
-;;     (define-key vc-prefix-map (kbd "l") 'sanityinc/magit-or-vc-log-file)))
+  (after-load 'vc
+    (define-key vc-prefix-map (kbd "l") 'sanityinc/magit-or-vc-log-file)))
 
 
-;; (after-load 'magit
-;;   (define-key magit-status-mode-map (kbd "C-M-<up>") 'magit-section-up))
+(after-load 'magit
+  (define-key magit-status-mode-map (kbd "C-M-<up>") 'magit-section-up))
 
-;; (maybe-require-package 'magit-todos)
+(maybe-require-package 'magit-todos)
 
-;; (require-package 'fullframe)
-;; (after-load 'magit
-;;   (fullframe magit-status magit-mode-quit-window))
+(require-package 'fullframe)
+(after-load 'magit
+  (fullframe magit-status magit-mode-quit-window))
 
-;; (when (maybe-require-package 'git-commit)
-;;   (add-hook 'git-commit-mode-hook 'goto-address-mode))
+(when (maybe-require-package 'git-commit)
+  (add-hook 'git-commit-mode-hook 'goto-address-mode))
 
-;; 
-;; (when *is-a-mac*
-;;   (after-load 'magit
-;;     (add-hook 'magit-mode-hook (lambda () (local-unset-key [(meta h)])))))
+
+(when *is-a-mac*
+  (after-load 'magit
+    (add-hook 'magit-mode-hook (lambda () (local-unset-key [(meta h)])))))
 
 
 
