@@ -119,6 +119,10 @@ count_files() {
     du -a "$1" | cut -d/ -f2 | sort | uniq -c | sort -nr
 }
 
+cat_files() {
+    tail -n +1 "$@"
+}
+
 git_cloc() {
     git ls-files | xargs wc -l
 }
