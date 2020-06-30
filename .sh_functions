@@ -160,3 +160,14 @@ local_udp_server() {
     nc -lvu $port
 }
 
+### WSL 2
+if command -v wslpath >/dev/null 2>&1; then
+    explorer() {
+	local explorer_path="$@"
+	if [ -z "$explorer_path" ]; then
+	    explorer_path="$PWD"
+	fi
+
+	explorer.exe `wslpath -w "$explorer_path"`
+    }
+fi
