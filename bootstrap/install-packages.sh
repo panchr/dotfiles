@@ -18,7 +18,6 @@ esac
 
 $PACKAGE_MANAGER install \
 		 tmux \
-		 emacs \
 		 htop \
 		 tree \
 		 libpq-dev \
@@ -30,6 +29,7 @@ case `uname` in
     ;;
     Linux)
 	$REPOSITORY_MANAGER ppa:git-core/ppa
+	$REPOSITORY_MANAGER ppa:kelleyk/emacs
 	$PACKAGE_MANAGER update
 
 	$PACKAGE_MANAGER install \
@@ -50,7 +50,10 @@ case `uname` in
 			 libffi-dev \
 			 liblzma-dev \
 			 python-openssl \
-			 git
+			 git \
+			 emacs26
+
+	sudo ln -f $(which emacs26) /usr/bin/emacs
     ;;
     FreeBSD)
 	# do nothing
