@@ -66,7 +66,7 @@
 (require 'init-hippie-expand)
 (require 'init-company)
 (require 'init-mmm)
-(require 'init-flycheck)
+;; (require 'init-flycheck)
 
 (require 'init-editing-utils)
 (require 'init-whitespace)
