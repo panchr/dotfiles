@@ -40,6 +40,13 @@
 
 (add-hook 'after-init-hook 'transient-mark-mode)
 
+;; Auto-fill comments to 80 characters, except in text files.
+(setq-default
+ auto-fill-function 'do-auto-fill
+ comment-auto-fill-only-comments t
+ fill-column 80)
+(add-hook 'text-mode-hook
+          (lambda () (auto-fill-mode -1)))
 
 
 ;; Huge files
