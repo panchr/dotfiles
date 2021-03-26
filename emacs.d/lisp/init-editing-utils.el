@@ -359,5 +359,16 @@ ORIG is the advised function, which is called with its ARGS."
 (advice-add 'kmacro-call-macro :around 'sanityinc/disable-features-during-macro-call)
 
 
+;; Better regexp (Python-style!)
+(require-package 'visual-regexp)
+(require-package 'visual-regexp-steroids)
+(define-key global-map (kbd "C-c r") 'vr/replace)
+(define-key global-map (kbd "C-c q") 'vr/query-replace)
+;; if you use multiple-cursors, this is for you:
+;; (define-key global-map (kbd "C-c m") 'vr/mc-mark)
+(define-key esc-map (kbd "C-r") 'vr/isearch-backward) ;; C-M-r
+(define-key esc-map (kbd "C-s") 'vr/isearch-forward) ;; C-M-s
+
 (provide 'init-editing-utils)
 ;;; init-editing-utils.el ends here
+
