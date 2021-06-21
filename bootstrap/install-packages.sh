@@ -20,13 +20,13 @@ $PACKAGE_MANAGER install \
 		 tmux \
 		 emacs \
 		 htop \
-		 tree \
-		 libpq-dev \
-		 silversearcher-ag
+		 tree
 
 case `uname` in
     Darwin)
-	# do nothing
+	$PACKAGE_MANAGER install \
+					 the_silver_searcher \
+					 go
     ;;
     Linux)
 	$REPOSITORY_MANAGER ppa:git-core/ppa
@@ -40,6 +40,7 @@ case `uname` in
 			 libbz2-dev \
 			 libreadline-dev \
 			 libsqlite3-dev \
+			 libpq-dev \
 			 wget \
 			 curl \
 			 llvm \
@@ -50,7 +51,8 @@ case `uname` in
 			 libffi-dev \
 			 liblzma-dev \
 			 python-openssl \
-			 git
+			 git \
+			 silversearcher-ag
     ;;
     FreeBSD)
 	# do nothing
