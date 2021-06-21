@@ -26,7 +26,9 @@ case `uname` in
     Darwin)
 	$PACKAGE_MANAGER install \
 					 the_silver_searcher \
-					 go
+					 go \
+					 pyenv \
+					 bazelisk
     ;;
     Linux)
 	$REPOSITORY_MANAGER ppa:git-core/ppa
