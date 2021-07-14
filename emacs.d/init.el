@@ -87,6 +87,7 @@
 (require 'init-docker)
 (require 'init-go)
 (require 'init-bazel)
+(require 'init-terraform)
 (maybe-require-package 'nginx-mode)
 
 ;; (require 'init-paredit)
