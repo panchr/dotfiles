@@ -30,7 +30,8 @@
  set-mark-command-repeat-pop t
  tooltip-delay 1.5
  truncate-lines nil
- truncate-partial-width-windows nil)
+ truncate-partial-width-windows nil
+ tab-width 4)
 
 (add-hook 'after-init-hook 'global-auto-revert-mode)
 (setq global-auto-revert-non-file-buffers t
@@ -40,6 +41,13 @@
 
 (add-hook 'after-init-hook 'transient-mark-mode)
 
+;; Auto-fill comments to 80 characters, except in text files.
+(setq-default
+ auto-fill-function 'do-auto-fill
+ comment-auto-fill-only-comments t
+ fill-column 80)
+(add-hook 'text-mode-hook
+          (lambda () (auto-fill-mode -1)))
 
 
 ;; Huge files
@@ -86,9 +94,10 @@
 
 
 
-(when (fboundp 'display-line-numbers-mode)
-  (setq-default display-line-numbers-width 3)
-  (add-hook 'prog-mode-hook 'display-line-numbers-mode))
+;; (when (fboundp 'display-line-numbers-mode)
+;;   (setq-default display-line-numbers-width 3)
+;;   (add-hook 'prog-mode-hook 'display-line-numbers-mode))
+(global-display-line-numbers-mode 1)
 
 (when (maybe-require-package 'goto-line-preview)
   (global-set-key [remap goto-line] 'goto-line-preview)
@@ -351,5 +360,16 @@ ORIG is the advised function, which is called with its ARGS."
 (advice-add 'kmacro-call-macro :around 'sanityinc/disable-features-during-macro-call)
 
 
+;; Better regexp (Python-style!)
+(require-package 'visual-regexp)
+(require-package 'visual-regexp-steroids)
+(define-key global-map (kbd "C-c r") 'vr/replace)
+(define-key global-map (kbd "C-c q") 'vr/query-replace)
+;; if you use multiple-cursors, this is for you:
+;; (define-key global-map (kbd "C-c m") 'vr/mc-mark)
+(define-key esc-map (kbd "C-r") 'vr/isearch-backward) ;; C-M-r
+(define-key esc-map (kbd "C-s") 'vr/isearch-forward) ;; C-M-s
+
 (provide 'init-editing-utils)
 ;;; init-editing-utils.el ends here
+

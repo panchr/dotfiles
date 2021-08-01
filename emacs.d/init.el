@@ -61,12 +61,12 @@
 (require 'init-dired)
 (require 'init-grep)
 (require 'init-uniquify)
-;; (require 'init-flycheck)
-(require 'init-recentf)
+;; (require 'init-recentf)
 (require 'init-ivy)
 (require 'init-hippie-expand)
 (require 'init-company)
 (require 'init-mmm)
+;; (require 'init-flycheck)
 
 (require 'init-editing-utils)
 (require 'init-whitespace)
@@ -86,6 +86,8 @@
 (require 'init-yaml)
 (require 'init-docker)
 (require 'init-go)
+(require 'init-bazel)
+(require 'init-terraform)
 (maybe-require-package 'nginx-mode)
 
 ;; (require 'init-paredit)

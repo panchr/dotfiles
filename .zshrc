@@ -1,6 +1,10 @@
 # Rushy Panchal
 # zsh configuration
 
+if (( ${+ZSH_PROFILE_STARTUP} )); then
+	zmodload zsh/zprof
+fi
+
 ### Prompt ###
 # Run before prompt is printed
 precmd() {
@@ -14,7 +18,14 @@ PROMPT='%F{green}%n%f@%F{39}%m%f:%F{yellow}%~%f %F{cyan}$git_branch%f
 
 ### Completions ###
 autoload -U compinit
-compinit
+
+# Only load compinit once per day, see
+# https://gist.github.com/ctechols/ca1035271ad134841284#gistcomment-2308206.
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+
+compinit -C
 
 # menu-style completion
 zstyle ':completion:*' menu select
@@ -80,3 +91,8 @@ fi
 if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
 fi
+
+if (( ${+ZSH_PROFILE_STARTUP} )); then
+	zprof
+fi
+

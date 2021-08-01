@@ -48,6 +48,8 @@
 
 (when (maybe-require-package 'git-commit)
   (add-hook 'git-commit-mode-hook 'goto-address-mode))
+  (add-hook 'git-commit-mode-hook
+	    (lambda () (setq fill-column 72)))
 
 
 (when *is-a-mac*

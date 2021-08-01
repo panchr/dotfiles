@@ -4,7 +4,7 @@
 
 _init_pyenv() {
     export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/bin:$PATH"
+    export PATH="$PYENV_ROOT/shims:$PATH"
     eval "$(command pyenv init -)"
 }
 
@@ -67,6 +67,16 @@ find_git_branch() {
   fi
 }
 
+function del-squashed () {
+    local branch=${1:-master}
+
+    git checkout $branch && \
+	comm -12 \
+	     <(git branch | sed "s/[ *]//g") \
+	     <(git remote prune origin | sed "s/^.*origin\///g") \
+	    | xargs -L1 -J % git branch -D %
+}
+
 repeat_cmd() {
     number_repeat=$1
     shift 1
@@ -108,6 +118,11 @@ docker_postgres() {
 replace_all() {
     # Replace all occurrences of $1 with $2
     ag -0 -l $1 | xargs -0 sed -i '' -e "s/$1/$2/g"
+}
+
+replace_all_literal() {
+    # Replace all occurrences of $1 with $2
+    ag -Q -0 -l $1 | xargs -0 sed -i '' -e "s/$1/$2/g"
 }
 
 gi() {

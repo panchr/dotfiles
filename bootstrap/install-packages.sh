@@ -19,13 +19,15 @@ esac
 $PACKAGE_MANAGER install \
 		 tmux \
 		 htop \
-		 tree \
-		 libpq-dev \
-		 silversearcher-ag
+		 tree
 
 case `uname` in
     Darwin)
-	# do nothing
+	$PACKAGE_MANAGER install \
+					 the_silver_searcher \
+					 go \
+					 pyenv \
+					 bazelisk
     ;;
     Linux)
 	$REPOSITORY_MANAGER ppa:git-core/ppa
@@ -40,6 +42,7 @@ case `uname` in
 			 libbz2-dev \
 			 libreadline-dev \
 			 libsqlite3-dev \
+			 libpq-dev \
 			 wget \
 			 curl \
 			 llvm \
@@ -51,9 +54,8 @@ case `uname` in
 			 liblzma-dev \
 			 python-openssl \
 			 git \
-			 emacs26
-
-	sudo ln -f $(which emacs26) /usr/bin/emacs
+			 emacs26 \
+			 silversearcher-ag
     ;;
     FreeBSD)
 	# do nothing
