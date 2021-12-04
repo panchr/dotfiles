@@ -175,6 +175,10 @@ local_udp_server() {
     nc -lvu $port
 }
 
+view_json() {
+	jq -C . $1 | less -R
+}
+
 ### WSL 2
 if command -v wslpath >/dev/null 2>&1; then
     explorer() {
@@ -186,3 +190,4 @@ if command -v wslpath >/dev/null 2>&1; then
 	explorer.exe `wslpath -w "$explorer_path"`
     }
 fi
+

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 PACKAGE_MANAGER='brew'
-REPOSITORY_MANAGER='brew'
+REPOSITORY_MANAGER='brew tap'
 
 case `uname` in
     Darwin)
