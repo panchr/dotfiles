@@ -13,7 +13,7 @@
   (when (version< emacs-version minver)
     (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
 (when (version< emacs-version "25.1")
-  (message "Your Emacs is old, and some functionality in this config will be disabled. Please upgrade if possible."))
+  (message "Your Emacs is old, and someg functionality in this config will be disabled. Please upgrade if possible."))
 
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
 (require 'init-benchmarking) ;; Measure startup time
@@ -58,6 +58,7 @@
 (require 'init-themes)
 (require 'init-osx-keys)
 (require 'init-isearch)
+(require 'init-ibuffer)
 (require 'init-dired)
 (require 'init-grep)
 (require 'init-uniquify)
@@ -99,10 +100,8 @@
 
 (require 'init-misc)
 
-
 ;; NOT USED
 ;; (require 'init-smex)
-;; (require 'init-ibuffer)
 ;; (require 'init-gui-frames)
 ;; (require 'init-windows)
 ;; (require 'init-sessions)
