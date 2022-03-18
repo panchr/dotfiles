@@ -27,7 +27,9 @@ case `uname` in
 					 the_silver_searcher \
 					 go \
 					 pyenv \
-					 bazelisk
+					 bazelisk \
+					 fzf \
+					 python@3.9
     ;;
     Linux)
 	$REPOSITORY_MANAGER ppa:git-core/ppa

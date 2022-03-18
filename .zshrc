@@ -59,6 +59,7 @@ source ~/.sh_functions
 # Aliases
 alias grep='grep --color=auto'
 alias edit="$EDITOR"
+alias python='python3'
 
 case `uname` in
     Darwin)

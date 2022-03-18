@@ -25,7 +25,7 @@ brew install tree
 brew install gnupg
 
 # Install more recent versions of some macOS tools.
-brew install emacs \
+brew install emacs-plus \
     && brew unlink emacs \
     && brew link emacs
 brew install zsh
@@ -36,6 +36,8 @@ brew install htop
 brew install git
 brew install the_silver_searcher
 brew install go
+brew install fzf
+brew install python@3.9
 
 # Remove outdated versions from the cellar.
 brew cleanup
