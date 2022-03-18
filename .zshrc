@@ -49,7 +49,7 @@ setopt share_history          # share command history data
 ### User configuration ###
 export TERM=xterm-256color
 export CLICOLOR=1
-export EDITOR="emacsclient --alternate-editor='' --create-frame"
+export EDITOR="emacsclient --alternate-editor='' --create-frame -nw"
 export PAGER='less'
 
 # Functions
