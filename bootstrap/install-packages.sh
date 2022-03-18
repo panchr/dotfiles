@@ -23,13 +23,27 @@ $PACKAGE_MANAGER install \
 
 case `uname` in
     Darwin)
+        $REPOSITORY_MANAGER d12frosted/emacs-plus
 	$PACKAGE_MANAGER install \
-					 the_silver_searcher \
-					 go \
-					 pyenv \
-					 bazelisk \
-					 fzf \
-					 python@3.9
+					the_silver_searcher \
+					go \
+					pyenv \
+					bazelisk \
+					zsh \
+					tmux \
+					grep \
+					openssh \
+					git \
+					tree \
+					gnupg \
+					findutils \
+					coreutils \
+					awscli \
+					vnstat \
+					watch \
+					telnet \
+					emacs-plus \
+					python@3.9
     ;;
     Linux)
 	$REPOSITORY_MANAGER ppa:git-core/ppa

@@ -65,6 +65,7 @@ case `uname` in
     Darwin)
 	alias  ls='ls -G'
 	export LSCOLORS=HxfxBxdx
+	export PATH=/opt/homebrew/bin:$PATH
     ;;
     Linux)
 	alias ls='ls --color=auto'
