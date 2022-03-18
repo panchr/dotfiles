@@ -15,6 +15,14 @@
 			   python-indent-offset 4
 			   python-indent-guess-indent-offset t)))
 
+;; TODO(rushy_panchal): Switch to lsp-mode and LSP's support for Python
+;; instead.
+;; Configure elpy to use python3, not python, on MacOS.
+;; After MacOS 12.3, the python binary was removed.
+(when *is-a-mac*
+  (setq elpy-rpc-python-command "python3")
+  (setenv "PYTHONPATH" "/usr/bin/python3"))
+
 (when (maybe-require-package 'anaconda-mode)
   (after-load 'python
     (add-hook 'python-mode-hook 'anaconda-mode)
