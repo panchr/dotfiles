@@ -24,7 +24,7 @@ $PACKAGE_MANAGER install \
 case `uname` in
     Darwin)
         $REPOSITORY_MANAGER d12frosted/emacs-plus
-	$PACKAGE_MANAGER install \
+		$PACKAGE_MANAGER install \
 					the_silver_searcher \
 					go \
 					pyenv \
@@ -43,7 +43,12 @@ case `uname` in
 					watch \
 					telnet \
 					emacs-plus \
-					python@3.9
+					python@3.10 \
+					openssl \
+					readline \
+					sqlite3 \
+					xz \
+					zlib
     ;;
     Linux)
 	$REPOSITORY_MANAGER ppa:git-core/ppa
@@ -80,8 +85,8 @@ esac
 
 # Other installations
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-pyenv install --skip-existing 3.8.1
-pyenv local 3.8.1
+pyenv install --skip-existing 3.10.3
+pyenv local 3.10.3
 pip install --upgrade \
     pip \
     pipenv
