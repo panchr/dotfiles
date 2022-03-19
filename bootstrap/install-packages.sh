@@ -23,11 +23,10 @@ $PACKAGE_MANAGER install \
 
 case `uname` in
     Darwin)
-        $REPOSITORY_MANAGER d12frosted/emacs-plus
+		# General utilities
 		$PACKAGE_MANAGER install \
 					the_silver_searcher \
 					go \
-					pyenv \
 					bazelisk \
 					zsh \
 					tmux \
@@ -41,14 +40,22 @@ case `uname` in
 					awscli \
 					vnstat \
 					watch \
-					telnet \
-					emacs-plus \
-					python@3.10 \
-					openssl \
-					readline \
-					sqlite3 \
-					xz \
-					zlib
+					telnet
+
+		# Emacs.
+		$REPOSITORY_MANAGER d12frosted/emacs-plus
+		$PACKAGE_MANAGER install emacs-plus
+
+		# Python.
+		$PACKAGE_MANAGER install \
+						 pyenv \
+						 python@3.10 \
+						 openssl \
+						 readline \
+						 sqlite3 \
+						 xz \
+						 zlib
+
     ;;
     Linux)
 	$REPOSITORY_MANAGER ppa:git-core/ppa
