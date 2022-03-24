@@ -20,8 +20,8 @@
 ;; Configure elpy to use python3, not python, on MacOS.
 ;; After MacOS 12.3, the python binary was removed.
 (when *is-a-mac*
-  (setq elpy-rpc-python-command "python3")
-  (setenv "PYTHONPATH" "/usr/bin/python3"))
+  (setq-default elpy-rpc-python-command "python3")
+  (setq-default python-shell-interpreter "python3"))
 
 (when (maybe-require-package 'anaconda-mode)
   (after-load 'python
