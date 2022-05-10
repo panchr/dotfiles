@@ -33,7 +33,9 @@
       (vc-print-log)))
 
   (after-load 'vc
-    (define-key vc-prefix-map (kbd "l") 'sanityinc/magit-or-vc-log-file)))
+    (define-key vc-prefix-map (kbd "l") 'sanityinc/magit-or-vc-log-file))
+
+  (add-hook 'magit-mode-hook (lambda () (local-set-key (kbd ":") 'with-editor-async-shell-command))))
 
 
 (after-load 'magit
