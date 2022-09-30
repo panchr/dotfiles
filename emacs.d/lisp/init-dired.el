@@ -37,10 +37,16 @@
 
   :bind
   (:map global-map
+		;; Open the current project if it is not already open.
         ("C-x t"   . treemacs-add-and-display-current-project))
   (:map treemacs-mode-map
 		("k"       . treemacs-remove-project-from-workspace)
 		("C-x t"   . treemacs)))
+
+;; When in Treemacs, rebind C-x t to operate normally.
+(add-hook 'treemacs-mode
+		  (lambda ()
+			(global-set-key (kbd "C-x t") treemacs)))
 
 (when (package-installed-p 'magit)
   (use-package treemacs-magit
