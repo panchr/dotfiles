@@ -26,5 +26,26 @@
   (after-load 'dired
     (add-hook 'dired-mode-hook 'diff-hl-dired-mode)))
 
+;; Treemacs setup - nicer file browsing.
+(use-package treemacs
+  :ensure t
+  :defer t
+  :init
+  :config
+  (progn
+    (treemacs-follow-mode nil))
+
+  :bind
+  (:map global-map
+        ("C-x t"   . treemacs-add-and-display-current-project))
+  (:map treemacs-mode-map
+		("k"       . treemacs-remove-project-from-workspace)
+		("C-x t"   . treemacs)))
+
+(when (package-installed-p 'magit)
+  (use-package treemacs-magit
+	:after (treemacs magit)
+	:ensure t))
+
 (provide 'init-dired)
 ;;; init-dired.el ends here
