@@ -5,7 +5,10 @@ REPOSITORY_MANAGER='brew tap'
 
 case `uname` in
     Darwin)
-	# do nothing
+	# Ensure that brew is installed.
+	if ! command -v "$PACKAGE_MANAGER" &>/dev/null; then
+		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+	fi
     ;;
     Linux)
 	PACKAGE_MANAGER='sudo apt-get -y'
