@@ -94,6 +94,6 @@ esac
 git clone https://github.com/pyenv/pyenv.git ~/.pyenv
 pyenv install --skip-existing 3.10.3
 pyenv local 3.10.3
-pip install --upgrade \
+pip3 install --upgrade \
     pip \
     pipenv
