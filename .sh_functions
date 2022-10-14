@@ -5,7 +5,13 @@
 _init_pyenv() {
     export PYENV_ROOT="$HOME/.pyenv"
     export PATH="$PYENV_ROOT/shims:$PATH"
+
     eval "$(command pyenv init -)"
+	if python -m certifi; then
+		local certifi_path=$(python -m certifi)
+		export SSL_CERT_FILE="$certifi_path"
+		export REQUEST_CA_BUNDLE="$certifi_path"
+	fi
 }
 
 pyenv() {
