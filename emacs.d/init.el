@@ -89,6 +89,7 @@
 (require 'init-go)
 (require 'init-bazel)
 (require 'init-terraform)
+(require 'init-php)
 (maybe-require-package 'nginx-mode)
 
 ;; (require 'init-paredit)
