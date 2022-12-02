@@ -42,8 +42,7 @@
     (treemacs-follow-mode nil))
 
   :bind
-  ;; (:map global-map
-  ;;       ("C-x t"   . treemacs-add-and-display-current-project-exclusively))
+  ;; Rebind C-x t in treemacs-mode so that we can actually close the sidebar.
   (:map treemacs-mode-map
 		("k"       . treemacs-remove-project-from-workspace)
 		("C-x t"   . treemacs)))
