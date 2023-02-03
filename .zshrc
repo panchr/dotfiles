@@ -50,7 +50,11 @@ setopt share_history          # share command history data
 export TERM=xterm-256color
 export CLICOLOR=1
 export EDITOR="emacsclient --alternate-editor='' --create-frame -nw"
-export PAGER='less'
+export PAGER='less -R'
+
+# Increase max open files limit. On MacOS, this defaults to 256, which is very
+# limiting.
+ulimit -S -n 2048
 
 # Functions
 zcompile ~/.sh_functions
@@ -83,6 +87,11 @@ case `uname` in
 	# do nothing
     ;;
 esac
+
+# Configure Docker Desktop.
+if [ -f ~/.docker/init-zsh.sh ]; then
+	source ~/.docker/init-zsh.sh || true
+fi
 
 # Environment variables
 if [ -f ~/.env_variables ]; then
