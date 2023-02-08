@@ -29,24 +29,26 @@
 ;; Treemacs setup - nicer file browsing.
 (use-package treemacs
   :ensure t
-  :defer t
+  :after (projectile)
   :init
+  (defun treemacs-toggle-project-exclusively ()
+	"Initialise or toggle treemacs, exclusively with the current project.
+- If the treemacs window is visible, hide it.
+- If a treemacs buffer exists but is not visible, show it.
+- If no treemacs buffer exists for the current frame, create and show it with the current project exclusively."
+	(interactive)
+	(pcase (treemacs-current-visibility)
+      ('visible (delete-window (treemacs-get-local-window)))
+      ('exists  (treemacs-select-window))
+      ('none    (treemacs-add-and-display-current-project-exclusively))))
+
   ;; bind-keys* overwrites any other key bindings, so this prevents other modes
   ;; from messing with this key binding (namely, ruby-mode).
   (bind-keys*
    ;; Open the current project if it is not already open.
-   ("C-x t" . treemacs-add-and-display-current-project-exclusively))
+   ("C-x t" . treemacs-toggle-project-exclusively)))
 
-  :config
-  (progn
-    (treemacs-follow-mode nil))
-
-  :bind
-  ;; Rebind C-x t in treemacs-mode so that we can actually close the sidebar.
-  (:map treemacs-mode-map
-		("k"       . treemacs-remove-project-from-workspace)
-		("C-x t"   . treemacs)))
-
+;; Use magit extensions if magit is installed.
 (when (package-installed-p 'magit)
   (use-package treemacs-magit
 	:after (treemacs magit)
