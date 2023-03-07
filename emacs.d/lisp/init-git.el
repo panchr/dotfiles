@@ -6,12 +6,10 @@
 ;;; Code:
 
 ;; TODO: link commits from vc-log to magit-show-commit
-;; TODO: smerge-mode
 (require-package 'git-blamed)
 (require-package 'git-modes)
 (when (maybe-require-package 'git-timemachine)
   (global-set-key (kbd "C-x v t") 'git-timemachine-toggle))
-
 
 
 (when (maybe-require-package 'magit)
@@ -35,7 +33,12 @@
   (after-load 'vc
     (define-key vc-prefix-map (kbd "l") 'sanityinc/magit-or-vc-log-file))
 
-  (add-hook 'magit-mode-hook (lambda () (local-set-key (kbd ":") 'with-editor-async-shell-command))))
+  (add-hook 'magit-mode-hook (lambda () (local-set-key (kbd ":") 'with-editor-async-shell-command)))
+  (add-hook 'smerge-mode-hook (lambda ()
+								(progn (local-set-key (kbd "C-c j") 'smerge-next)
+									   (local-set-key (kbd "C-c k") 'smerge-prev)
+									   (local-set-key (kbd "C-c u") 'smerge-keep-upper)
+									   (local-set-key (kbd "C-c l") 'smerge-keep-lower)))))
 
 
 (after-load 'magit
@@ -48,9 +51,9 @@
   (fullframe magit-status magit-mode-quit-window))
 
 (when (maybe-require-package 'git-commit)
-  (add-hook 'git-commit-mode-hook 'goto-address-mode))
+  (add-hook 'git-commit-mode-hook 'goto-address-mode)
   (add-hook 'git-commit-mode-hook
-	    (lambda () (setq fill-column 72)))
+	    (lambda () (setq fill-column 72))))
 
 
 (when *is-a-mac*
