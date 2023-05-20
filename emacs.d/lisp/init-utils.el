@@ -77,5 +77,8 @@
       (browse-url (concat "file://" file-name)))))
 
 
+;; Disable process exit confirmation.
+(setq confirm-kill-processes nil)
+
 (provide 'init-utils)
 ;;; init-utils.el ends here
