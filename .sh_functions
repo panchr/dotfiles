@@ -131,6 +131,11 @@ replace_all_literal() {
     ag -Q -0 -l $1 | xargs -0 sed -i '' -e "s/$1/$2/g"
 }
 
+replace_all_literal_slash() {
+    # Replace all occurrences of $1 with $2
+    ag -Q -0 -l $1 | xargs -0 sed -i '' -e "s+$1+$2+g"
+}
+
 gi() {
     curl -L -s "https://www.gitignore.io/api/$@"
 }
