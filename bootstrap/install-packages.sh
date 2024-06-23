@@ -43,7 +43,8 @@ case `uname` in
 					awscli \
 					vnstat \
 					watch \
-					telnet
+					telnet \
+					pinentry-mac
 
 		# Emacs.
 		$REPOSITORY_MANAGER d12frosted/emacs-plus
