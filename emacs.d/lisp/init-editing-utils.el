@@ -62,6 +62,19 @@
       (error "File does not exist: %s" file))
     (vlf file)))
 
+;; Long lines
+
+(when (require 'so-long nil :noerror)
+    (global-so-long-mode 1)
+    ;; Basic settings.
+    (setq so-long-action 'so-long-minor-mode)
+    (setq so-long-threshold 250)
+    (setq so-long-max-lines 100)
+    ;; Additional variables to override.
+    (mapc (apply-partially #'add-to-list 'so-long-variable-overrides)
+          '((show-trailing-whitespace . nil)
+            (truncate-lines . nil))))
+
 
 ;;; A simple visible bell which works in all terminal types
 (require-package 'mode-line-bell)
