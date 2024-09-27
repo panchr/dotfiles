@@ -68,8 +68,8 @@
     (global-so-long-mode 1)
     ;; Basic settings.
     (setq so-long-action 'so-long-minor-mode)
-    (setq so-long-threshold 250)
-    (setq so-long-max-lines 100)
+    (setq so-long-threshold 1000)
+    (setq so-long-max-lines 2500)
     ;; Additional variables to override.
     (mapc (apply-partially #'add-to-list 'so-long-variable-overrides)
           '((show-trailing-whitespace . nil)
