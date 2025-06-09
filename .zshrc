@@ -38,13 +38,20 @@ bindkey "^[[1;5D" backward-word
 # search forwards/backwards in history
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
-setopt extended_history       # record timestamp of command in HISTFILE
-setopt hist_expire_dups_first # delete duplicates first when HISTFILE size exceeds HISTSIZE
-setopt hist_ignore_dups       # ignore duplicated commands history list
-setopt hist_ignore_space      # ignore commands that start with space
-setopt hist_verify            # show command with history expansion to user before running it
-setopt inc_append_history     # add commands to HISTFILE in order of execution
-setopt share_history          # share command history data
+
+# History settings
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=1000000
+SAVEHIST=1000000
+setopt EXTENDED_HISTORY       # record timestamp of command in HISTFILE
+setopt HIST_EXPIRE_DUPS_FIRST # delete duplicates first when HISTFILE size exceeds HISTSIZE
+setopt HIST_IGNORE_DUPS       # ignore duplicated commands history list
+setopt HIST_SAVE_NO_DUPS	  # do not save duplicated commands in HISTFILE
+setopt HIST_REDUCE_BLANKS     # remove superfluous blanks from each command
+setopt HIST_VERIFY            # show command with history expansion to user before running it
+setopt APPEND_HISTORY 	      # append to the history file, don't overwrite it
+setopt INC_APPEND_HISTORY     # add commands to HISTFILE immediately in order of execution
+setopt SHARE_HISTORY          # share command history data
 
 ### User configuration ###
 export TERM=xterm-256color
