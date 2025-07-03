@@ -44,7 +44,8 @@ case `uname` in
 					vnstat \
 					watch \
 					telnet \
-					pinentry-mac
+					pinentry-mac \
+					noti
 
 		# Emacs.
 		$REPOSITORY_MANAGER d12frosted/emacs-plus
