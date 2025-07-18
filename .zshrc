@@ -12,9 +12,11 @@ precmd() {
 }
 
 autoload -U colors
+autoload -Uz promptinit
 setopt PROMPT_SUBST
-PROMPT='%F{green}%n%f@%F{39}%m%f:%F{yellow}%~%f %F{cyan}$git_branch%f
-%F{214}λ%f '
+PROMPT_CHAR="λ"
+PROMPT='%F{39}%m%f:%F{yellow}%~%f %F{cyan}$git_branch%f
+%F{214}$PROMPT_CHAR%f '
 
 ### Completions ###
 autoload -U compinit
