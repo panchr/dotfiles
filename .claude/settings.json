@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "noti -m \"Claude is waiting...\""
+          }
+        ]
+      }
+    ]
+  }
+}
