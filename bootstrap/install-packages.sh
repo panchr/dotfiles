@@ -45,7 +45,8 @@ case `uname` in
 					watch \
 					telnet \
 					pinentry-mac \
-					noti
+					noti \
+					claude-code
 
 		# Emacs.
 		$REPOSITORY_MANAGER d12frosted/emacs-plus
