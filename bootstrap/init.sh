@@ -15,3 +15,4 @@ ln -s -f "$CONFIG_DIR/emacs.d" ~/.emacs.d
 # Claude settings.
 mkdir -p ~/.claude
 ln -s -f "$CONFIG_DIR/.claude/settings.json" ~/.claude/settings.json
+ln -s -f "$CONFIG_DIR/.claude/CLAUDE.md" ~/.claude/CLAUDE.md
