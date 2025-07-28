@@ -11,11 +11,11 @@ Argument: $ARGUMENTS (optional - specific feedback ID or filter)
 This command fetches PR comments and reviews from the current branch, summarizes feedback, prioritizes issues, and optionally implements fixes through collaborative triage.
 
 Key assumptions:
-• The repository may contain uncommitted changes
-• Current branch has an associated PR
-• Using GitHub CLI (`gh`) for API access, and `gh auth login` has been run prior
-• `jq` is available locally
-• Comments may be line-specific or general review comments
+- The repository may contain uncommitted changes
+- Current branch has an associated PR
+- Using GitHub CLI (`gh`) for API access, and `gh auth login` has been run prior
+- `jq` is available locally
+- Comments may be line-specific or general review comments
 </context>
 
 <workflow>
@@ -38,32 +38,25 @@ Follow these stages strictly in order:
 2. Use TodoWrite tool to add TODOs for each item with severity/impact tags
 3. Group similar feedback items together where applicable
 
-**Stage 4: Interactive Triage**
-For each TODO item:
-1. Show full feedback comment with context
-2. Validate in context (read code, search relevant files) to confirm validity and significance
-3. For invalid/already addressed feedback: explain why and continue
-4. For valid feedback: describe issue detail, impact assessment, code snippets, and propose fix plan
+**Stage 4: Address Comments**
+Fix each TODO item, using the standard code editing process. Make sure to follow any relevant CLAUDE.md files.
 
-Then ask:
+**Stage 5: Ask user to review**
+1. Tell the user to review, commit, and push the changes to GitHub.
+2. Then ask:
+
 ```
-Implement fix for **<feedback short summary>** as described above?
-Options: (y)es / (s)kip / describe alternative approach / ask further questions
+Shall I reply and resolve all addressed comments on the PR?
+Options: (y)es / (s)kip / describe alternative approach
 ```
 
-5. Wait for user reply before proceeding
-6. If user answers yes:
-   - Detail concrete change plan (files, logic, tests)
-   - Implement the change
-   - Don't commit the change.
-7. Continue to next TODO item
+3. Wait for user reply before proceeding
+4. If user answers yes:
+  - Reply to each comment that was addressed in Stage 4. Make sure to prefix your reply with `**Claude here!** [reply text]"`
+  - Mark those comments as resolved.
+5. If the user answers no:
+  - Do nothing else.
 
-**Stage 5: Wrap-up**
-1. Print summary table:
-   ```
-   Feedback | Author | Decision | Notes
-   ```
-2. End with: "PR feedback review complete. Let me know if anything else is needed or you have any questions about what was addressed."
 </workflow>
 
 <argument_handling>
