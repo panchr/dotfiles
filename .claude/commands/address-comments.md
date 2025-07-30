@@ -52,7 +52,7 @@ Options: (y)es / (s)kip / describe alternative approach
 
 3. Wait for user reply before proceeding
 4. If user answers yes:
-  - Reply to each comment that was addressed in Stage 4. Make sure to prefix your reply with `**Claude here!** [reply text]"`
+  - Reply to each comment thread that was addressed in Stage 4. Do not start a new comment; reply to the original thread directly. Make sure to prefix your reply with `**Claude here!** [reply text]"`
   - Mark those comments as resolved.
 5. If the user answers no:
   - Do nothing else.
