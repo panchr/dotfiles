@@ -49,7 +49,8 @@ case `uname` in
 					pinentry-mac \
 					noti \
 					claude-code \
-					gh
+					gh \
+					fd
 
 		# Emacs.
 		$REPOSITORY_MANAGER d12frosted/emacs-plus
