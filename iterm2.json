@@ -492,6 +492,13 @@
       "Text" : "f",
       "Action" : 10
     },
+    "0x72-0x100000-0xf" : {
+      "Version" : 2,
+      "Apply Mode" : 0,
+      "Action" : 13,
+      "Text" : "",
+      "Escaping" : 2
+    },
     "0xf702-0x280000" : {
       "Text" : "b",
       "Action" : 10
