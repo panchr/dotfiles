@@ -33,6 +33,9 @@
  truncate-partial-width-windows nil
  tab-width 4)
 
+;; Delete a selection when inserting into it.
+(delete-selection-mode)
+
 (add-hook 'after-init-hook 'global-auto-revert-mode)
 (setq global-auto-revert-non-file-buffers t
       auto-revert-verbose nil)
