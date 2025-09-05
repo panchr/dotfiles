@@ -116,3 +116,9 @@ if (( ${+ZSH_PROFILE_STARTUP} )); then
 	zprof
 fi
 
+# iterm2 integration.
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+# Prevent applications from messing up my terminal character. This resets
+# the character to a |.
+printf '\e[6 q'

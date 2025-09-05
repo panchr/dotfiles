@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DIR="$( dirname -- "$BASH_SOURCE"; )";
+
 PACKAGE_MANAGER='brew'
 REPOSITORY_MANAGER='brew tap'
 
@@ -104,3 +106,6 @@ pyenv local 3.10.3
 pip3 install --upgrade \
     pip \
     pipenv
+
+# iterm2 shell integration.
+bash "$DIR/install-iterm2-sh-integration.sh"
