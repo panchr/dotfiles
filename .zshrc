@@ -79,6 +79,8 @@ case `uname` in
 	alias  ls='ls -G'
 	export LSCOLORS=HxfxBxdx
 	export PATH=/opt/homebrew/bin:$PATH
+
+    export DOTFILES="$(dirname "$(readlink "$0")")"
     ;;
     Linux)
 	alias ls='ls --color=auto'
@@ -91,6 +93,8 @@ case `uname` in
 	export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 	export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 	export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
+
+    export DOTFILES="$(cd $(dirname $([ -L $0 ] && readlink -f $0 || echo $0)))"
     ;;
     FreeBSD)
 	# do nothing
