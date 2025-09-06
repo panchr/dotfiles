@@ -30,7 +30,7 @@ fi
 if [ ! -d ~/.config/emacs ]; then
     echo "Installing Doom"
     git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
-    ~/.config/emacs/bin/doom install
+    ~/.config/emacs/bin/doom install --aot --no-env
 fi
 
 # And finally, link the configuration.
