@@ -100,6 +100,7 @@
 (delete-selection-mode)
 
 (global-set-key (kbd "C-x C-_") 'comment-line)
+(global-set-key (kbd "C-c w") 'kill-ring-save)
 
 (use-package visual-regexp-steroids
   :config
