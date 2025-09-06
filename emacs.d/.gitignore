@@ -19,6 +19,7 @@ cookies
 \#*
 /elpa
 /elpa-*
+eln-cache/
 site-lisp/package/
 /swank
 /.mc-lists.el

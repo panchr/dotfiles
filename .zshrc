@@ -65,7 +65,7 @@ export PAGER='less -R'
 # limiting.
 ulimit -S -n 2048
 
-# Functions
+# Load functions.
 zcompile ~/.sh_functions
 source ~/.sh_functions
 
@@ -78,7 +78,7 @@ case `uname` in
     Darwin)
 	alias  ls='ls -G'
 	export LSCOLORS=HxfxBxdx
-	export PATH=/opt/homebrew/bin:$PATH
+	export PATH="/opt/homebrew/bin:$PATH"
 
     export DOTFILES="$(dirname $(readlink ${ZDOTDIR:-$HOME}/.zshrc))"
     ;;
@@ -101,17 +101,12 @@ case `uname` in
     ;;
 esac
 
-# Configure Docker Desktop.
-if [ -f ~/.docker/init-zsh.sh ]; then
-	source ~/.docker/init-zsh.sh || true
-fi
-
-# Environment variables
+# Environment variables (never committed).
 if [ -f ~/.env_variables ]; then
     source ~/.env_variables
 fi
 
-# Local Configuration
+# Local Configuration (never commited).
 if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
 fi
@@ -120,9 +115,15 @@ if (( ${+ZSH_PROFILE_STARTUP} )); then
 	zprof
 fi
 
+# Doom is typically installed here, so make the 'doom' CLI available everywhere.
+if [ -d ~/.config/emacs/bin ]; then
+    export PATH="$HOME/.config/emacs/bin:$PATH"
+fi
+
 # iterm2 integration.
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-# Prevent applications from messing up my terminal character. This resets
-# the character to a |.
+# Prevent applications from messing up the terminal character. This resets the
+# character to a |.
+# TODO(rushy_panchal): This needs to be fixed in tmux, not here.
 printf '\e[6 q'
