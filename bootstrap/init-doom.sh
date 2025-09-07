@@ -26,7 +26,7 @@ if [ -f ~/.config/doom ] || [ -h ~/.config/doom ]; then
     rm ~/.config/doom
 fi
 
-# Link the configuration. This must be done before the Doom install so excessive
+# Link the configuration. This must be done before the Doom install so extra
 # packages are not installed.
 ln -s -f "$CONFIG_DIR/doom" ~/.config/doom
 
@@ -34,7 +34,7 @@ ln -s -f "$CONFIG_DIR/doom" ~/.config/doom
 if [ ! -d ~/.config/emacs ]; then
     echo "Installing Doom"
     git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
-	~/.config/emacs/bin/doom install --no-env
+    ~/.config/emacs/bin/doom install --no-env
 fi
 
 ~/.config/emacs/bin/doom sync

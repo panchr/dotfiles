@@ -51,3 +51,7 @@
 ;; TODO(rushy_panchal): Consider fetching these from GitHub, not from melpa.
 (when (package! visual-regexp)
   (package! visual-regexp-steroids))
+
+;; Language servers.
+(package! lsp-java)
+(package! lsp-python-ms)

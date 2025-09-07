@@ -165,6 +165,9 @@
               vc-relative-file)))
   (setq ibuffer-filter-group-name-face 'font-lock-doc-face))
 
+(use-package lsp-python-ms
+  :config (setq lsp-python-ms-auto-install-server t))
+
 ;; MacOS specific configuration.
 (when *is-a-mac*
   (setq mac-command-modifier 'meta)

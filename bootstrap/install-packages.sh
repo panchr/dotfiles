@@ -108,5 +108,8 @@ pip3 install --upgrade \
     pip \
     pipenv
 
+# Install language servers.
+go install golang.org/x/tools/gopls@latest
+
 # iterm2 shell integration.
 bash "$DIR/install-iterm2-sh-integration.sh"
