@@ -122,8 +122,3 @@ fi
 
 # iterm2 integration.
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
-# Prevent applications from messing up the terminal character. This resets the
-# character to a |.
-# TODO(rushy_panchal): This needs to be fixed in tmux, not here.
-printf '\e[6 q'

@@ -28,6 +28,7 @@
     "Red Component" : 0.3333333432674408,
     "Blue Component" : 1
   },
+  "Initial Use Transparency" : false,
   "Mouse Reporting" : true,
   "Use Underline Color (Light)" : false,
   "Disable Window Resizing" : true,
@@ -143,7 +144,7 @@
     "Red Component" : 0,
     "Blue Component" : 0
   },
-  "Transparency" : 0.050000000000000003,
+  "Transparency" : 0,
   "Bound Hosts" : [
 
   ],
@@ -409,6 +410,7 @@
   "Window Type" : 0,
   "Background Image Location" : "",
   "Brighten Bold Text" : true,
+  "Left Command Key" : 0,
   "ASCII Anti Aliased" : true,
   "Use Tab Color (Dark)" : false,
   "Cursor Guide Color (Dark)" : {
@@ -429,6 +431,7 @@
   "Show Offscreen Command line" : true,
   "Smart Cursor Color (Dark)" : false,
   "Shortcut" : "",
+  "Function Key" : 0,
   "Match Background Color (Dark)" : {
     "Red Component" : 0.99697142839431763,
     "Color Space" : "P3",
@@ -462,6 +465,7 @@
     "Red Component" : 0.3333333432674408,
     "Blue Component" : 0.3333333432674408
   },
+  "Load Shell Integration Automatically" : true,
   "Ansi 0 Color (Light)" : {
     "Green Component" : 0,
     "Red Component" : 0,
