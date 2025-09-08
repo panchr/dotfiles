@@ -7,7 +7,7 @@ CONFIG_DIR=$(realpath "$SCRIPT_DIR/..")
 
 # Uninstall any old Emacs configuration, by moving it elsewhere. If it's a link,
 # just remove it.
-if [ -d ~/.emacs.d ] [ ! -h ~/.emacs.d ]; then
+if [ -d ~/.emacs.d ] && [ ! -h ~/.emacs.d ]; then
     mv ~/.emacs.d ~/.emacs.d.bak
 fi
 if [ -f ~/.emacs.d ] || [ -h ~/.emacs.d ]; then
@@ -37,4 +37,4 @@ if [ ! -d ~/.config/emacs ]; then
     ~/.config/emacs/bin/doom install --no-env
 fi
 
-~/.config/emacs/bin/doom sync
+~/.config/emacs/bin/doom sync -!

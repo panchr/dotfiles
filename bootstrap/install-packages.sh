@@ -30,27 +30,28 @@ case `uname` in
     Darwin)
 		# General utilities
 		$PACKAGE_MANAGER install \
-					the_silver_searcher \
-					go \
-					bazelisk \
-					zsh \
-					tmux \
-					grep \
-					openssh \
-					git \
-					tree \
-					gnupg \
-					findutils \
-					coreutils \
-					awscli \
-					vnstat \
-					watch \
-					telnet \
-					pinentry-mac \
-					noti \
-					claude-code \
-					gh \
-					fd
+			the_silver_searcher \
+			ripgrep\
+			go \
+			bazelisk \
+			zsh \
+			tmux \
+			grep \
+			openssh \
+			git \
+			tree \
+			gnupg \
+			findutils \
+			coreutils \
+			awscli \
+			vnstat \
+			watch \
+			telnet \
+			pinentry-mac \
+			noti \
+			claude-code \
+			gh \
+			fd
 
 		# Emacs.
 		$REPOSITORY_MANAGER d12frosted/emacs-plus
