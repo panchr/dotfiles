@@ -115,26 +115,31 @@
 (use-package treemacs
   :init
   (defun treemacs-toggle-project-exclusively ()
-	"Initialise or toggle treemacs, exclusively with the current project.
+    "Initialise or toggle treemacs, exclusively with the current project.
 - If the treemacs window is visible, hide it.
 - If a treemacs buffer exists but is not visible, show it.
 - If no treemacs buffer exists for the current frame, create and show it with the current project exclusively."
-	(interactive)
-	(pcase (treemacs-current-visibility)
-     ('visible (delete-window (treemacs-get-local-window)))
-     ('exists  (treemacs-select-window))
-     ('none    (treemacs-add-and-display-current-project-exclusively))))
+    (interactive)
+    (pcase (treemacs-current-visibility)
+      ('visible (delete-window (treemacs-get-local-window)))
+      ('exists  (treemacs-select-window))
+      ('none    (treemacs-add-and-display-current-project-exclusively))))
 
   :config
   ;; bind-keys* overwrites any other key bindings, so this prevents other modes
   ;; from messing with this key binding (namely, ruby-mode).
- (bind-keys*
-  ;; Open the current project if it is not already open.
-  ("C-x t" . treemacs-toggle-project-exclusively)))
+  (bind-keys*
+   ;; Open the current project if it is not already open.
+   ("C-x t" . treemacs-toggle-project-exclusively)))
 
-;; Use magit extensions if magit is installed.
+;; Use magit extensions for treemacs.
 (use-package treemacs-magit
   :after (treemacs magit))
+
+;; centaur.
+(use-package centaur-tabs
+  :config
+  (setq centaur-tabs-set-close-button nil))
 
 ;; ibuffer.
 (use-package ibuffer
@@ -143,24 +148,24 @@
     (:name "Size" :inline t)
     (file-size-human-readable (buffer-size)))
   (setq ibuffer-formats
-      '((mark modified read-only vc-status-mini " "
-              (name 22 22 :left :elide)
-              " "
-              (size-h 9 -1 :right)
-              " "
-              (mode 12 12 :left :elide)
-              " "
-              vc-relative-file)
-        (mark modified read-only vc-status-mini " "
-              (name 22 22 :left :elide)
-              " "
-              (size-h 9 -1 :right)
-              " "
-              (mode 14 14 :left :elide)
-              " "
-              (vc-status 12 12 :left)
-              " "
-              vc-relative-file)))
+        '((mark modified read-only vc-status-mini " "
+           (name 22 22 :left :elide)
+           " "
+           (size-h 9 -1 :right)
+           " "
+           (mode 12 12 :left :elide)
+           " "
+           vc-relative-file)
+          (mark modified read-only vc-status-mini " "
+                (name 22 22 :left :elide)
+                " "
+                (size-h 9 -1 :right)
+                " "
+                (mode 14 14 :left :elide)
+                " "
+                (vc-status 12 12 :left)
+                " "
+                vc-relative-file)))
   (setq ibuffer-filter-group-name-face 'font-lock-doc-face))
 
 (use-package lsp-python-ms
