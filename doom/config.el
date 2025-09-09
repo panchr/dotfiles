@@ -133,9 +133,8 @@
   ("C-x t" . treemacs-toggle-project-exclusively)))
 
 ;; Use magit extensions if magit is installed.
-(when (package-installed-p 'magit)
-  (use-package treemacs-magit
-    :after (treemacs magit)))
+(use-package treemacs-magit
+  :after (treemacs magit))
 
 ;; ibuffer.
 (use-package ibuffer
