@@ -52,6 +52,9 @@
 (when (package! visual-regexp)
   (package! visual-regexp-steroids))
 
+;; Themes.
+(package! color-theme-sanityinc-tomorrow)
+
 ;; Language servers.
 (package! lsp-java)
 (package! lsp-python-ms)

@@ -39,9 +39,8 @@
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
-;; `load-theme' function. This is the default:
-;; TODO(rushy_panchal): Consider changing the theme.
-(setq doom-theme 'doom-one)
+;; `load-theme' function.
+(setq doom-theme 'sanityinc-tomorrow-night)
 ;; (custom-theme-set-faces! 'doom-one
 ;;   '(default :background "#000000"))
 
