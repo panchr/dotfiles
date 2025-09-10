@@ -7,8 +7,8 @@
 (setq debug-on-error t)
 
 (let ((minver "30.2"))
-  (when (version< emacs-version minver)
-    (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
+(when (version< emacs-version minver)
+  (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
 
 (defconst *is-a-mac* (eq system-type 'darwin))
 (defconst *tty* (eq (display-graphic-p) nil))
@@ -95,6 +95,8 @@
               confirm-kill-emacs nil
               ;; Allow scrolling to the end of a buffer even if we're close to the end.
               scroll-error-top-bottom t)
+
+(+global-word-wrap-mode +1)
 
 ;; Delete a selection when inserting into it.
 (delete-selection-mode)
@@ -188,8 +190,12 @@
                 vc-relative-file)))
   (setq ibuffer-filter-group-name-face 'font-lock-doc-face))
 
+;; LSP configuration
 (use-package lsp-python-ms
   :config (setq lsp-python-ms-auto-install-server t))
+(use-package lsp-mode
+  :config
+  (setq lsp-file-watch-threshold 2500))
 
 ;; MacOS specific configuration.
 (when *is-a-mac*
