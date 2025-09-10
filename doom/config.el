@@ -124,13 +124,15 @@
       ('visible (delete-window (treemacs-get-local-window)))
       ('exists  (treemacs-select-window))
       ('none    (treemacs-add-and-display-current-project-exclusively))))
+  (defun treemacs-select-if-visible ()
+    "Selects the treemacs buffer, if it is visible."
+    (interactive)
+    (when (eq (treemacs-current-visibility) 'visible)
+      (treemacs-select-window)))
 
   :config
-  ;; bind-keys* overwrites any other key bindings, so this prevents other modes
-  ;; from messing with this key binding (namely, ruby-mode).
-  (bind-keys*
-   ;; Open the current project if it is not already open.
-   ("C-x t" . treemacs-toggle-project-exclusively)))
+  (global-set-key (kbd "C-x t") 'treemacs-toggle-project-exclusively)
+  (global-set-key (kbd "C-x p") 'treemacs-select-if-visible))
 
 ;; Use magit extensions for treemacs.
 (use-package treemacs-magit
