@@ -2,7 +2,7 @@
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
-
+;;
 ;; Produce backtraces when errors occur
 (setq debug-on-error t)
 
@@ -11,6 +11,7 @@
     (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
 
 (defconst *is-a-mac* (eq system-type 'darwin))
+(defconst *tty* (eq (display-graphic-p) nil))
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
@@ -132,7 +133,22 @@
 
   :config
   (global-set-key (kbd "C-x t") 'treemacs-toggle-project-exclusively)
-  (global-set-key (kbd "C-x p") 'treemacs-select-if-visible))
+  (global-set-key (kbd "C-x p") 'treemacs-select-if-visible)
+  (setq +treemacs-git-mode 'deferred)
+
+  ;; Settings treemacs-no-png-images doesn't disable image icons in tty mode,
+  ;; for some reason. So, use a theme to explicitly disable them.
+  (treemacs-create-theme "tty-no-icons"
+    :config
+    (progn
+      (treemacs-create-icon :icon "- " :extensions (root-open) :fallback 'same-as-icon)
+      (treemacs-create-icon :icon "+ " :extensions (root-closed) :fallback 'same-as-icon)
+      (treemacs-create-icon :icon "- " :extensions (dir-open) :fallback 'same-as-icon)
+      (treemacs-create-icon :icon "+ " :extensions (dir-closed) :fallback 'same-as-icon)
+      (treemacs-create-icon :icon "  " :extensions (fallback) :fallback 'same-as-icon)))
+  (when *tty*
+    (setq treemacs-no-png-images t)
+    (treemacs-load-theme "tty-no-icons")))
 
 ;; Use magit extensions for treemacs.
 (use-package treemacs-magit
@@ -141,7 +157,9 @@
 ;; centaur.
 (use-package centaur-tabs
   :config
-  (setq centaur-tabs-set-close-button nil))
+  (when *tty*
+    (setq centaur-tabs-set-close-button nil
+          centaur-tabs-set-icons nil)))
 
 ;; ibuffer.
 (use-package ibuffer
@@ -175,8 +193,8 @@
 
 ;; MacOS specific configuration.
 (when *is-a-mac*
-  (setq mac-command-modifier 'meta)
-  (setq mac-option-modifier 'none)
+  (setq mac-command-modifier 'meta
+        mac-option-modifier 'none)
 
   ;; Bind keys for copy/paste to clipboard
   (defun osx-copy-pasteboard (start end)
