@@ -7,8 +7,8 @@
 (setq debug-on-error t)
 
 (let ((minver "30.2"))
-(when (version< emacs-version minver)
-  (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
+  (when (version< emacs-version minver)
+    (error "Your Emacs is too old -- this config requires v%s or higher" minver)))
 
 (defconst *is-a-mac* (eq system-type 'darwin))
 (defconst *tty* (eq (display-graphic-p) nil))
@@ -44,6 +44,11 @@
 (setq doom-theme 'sanityinc-tomorrow-night)
 ;; (custom-theme-set-faces! 'doom-one
 ;;   '(default :background "#000000"))
+
+;; Start in full screen and blink the cursor in GUI mode.
+(unless *tty*
+  (add-to-list 'default-frame-alist '(fullscreen . maximized))
+  (blink-cursor-mode))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
