@@ -109,6 +109,9 @@
 (global-set-key (kbd "C-x C-_") 'comment-line)
 (global-set-key (kbd "C-c w") 'kill-ring-save)
 
+;; Treat the shell as interactive, in order to load ~/.zshrc.
+(setq shell-command-switch "-ic")
+
 (use-package visual-regexp-steroids
   :config
   ;; Better regexp (Python-style!)
