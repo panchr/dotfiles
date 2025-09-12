@@ -201,12 +201,18 @@ side effects or warnings when a package isn't present."
                 vc-relative-file)))
   (setq ibuffer-filter-group-name-face 'font-lock-doc-face))
 
-;; LSP configuration
+;; LSP configuration.
 (when-package lsp-python-ms
-  :config (setq lsp-python-ms-auto-install-server t))
+  :config
+  (setq lsp-python-ms-auto-install-server t))
 (when-package lsp-mode
   :config
   (setq lsp-file-watch-threshold 2500))
+
+;; Other language configuration.
+(when-package bazel
+  :config
+  (setq bazel-mode-buildifier-before-save t))
 
 ;; MacOS specific configuration.
 (when *is-a-mac*

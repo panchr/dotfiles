@@ -58,3 +58,6 @@
 ;; Language servers.
 (package! lsp-java)
 (package! lsp-python-ms)
+
+;; Other languages.
+(package! bazel)
