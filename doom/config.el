@@ -13,6 +13,17 @@
 (defconst *is-a-mac* (eq system-type 'darwin))
 (defconst *tty* (eq (display-graphic-p) nil))
 
+(defmacro when-package (package &rest body)
+  "Like `use-package!' but only if PACKAGE is installed.
+
+If the library for PACKAGE isn't on `load-path', do nothing. This avoids
+side effects or warnings when a package isn't present."
+  (declare (indent defun) (debug t))
+  (let* ((lib (if (stringp package) package (symbol-name package)))
+         (form `(use-package! ,package ,@body)))
+    `(when (locate-library ,lib)
+       (eval ',form))))
+;;
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets. It is optional.
 ;; (setq user-full-name "John Doe"
@@ -49,14 +60,6 @@
 (unless *tty*
   (add-to-list 'default-frame-alist '(fullscreen . maximized))
   (blink-cursor-mode))
-
-;; This determines the style of line numbers in effect. If set to `nil', line
-;; numbers are disabled. For relative line numbers, set this to `relative'.
-;;(setq display-line-numbers-type t)
-
-;; If you use `org' and don't want your org files in the default location below,
-;; change `org-directory'. It must be set before org loads!
-;;(setq org-directory "~/org/")
 
 ;; Whenever you reconfigure a package, make sure to wrap your config in an
 ;; `after!' block, otherwise Doom's defaults may override your settings. E.g.
@@ -112,7 +115,7 @@
 ;; Treat the shell as interactive, in order to load ~/.zshrc.
 (setq shell-command-switch "-ic")
 
-(use-package visual-regexp-steroids
+(when-package visual-regexp-steroids
   :config
   ;; Better regexp (Python-style!)
   (global-set-key (kbd "C-c r") 'vr/replace)
@@ -123,7 +126,7 @@
   (define-key esc-map (kbd "C-s") 'vr/isearch-forward)) ;; C-M-s)
 
 ;; Treemacs setup - nicer file browsing.
-(use-package treemacs
+(when-package treemacs
   :init
   (defun treemacs-toggle-project-exclusively ()
     "Initialise or toggle treemacs, exclusively with the current project.
@@ -161,18 +164,18 @@
     (treemacs-load-theme "tty-no-icons")))
 
 ;; Use magit extensions for treemacs.
-(use-package treemacs-magit
+(when-package treemacs-magit
   :after (treemacs magit))
 
 ;; centaur.
-(use-package centaur-tabs
+(when-package centaur-tabs
   :config
   (when *tty*
     (setq centaur-tabs-set-close-button nil
           centaur-tabs-set-icons nil)))
 
 ;; ibuffer.
-(use-package ibuffer
+(when-package ibuffer
   :config
   (define-ibuffer-column size-h
     (:name "Size" :inline t)
@@ -199,9 +202,9 @@
   (setq ibuffer-filter-group-name-face 'font-lock-doc-face))
 
 ;; LSP configuration
-(use-package lsp-python-ms
+(when-package lsp-python-ms
   :config (setq lsp-python-ms-auto-install-server t))
-(use-package lsp-mode
+(when-package lsp-mode
   :config
   (setq lsp-file-watch-threshold 2500))
 
