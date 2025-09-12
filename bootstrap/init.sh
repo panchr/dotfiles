@@ -18,4 +18,7 @@ ln -s -f "$CONFIG_DIR/claude/settings.json" ~/.claude/settings.json
 ln -s -f "$CONFIG_DIR/claude/CLAUDE.md" ~/.claude/CLAUDE.md
 ln -s -f "$CONFIG_DIR/claude/commands/address-comments.md" ~/.claude/commands/address-comments.md
 
-$SCRIPT_DIR/init-doom.sh
+readonly INIT_DOOM="${INIT_DOOM:-1}"
+if [ "$INIT_DOOM" = "1" ]; then
+    $SCRIPT_DIR/init-doom.sh
+fi
