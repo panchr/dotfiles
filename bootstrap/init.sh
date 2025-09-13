@@ -22,3 +22,10 @@ readonly INIT_DOOM="${INIT_DOOM:-1}"
 if [ "$INIT_DOOM" = "1" ]; then
     $SCRIPT_DIR/init-doom.sh
 fi
+
+case $(uname) in
+Darwin)
+    defaults write com.googlecode.iterm2.plist PrefsCustomFolder "$CONFIG_DIR/iterm2"
+    defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+    ;;
+esac
