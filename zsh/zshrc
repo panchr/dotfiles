@@ -58,7 +58,7 @@ setopt SHARE_HISTORY          # share command history data
 ### User configuration ###
 export TERM=xterm-256color
 export CLICOLOR=1
-export EDITOR="emacsclient --alternate-editor='' --create-frame -nw"
+export EDITOR="edit_file"
 export PAGER='less -R'
 
 # Increase max open files limit. On MacOS, this defaults to 256, which is very
@@ -70,9 +70,10 @@ zcompile ~/.sh_functions
 source ~/.sh_functions
 
 # Aliases
-alias grep='grep --color=auto'
+alias grep="grep --color=auto"
 alias edit="$EDITOR"
-alias python='python3'
+alias view="view_file"
+alias python="python3"
 
 case `uname` in
     Darwin)

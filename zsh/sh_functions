@@ -2,16 +2,24 @@
 # Rushy Panchal
 # shell functions
 
+function edit_file() {
+    emacsclient --alternate-editor='' --create-frame -nw $@
+}
+
+function view_file() {
+    emacsclient --alternate-editor='' --create-frame -nw --eval "(view-file \"$1\")"
+}
+
 _init_pyenv() {
     export PYENV_ROOT="$HOME/.pyenv"
     export PATH="$PYENV_ROOT/shims:$PATH"
 
     eval "$(command pyenv init -)"
-	if python -m certifi; then
-		local certifi_path=$(python -m certifi)
-		export SSL_CERT_FILE="$certifi_path"
-		export REQUEST_CA_BUNDLE="$certifi_path"
-	fi
+    if python -m certifi; then
+        local certifi_path=$(python -m certifi)
+        export SSL_CERT_FILE="$certifi_path"
+        export REQUEST_CA_BUNDLE="$certifi_path"
+    fi
 }
 
 pyenv() {
@@ -40,8 +48,8 @@ nvm() {
     unset -f nvm
 
     export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
     nvm "$@"
 }
 
@@ -61,26 +69,26 @@ opam() {
 }
 
 find_git_branch() {
-  # Based on: http://stackoverflow.com/a/13003854/170413
-  local branch
-  if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
-    if [[ "$branch" == "HEAD" ]]; then
-      branch='detached*'
+    # Based on: http://stackoverflow.com/a/13003854/170413
+    local branch
+    if branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null); then
+        if [[ "$branch" == "HEAD" ]]; then
+            branch='detached*'
+        fi
+        git_branch="⎇ $branch"
+    else
+        git_branch=""
     fi
-    git_branch="⎇ $branch"
-  else
-    git_branch=""
-  fi
 }
 
-function del-squashed () {
+function del-squashed() {
     local branch=${1:-master}
 
-    git checkout $branch && \
-	comm -12 \
-	     <(git branch | sed "s/[ *]//g") \
-	     <(git remote prune origin | sed "s/^.*origin\///g") \
-	    | xargs -L1 -J % git branch -D %
+    git checkout $branch &&
+        comm -12 \
+            <(git branch | sed "s/[ *]//g") \
+            <(git remote prune origin | sed "s/^.*origin\///g") |
+        xargs -L1 -J % git branch -D %
 }
 
 repeat_cmd() {
@@ -92,14 +100,13 @@ repeat_cmd() {
         # echo "$?"
         test "$?" -ne 0 && break
     done
-    }
+}
 
 docker_clean() {
     # Clean docker images and stop all running containers. May require rebuild of containers
     # in the future.
     echo "Deleting images with label=<none> and tag != latest..."
-    docker image ls | awk '{ if ($1 == "<none>" && $2 != "latest" ) { print $3 } }' | xargs docker im\
-age rm -f
+    docker image ls | awk '{ if ($1 == "<none>" && $2 != "latest" ) { print $3 } }' | xargs docker image rm -f
     echo "Stopping all containers..."
     docker stop -t 0 $(docker ps -aq)
     echo "Removing all containers..."
@@ -187,18 +194,17 @@ local_udp_server() {
 }
 
 view_json() {
-	jq -C . $1 | less -R
+    jq -C . $1 | less -R
 }
 
 ### WSL 2
 if command -v wslpath >/dev/null 2>&1; then
     explorer() {
-	local explorer_path="$@"
-	if [ -z "$explorer_path" ]; then
-	    explorer_path="$PWD"
-	fi
+        local explorer_path="$@"
+        if [ -z "$explorer_path" ]; then
+            explorer_path="$PWD"
+        fi
 
-	explorer.exe `wslpath -w "$explorer_path"`
+        explorer.exe $(wslpath -w "$explorer_path")
     }
 fi
-
