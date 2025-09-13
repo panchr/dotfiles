@@ -23,9 +23,14 @@ if [ "$INIT_DOOM" = "1" ]; then
     $SCRIPT_DIR/init-doom.sh
 fi
 
+# Configure iTerm2 on MacOS.
 case $(uname) in
 Darwin)
+    # Read iTerm2 plist from this directory.
     defaults write com.googlecode.iterm2.plist PrefsCustomFolder "$CONFIG_DIR/iterm2"
     defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
+    # Auto-save the plist.
+    defaults write com.googlecode.iterm2.plist NoSyncNeverRemindPrefsChangesLostForFile -bool true
+    defaults write com.googlecode.iterm2.plist NoSyncNeverRemindPrefsChangesLostForFile_selection -int 2
     ;;
 esac
