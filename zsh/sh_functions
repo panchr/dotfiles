@@ -2,10 +2,6 @@
 # Rushy Panchal
 # shell functions
 
-function edit_file() {
-    emacsclient --alternate-editor='' --create-frame -nw $@
-}
-
 function view_file() {
     emacsclient --alternate-editor='' --create-frame -nw --eval "(view-file \"$1\")"
 }
