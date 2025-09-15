@@ -77,6 +77,7 @@ zcompile ~/.sh_functions
 source ~/.sh_functions
 
 # Aliases
+alias reload="exec zsh"
 alias grep="grep --color=auto"
 alias edit="$EDITOR"
 alias view="view_file"
