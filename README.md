@@ -21,7 +21,8 @@ When setting up a new Mac, you may want to install some common [Homebrew](https:
 This is forked from the original https://github.com/mathiasbynens/dotfiles.
 
 ## Todos
-- [ ] Switch prompt with [powerlevel10k](https://github.com/romkatv/powerlevel10k)
+- [x] Switch prompt with [powerlevel10k](https://github.com/romkatv/powerlevel10k)
 - [x] Automatically install the iTerm2 profile and [manage all other settings] (https://stratus3d.com/blog/2015/02/28/sync-iterm2-profile-with-dotfiles-repository/)
 - [x] Use a Brewfile for managing MacOS packages
 - [x] Install iTerm2 shell integration automatically
+- [ ] Fix [powerlevel10k resizing issue](https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#mitigation)
