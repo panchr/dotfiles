@@ -1,3 +1,6 @@
 [submodule "emacs.d/site-lisp/copilot"]
 	path = emacs.d/site-lisp/copilot
 	url = git@github.com:zerolfx/copilot.el.git
+[submodule "powerlevel10k"]
+	path = powerlevel10k
+	url = https://github.com/romkatv/powerlevel10k.git

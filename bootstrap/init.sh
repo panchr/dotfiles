@@ -5,6 +5,9 @@ set -ex
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 CONFIG_DIR=$(realpath "$SCRIPT_DIR/..")
 
+git -C "$CONFIG_DIR" submodule init
+git -C "$CONFIG_DIR" submodule update
+
 # Dotfiles are symlinked so they are kept up-to-date when the repository is
 # pulled.
 ln -s -f "$CONFIG_DIR/zsh/sh_functions" ~/.sh_functions
@@ -18,11 +21,6 @@ ln -s -f "$CONFIG_DIR/claude/settings.json" ~/.claude/settings.json
 ln -s -f "$CONFIG_DIR/claude/CLAUDE.md" ~/.claude/CLAUDE.md
 ln -s -f "$CONFIG_DIR/claude/commands/address-comments.md" ~/.claude/commands/address-comments.md
 
-readonly INIT_DOOM="${INIT_DOOM:-1}"
-if [ "$INIT_DOOM" = "1" ]; then
-    $SCRIPT_DIR/init-doom.sh
-fi
-
 # Configure iTerm2 on MacOS.
 case $(uname) in
 Darwin)
@@ -34,3 +32,8 @@ Darwin)
     defaults write com.googlecode.iterm2.plist NoSyncNeverRemindPrefsChangesLostForFile_selection -int 2
     ;;
 esac
+
+readonly INIT_DOOM="${INIT_DOOM:-1}"
+if [ "$INIT_DOOM" = "1" ]; then
+    $SCRIPT_DIR/init-doom.sh
+fi
