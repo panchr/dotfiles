@@ -30,8 +30,10 @@
 	<false/>
 	<key>FocusFollowsMouse</key>
 	<false/>
+	<key>ForceKeyboard</key>
+	<false/>
 	<key>FunctionKey</key>
-	<integer>11</integer>
+	<integer>10</integer>
 	<key>GlobalKeyMap</key>
 	<dict>
 		<key>0x19-0x60000</key>
@@ -149,6 +151,8 @@
 	<false/>
 	<key>LeftCommand</key>
 	<integer>7</integer>
+	<key>LeftControl</key>
+	<integer>11</integer>
 	<key>NeverWarnAboutShortLivedSessions_5DE7EF38-8862-4F3D-80D1-F8732453765E</key>
 	<true/>
 	<key>NeverWarnAboutShortLivedSessions_5DE7EF38-8862-4F3D-80D1-F8732453765E_selection</key>
@@ -1223,6 +1227,8 @@
 			<string>xterm-256color</string>
 			<key>Transparency</key>
 			<real>0.0</real>
+			<key>Treat Option as Alt</key>
+			<true/>
 			<key>Triggers</key>
 			<array/>
 			<key>Unlimited Scrollback</key>
