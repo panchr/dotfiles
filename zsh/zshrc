@@ -89,7 +89,7 @@ case `uname` in
 	export LSCOLORS=HxfxBxdx
 	export PATH="/opt/homebrew/bin:$PATH"
 
-    export DOTFILES="$(dirname $(readlink ${ZDOTDIR:-$HOME}/.zshrc))/.."
+    export DOTFILES="$(realpath $(dirname $(readlink ${ZDOTDIR:-$HOME}/.zshrc))/..)"
     ;;
     Linux)
 	alias ls='ls --color=auto'
@@ -103,7 +103,7 @@ case `uname` in
 	export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 	export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 
-	export DOTFILES="$(dirname $(readlink -f ${ZDOTDIR:-$HOME}/.zshrc)/..)/.."
+	export DOTFILES="$(realpath $(dirname $(readlink -f ${ZDOTDIR:-$HOME}/.zshrc))/..)"
     ;;
     FreeBSD)
 	# do nothing
