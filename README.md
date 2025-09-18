@@ -25,4 +25,6 @@ This is forked from the original https://github.com/mathiasbynens/dotfiles.
 - [x] Automatically install the iTerm2 profile and [manage all other settings] (https://stratus3d.com/blog/2015/02/28/sync-iterm2-profile-with-dotfiles-repository/)
 - [x] Use a Brewfile for managing MacOS packages
 - [x] Install iTerm2 shell integration automatically
+- [ ] Install MacOS settings in init.sh
+- [ ] Install emacs server daemon as a systemd service
 - [ ] Fix [powerlevel10k resizing issue](https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#mitigation)

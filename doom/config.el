@@ -213,6 +213,9 @@ side effects or warnings when a package isn't present."
 (when-package bazel
   :config
   (setq bazel-mode-buildifier-before-save t))
+(when-package terraform-mode
+  :after
+  (company-terraform-init))
 
 ;; MacOS specific configuration.
 (when *is-a-mac*
