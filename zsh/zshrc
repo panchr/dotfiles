@@ -1,6 +1,13 @@
 # Rushy Panchal
 # zsh configuration
 
+# Ignore all other settings on "dumb" shells, to avoid startup that may fail on such shells.
+if [[ $TERM == "dumb" ]]; then
+  unsetopt zle
+  PS1='$ '
+  return
+fi
+
 if (( ${+ZSH_PROFILE_STARTUP} )); then
 	zmodload zsh/zprof
 fi
