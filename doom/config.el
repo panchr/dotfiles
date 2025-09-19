@@ -117,6 +117,7 @@ side effects or warnings when a package isn't present."
 
 (when-package visual-regexp-steroids
   :config
+  (setq vr/engine 'pcre2el)
   ;; Better regexp (Python-style!)
   (global-set-key (kbd "C-c r") 'vr/replace)
   (global-set-key (kbd "C-c q") 'vr/query-replace)

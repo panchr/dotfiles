@@ -49,6 +49,7 @@
 ;; (unpin! t)
 
 ;; TODO(rushy_panchal): Consider fetching these from GitHub, not from melpa.
+(package! pcre2el)
 (when (package! visual-regexp)
   (package! visual-regexp-steroids))
 

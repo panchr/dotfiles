@@ -1,13 +1,6 @@
 # Rushy Panchal
 # zsh configuration
 
-# Ignore all other settings on "dumb" shells, to avoid startup that may fail on such shells.
-if [[ $TERM == "dumb" ]]; then
-  unsetopt zle
-  PS1='$ '
-  return
-fi
-
 if (( ${+ZSH_PROFILE_STARTUP} )); then
 	zmodload zsh/zprof
 fi
@@ -15,22 +8,24 @@ fi
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+if [[ $TERM != "dumb" ]] && [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
 ### Prompt ###
-# Run before prompt is printed
-# precmd() {
-#     find_git_branch;
-# }
+if [[ $TERM == "dumb" ]]; then
+   # Run before prompt is printed
+   precmd() {
+      find_git_branch;
+   }
 
-# autoload -U colors
-# autoload -Uz promptinit
-# setopt PROMPT_SUBST
-# PROMPT_CHAR="λ"
-# PROMPT='%F{39}%m%f:%F{yellow}%~%f %F{cyan}$git_branch%f
-# %F{214}$PROMPT_CHAR%f '
+   autoload -U colors
+   autoload -Uz promptinit
+   setopt PROMPT_SUBST
+   PROMPT_CHAR="λ"
+   PROMPT='%F{39}%m%f:%F{yellow}%~%f %F{cyan}$git_branch%f
+   %F{214}$PROMPT_CHAR%f '
+fi
 
 ### Completions ###
 autoload -U compinit
@@ -143,4 +138,4 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 source "$DOTFILES/powerlevel10k/powerlevel10k.zsh-theme"
 
 # To customize prompt, run `p10k configure` or edit p10k.zsh.
-[[ ! -f "$DOTFILES/zsh/p10k.zsh" ]] || source "$DOTFILES/zsh/p10k.zsh"
+[[ $TERM != "dumb" ]] && [[ ! -f "$DOTFILES/zsh/p10k.zsh" ]] || source "$DOTFILES/zsh/p10k.zsh"
