@@ -38,6 +38,10 @@
 	<true/>
 	<key>Default Bookmark Guid</key>
 	<string>5DE7EF38-8862-4F3D-80D1-F8732453765E</string>
+	<key>DimBackgroundWindows</key>
+	<false/>
+	<key>DimInactiveSplitPanes</key>
+	<true/>
 	<key>DimOnlyText</key>
 	<false/>
 	<key>DisableFullscreenTransparency</key>
@@ -649,8 +653,6 @@
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
-			<key>Background Image Location</key>
-			<string></string>
 			<key>Badge Color (Dark)</key>
 			<dict>
 				<key>Alpha Component</key>
@@ -1349,7 +1351,7 @@
 	<key>SoundForEsc</key>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
-	<real>0.24233498475609755</real>
+	<real>0.14740434451219511</real>
 	<key>StretchTabsToFillBar</key>
 	<false/>
 	<key>TabStyle</key>
