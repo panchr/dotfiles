@@ -148,7 +148,7 @@ fi
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Enable the powerlevel10k theme.
-source "$DOTFILES/powerlevel10k/powerlevel10k.zsh-theme"
+source "$DOTFILES/zsh/powerlevel10k/powerlevel10k.zsh-theme"
 
 # To customize prompt, run `p10k configure` or edit p10k.zsh.
 [[ $TERM != "dumb" ]] && [[ ! -f "$DOTFILES/zsh/p10k.zsh" ]] || source "$DOTFILES/zsh/p10k.zsh"
