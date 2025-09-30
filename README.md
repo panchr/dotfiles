@@ -28,3 +28,5 @@ This is forked from the original https://github.com/mathiasbynens/dotfiles.
 - [ ] Install MacOS settings in init.sh
 - [ ] Install emacs server daemon as a systemd service
 - [ ] Fix [powerlevel10k resizing issue](https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#mitigation)
+- [x] Use fzf for shell history
+- [ ] Use fzf for cmd completions

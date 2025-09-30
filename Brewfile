@@ -17,6 +17,7 @@ brew "jq"
 brew "noti"
 brew "fzf"
 brew "fd"
+brew "bat"
 
 # Git
 brew "gh"

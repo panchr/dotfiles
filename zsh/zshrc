@@ -64,6 +64,19 @@ setopt APPEND_HISTORY 	      # append to the history file, don't overwrite it
 setopt INC_APPEND_HISTORY     # add commands to HISTFILE immediately in order of execution
 setopt SHARE_HISTORY          # share command history data
 
+# Use fzf for fuzzy history search.
+source <(fzf --zsh)
+# Use ctrl-y to copy the command when searching history.
+export FZF_CTRL_R_OPTS="
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
+# Preview file content using bat (https://github.com/sharkdp/bat)
+export FZF_CTRL_T_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'bat -n --color=always {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+
 ### User configuration ###
 export TERM=xterm-256color
 export CLICOLOR=1

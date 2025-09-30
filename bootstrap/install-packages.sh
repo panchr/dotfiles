@@ -52,7 +52,9 @@ Linux)
 		liblzma-dev \
 		python-openssl \
 		git \
-		silversearcher-ag
+		silversearcher-ag \
+		fzf \
+		bat
 
 	bash "$DIR/install-emacs30-ubuntu.sh"
 	;;
