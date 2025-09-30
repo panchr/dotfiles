@@ -31,4 +31,4 @@ This is forked from the original https://github.com/mathiasbynens/dotfiles.
 - [ ] Fix emacs inserting random characters into the buffer before it is ready
 - [ ] Fix [powerlevel10k resizing issue](https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#mitigation)
 - [x] Use fzf for shell history
-- [ ] Use fzf for cmd completions
+- [x] Use fzf for cmd completions

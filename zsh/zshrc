@@ -1,6 +1,8 @@
 # Rushy Panchal
 # zsh configuration
 
+ZSHRC_PATH="${0:A:h}"
+
 if (( ${+ZSH_PROFILE_STARTUP} )); then
 	zmodload zsh/zprof
 fi
@@ -77,6 +79,10 @@ export FZF_CTRL_T_OPTS="
   --preview 'bat -n --color=always {}'
   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
+# Use fzf for tab-completion.
+source "$ZSHRC_PATH/zsh/fzf-tab-completion/zsh/fzf-zsh-completion.sh"
+bindkey '^I' fzf_completion
+
 ### User configuration ###
 export TERM=xterm-256color
 export CLICOLOR=1
@@ -148,7 +154,7 @@ fi
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Enable the powerlevel10k theme.
-source "$DOTFILES/zsh/powerlevel10k/powerlevel10k.zsh-theme"
+source "$ZSHRC_PATH/zsh/powerlevel10k/powerlevel10k.zsh-theme"
 
 # To customize prompt, run `p10k configure` or edit p10k.zsh.
 [[ $TERM != "dumb" ]] && [[ ! -f "$DOTFILES/zsh/p10k.zsh" ]] || source "$DOTFILES/zsh/p10k.zsh"
