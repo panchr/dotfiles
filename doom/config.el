@@ -104,7 +104,18 @@ side effects or warnings when a package isn't present."
               ;; Allow scrolling to the end of a buffer even if we're close to the end.
               scroll-error-top-bottom t)
 
-(+global-word-wrap-mode +1)
+;; Disable global-visual-line-mode, which needs to be done after Doom is initialized
+;; (otherwise, Doom will reset it).
+(add-hook! 'doom-after-init-hook :append
+  (defun @doom-disable-global-visual-line-mode ()
+    (global-visual-line-mode -1)
+    (remove-hook 'text-mode-hook #'visual-line-mode)
+    (remove-hook 'prog-mode-hook #'visual-line-mode)
+
+    ;; But enable normal word-wrapping, while still allowing line commands to operate on the entire
+    ;; line.
+    (setq-default truncate-lines nil)
+    ))
 
 ;; Delete a selection when inserting into it.
 (delete-selection-mode)
