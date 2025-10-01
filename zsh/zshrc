@@ -1,7 +1,19 @@
 # Rushy Panchal
 # zsh configuration
 
-ZSHRC_PATH="${0:A:h}"
+# Environment setup that must be performed before anything else.
+case `uname` in
+    Darwin)
+    export DOTFILES="$(realpath $(dirname $(readlink ${ZDOTDIR:-$HOME}/.zshrc))/..)"
+    export PATH="/opt/homebrew/bin:$PATH"
+    ;;
+    Linux)
+	export DOTFILES="$(realpath $(dirname $(readlink -f ${ZDOTDIR:-$HOME}/.zshrc))/..)"
+    ;;
+    FreeBSD)
+	# do nothing
+    ;;
+esac
 
 if (( ${+ZSH_PROFILE_STARTUP} )); then
 	zmodload zsh/zprof
@@ -80,7 +92,7 @@ export FZF_CTRL_T_OPTS="
   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
 # Use fzf for tab-completion.
-source "$ZSHRC_PATH/zsh/fzf-tab-completion/zsh/fzf-zsh-completion.sh"
+source "$DOTFILES/zsh/fzf-tab-completion/zsh/fzf-zsh-completion.sh"
 bindkey '^I' fzf_completion
 
 ### User configuration ###
@@ -108,9 +120,6 @@ case `uname` in
     Darwin)
 	alias  ls='ls -G'
 	export LSCOLORS=HxfxBxdx
-	export PATH="/opt/homebrew/bin:$PATH"
-
-    export DOTFILES="$(realpath $(dirname $(readlink ${ZDOTDIR:-$HOME}/.zshrc))/..)"
     ;;
     Linux)
 	alias ls='ls --color=auto'
@@ -123,8 +132,6 @@ case `uname` in
 	export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 	export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 	export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
-
-	export DOTFILES="$(realpath $(dirname $(readlink -f ${ZDOTDIR:-$HOME}/.zshrc))/..)"
     ;;
     FreeBSD)
 	# do nothing
@@ -154,7 +161,7 @@ fi
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 # Enable the powerlevel10k theme.
-source "$ZSHRC_PATH/zsh/powerlevel10k/powerlevel10k.zsh-theme"
+source "$DOTFILES/zsh/powerlevel10k/powerlevel10k.zsh-theme"
 
 # To customize prompt, run `p10k configure` or edit p10k.zsh.
 [[ $TERM != "dumb" ]] && [[ ! -f "$DOTFILES/zsh/p10k.zsh" ]] || source "$DOTFILES/zsh/p10k.zsh"

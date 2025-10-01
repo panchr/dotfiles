@@ -2,6 +2,11 @@
 # Rushy Panchal
 # shell functions
 
+# Set the tab title.
+function title {
+    echo -ne "\033]0;"$*"\007"
+}
+
 function view_file() {
     emacsclient --alternate-editor='' --create-frame -nw --eval "(view-file \"$1\")"
 }
