@@ -38,17 +38,17 @@
 	<true/>
 	<key>Default Bookmark Guid</key>
 	<string>5DE7EF38-8862-4F3D-80D1-F8732453765E</string>
-	<key>DimBackgroundWindows</key>
-	<false/>
-	<key>DimInactiveSplitPanes</key>
-	<true/>
 	<key>DimOnlyText</key>
 	<false/>
 	<key>DisableFullscreenTransparency</key>
 	<false/>
+	<key>DisableTopRightIndicators</key>
+	<false/>
 	<key>DoubleReportScrollWheel</key>
 	<true/>
 	<key>EnableAPIServer</key>
+	<true/>
+	<key>EnableDivisionView</key>
 	<true/>
 	<key>EnableProxyIcon</key>
 	<false/>
@@ -161,8 +161,12 @@
 			<string></string>
 		</dict>
 	</dict>
+	<key>HTMLTabTitles</key>
+	<false/>
 	<key>HapticFeedbackForEsc</key>
 	<false/>
+	<key>HideActivityIndicator</key>
+	<true/>
 	<key>HideScrollbar</key>
 	<false/>
 	<key>HideTab</key>
@@ -1338,20 +1342,26 @@
 			<string>kNextWindowPointerAction</string>
 		</dict>
 	</dict>
+	<key>PreserveWindowSizeWhenTabBarVisibilityChanges</key>
+	<false/>
 	<key>PromptOnQuit</key>
 	<false/>
 	<key>RightCommand</key>
-	<integer>12</integer>
+	<integer>8</integer>
 	<key>ShowBookmarkName</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
+	<true/>
+	<key>ShowNewOutputIndicator</key>
 	<true/>
 	<key>ShowPaneTitles</key>
 	<true/>
 	<key>SoundForEsc</key>
 	<false/>
 	<key>SplitPaneDimmingAmount</key>
-	<real>0.14740434451219511</real>
+	<real>0.23329736802184461</real>
+	<key>StatusBarPosition</key>
+	<integer>0</integer>
 	<key>StretchTabsToFillBar</key>
 	<false/>
 	<key>TabStyle</key>
@@ -1360,6 +1370,8 @@
 	<integer>4</integer>
 	<key>TabViewType</key>
 	<integer>0</integer>
+	<key>TabsHaveCloseButton</key>
+	<true/>
 	<key>TmuxUsesDedicatedProfile</key>
 	<true/>
 	<key>URLHandlersByGuid</key>
