@@ -12,7 +12,17 @@ git -C "$CONFIG_DIR" submodule update
 # pulled.
 ln -s -f "$CONFIG_DIR/zsh/sh_functions" ~/.sh_functions
 ln -s -f "$CONFIG_DIR/zsh/zshrc" ~/.zshrc
+
+# Setup tmux and tpm.
 ln -s -f "$CONFIG_DIR/tmux/tmux.conf" ~/.tmux.conf
+
+# If the tpm symlink already exists, clean it up.
+if [ ! -d ~/.tmux/plugins/tpm ]; then
+    mkdir -p ~/.tmux/plugins
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    ~/.tmux/plugins/tpm/bin/install_plugins
+fi
+~/.tmux/plugins/tpm/bin/clean_plugins
 
 # Claude settings.
 mkdir -p ~/.claude
