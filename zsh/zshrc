@@ -91,10 +91,6 @@ export FZF_CTRL_T_OPTS="
   --preview 'bat -n --color=always {}'
   --bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
-# Use fzf for tab-completion.
-source "$DOTFILES/zsh/fzf-tab-completion/zsh/fzf-zsh-completion.sh"
-bindkey '^I' fzf_completion
-
 ### User configuration ###
 export TERM=xterm-256color
 export CLICOLOR=1
