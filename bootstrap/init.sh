@@ -13,6 +13,9 @@ git -C "$CONFIG_DIR" submodule update
 ln -s -f "$CONFIG_DIR/zsh/sh_functions" ~/.sh_functions
 ln -s -f "$CONFIG_DIR/zsh/zshrc" ~/.zshrc
 
+mkdir -p ~/.config/bat
+ln -s -f "$CONFIG_DIR/zsh/batconfig" ~/.config/bat/config
+
 # Setup tmux and tpm.
 ln -s -f "$CONFIG_DIR/tmux/tmux.conf" ~/.tmux.conf
 
