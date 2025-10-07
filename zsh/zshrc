@@ -116,11 +116,11 @@ alias python="python3"
 
 case `uname` in
     Darwin)
-	alias  ls='ls -G'
+	alias  ls='ls -a -G'
 	export LSCOLORS=HxfxBxdx
     ;;
     Linux)
-	alias ls='ls --color=auto'
+	alias ls='ls -a --color=auto'
 	export LS_COLORS='no=00;36:di=01;37:ex=01;31:ln=00;35'
 	export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
 	export LESS_TERMCAP_md=$'\E[1;36m'     # begin blink
