@@ -198,6 +198,11 @@ view_json() {
     jq -C . $1 | less -R
 }
 
+# Base64 URL encoding and decoding.
+# Taken from https://unix.stackexchange.com/a/628843.
+base64url::encode() { base64 -w0 | tr '+/' '-_' | tr -d '='; }
+base64url::decode() { awk '{ if (length($0) % 4 == 3) print $0"="; else if (length($0) % 4 == 2) print $0"=="; else print $0; }' | tr -- '-_' '+/' | base64 -d; }
+
 ### WSL 2
 if command -v wslpath >/dev/null 2>&1; then
     explorer() {
