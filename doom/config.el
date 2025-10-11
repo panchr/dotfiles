@@ -104,6 +104,9 @@ side effects or warnings when a package isn't present."
               ;; Allow scrolling to the end of a buffer even if we're close to the end.
               scroll-error-top-bottom t)
 
+;; Always show line numbers.
+(global-display-line-numbers-mode 1)
+
 ;; Disable global-visual-line-mode, which needs to be done after Doom is initialized
 ;; (otherwise, Doom will reset it).
 (add-hook! 'doom-after-init-hook :append
@@ -228,6 +231,20 @@ side effects or warnings when a package isn't present."
 (when-package terraform-mode
   :after
   (company-terraform-init))
+
+;; Support zsh in sh-mode.
+(dolist (pattern '("\\.zsh\\'"
+                   "zlogin\\'"
+                   "zlogout\\'"
+                   "zpreztorc\\'"
+                   "zprofile\\'"
+                   "zshenv\\'"
+                   "zshrc\\'"))
+  (add-to-list 'auto-mode-alist (cons pattern 'sh-mode)))
+(add-hook 'sh-mode-hook
+          (lambda ()
+            (if (string-match "\\.zsh$" buffer-file-name)
+                (sh-set-shell "zsh"))))
 
 ;; MacOS specific configuration.
 (when *is-a-mac*
