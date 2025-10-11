@@ -1,0 +1,29 @@
+# Rushy Panchal
+# ~/.zshenv is sourced on all shells, not just interactive. PATH and other
+# environment variables should be set up here.
+
+# Environment setup that must be performed before anything else.
+case $(uname) in
+Darwin)
+    export DOTFILES="$(realpath $(dirname $(readlink ${ZDOTDIR:-$HOME}/.zshrc))/..)"
+    export PATH="/opt/homebrew/bin:$PATH"
+    ;;
+Linux)
+    export DOTFILES="$(realpath $(dirname $(readlink -f ${ZDOTDIR:-$HOME}/.zshrc))/..)"
+    ;;
+FreeBSD)
+    # do nothing
+    ;;
+esac
+
+# Doom is typically installed here, so make the 'doom' CLI available everywhere.
+if [ -d ~/.config/emacs/bin ]; then
+    export PATH="$HOME/.config/emacs/bin:$PATH"
+fi
+
+export EDITOR="emacsclient --alternate-editor='' --create-frame --no-window-system"
+export PAGER="less"
+
+# Increase max open files limit. On MacOS, this defaults to 256, which is very
+# limiting.
+ulimit -S -n 2048

@@ -1,19 +1,5 @@
 # Rushy Panchal
-# zsh configuration
-
-# Environment setup that must be performed before anything else.
-case `uname` in
-    Darwin)
-    export DOTFILES="$(realpath $(dirname $(readlink ${ZDOTDIR:-$HOME}/.zshrc))/..)"
-    export PATH="/opt/homebrew/bin:$PATH"
-    ;;
-    Linux)
-	export DOTFILES="$(realpath $(dirname $(readlink -f ${ZDOTDIR:-$HOME}/.zshrc))/..)"
-    ;;
-    FreeBSD)
-	# do nothing
-    ;;
-esac
+# ~/.zshrc is only sourced for interactive shells.
 
 if (( ${+ZSH_PROFILE_STARTUP} )); then
 	zmodload zsh/zprof
@@ -22,7 +8,7 @@ fi
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ $TERM != "dumb" ]] && [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
@@ -96,12 +82,7 @@ fi
 ### User configuration ###
 export TERM=xterm-256color
 export CLICOLOR=1
-export EDITOR="emacsclient --alternate-editor='' --create-frame -nw"
 export PAGER='less -R'
-
-# Increase max open files limit. On MacOS, this defaults to 256, which is very
-# limiting.
-ulimit -S -n 2048
 
 # Load functions.
 zcompile ~/.sh_functions
@@ -150,11 +131,6 @@ if (( ${+ZSH_PROFILE_STARTUP} )); then
     zprof
 fi
 
-# Doom is typically installed here, so make the 'doom' CLI available everywhere.
-if [ -d ~/.config/emacs/bin ]; then
-    export PATH="$HOME/.config/emacs/bin:$PATH"
-fi
-
 # iterm2 integration.
 if [ -f "${HOME}/.iterm2_shell_integration.zsh" ]; then
     source "${HOME}/.iterm2_shell_integration.zsh"
@@ -164,4 +140,6 @@ fi
 source "$DOTFILES/zsh/powerlevel10k/powerlevel10k.zsh-theme"
 
 # To customize prompt, run `p10k configure` or edit p10k.zsh.
-[[ $TERM != "dumb" ]] && [[ ! -f "$DOTFILES/zsh/p10k.zsh" ]] || source "$DOTFILES/zsh/p10k.zsh"
+if [[ -f "$DOTFILES/zsh/p10k.zsh" ]]; then
+     source "$DOTFILES/zsh/p10k.zsh"
+fi

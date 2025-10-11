@@ -11,6 +11,7 @@ git -C "$CONFIG_DIR" submodule update
 # Dotfiles are symlinked so they are kept up-to-date when the repository is
 # pulled.
 ln -s -f "$CONFIG_DIR/zsh/sh_functions" ~/.sh_functions
+ln -s -f "$CONFIG_DIR/zsh/zshenv" ~/.zshenv
 ln -s -f "$CONFIG_DIR/zsh/zshrc" ~/.zshrc
 
 mkdir -p ~/.config/bat
