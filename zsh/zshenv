@@ -21,7 +21,7 @@ if [ -d ~/.config/emacs/bin ]; then
     export PATH="$HOME/.config/emacs/bin:$PATH"
 fi
 
-export EDITOR="emacsclient --alternate-editor='' --create-frame --no-window-system"
+export EDITOR="emacsclient --alternate-editor='' --create-frame -nw"
 export PAGER="less"
 
 # Increase max open files limit. On MacOS, this defaults to 256, which is very
