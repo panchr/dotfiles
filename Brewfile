@@ -18,6 +18,7 @@ brew "noti"
 brew "fzf"
 brew "fd"
 brew "bat"
+brew "prettier"
 
 # Git
 brew "gh"
@@ -37,6 +38,7 @@ brew "xz"
 brew "zlib"
 
 # Languages
+brew "node"
 brew "bazelisk"
 brew "buildifier"
 brew "clang-format"
