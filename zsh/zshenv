@@ -27,3 +27,6 @@ export PAGER="less"
 # Increase max open files limit. On MacOS, this defaults to 256, which is very
 # limiting.
 ulimit -S -n 2048
+
+# Theme for bat and delta.
+export BAT_THEME=OneHalfDark

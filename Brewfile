@@ -18,6 +18,7 @@ brew "noti"
 brew "fzf"
 brew "fd"
 brew "bat"
+brew "git-delta"
 brew "prettier"
 
 # Git

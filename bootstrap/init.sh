@@ -14,9 +14,6 @@ ln -s -f "$CONFIG_DIR/zsh/sh_functions" ~/.sh_functions
 ln -s -f "$CONFIG_DIR/zsh/zshenv" ~/.zshenv
 ln -s -f "$CONFIG_DIR/zsh/zshrc" ~/.zshrc
 
-mkdir -p ~/.config/bat
-ln -s -f "$CONFIG_DIR/zsh/batconfig" ~/.config/bat/config
-
 # Setup tmux and tpm.
 ln -s -f "$CONFIG_DIR/tmux/tmux.conf" ~/.tmux.conf
 
@@ -46,6 +43,17 @@ Darwin)
     defaults write com.googlecode.iterm2.plist NoSyncNeverRemindPrefsChangesLostForFile_selection -int 2
     ;;
 esac
+
+# Configure the 'delta' git differ.
+# See: https://github.com/dandavison/delta.
+if command -v delta; then
+    git config --global core.pager delta
+    git config --global interactive.diffFilter 'delta --color-only'
+    git config --global delta.navigate true
+    git config --global delta.line-numbers true
+    git config --global delta.side-by-side false
+    git config --global merge.conflictStyle zdiff3
+fi
 
 readonly INIT_DOOM="${INIT_DOOM:-1}"
 if [ "$INIT_DOOM" = "1" ]; then
