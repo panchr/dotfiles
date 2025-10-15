@@ -55,6 +55,10 @@ Darwin)
     ;;
 esac
 
+# Configure ghostty.
+mkdir -p ~/.config/ghostty
+ln -s -f "$CONFIG_DIR/ghostty/config" ~/.config/ghostty/config
+
 readonly INIT_DOOM="${INIT_DOOM:-1}"
 if [ "$INIT_DOOM" = "1" ]; then
     $SCRIPT_DIR/init-doom.sh
