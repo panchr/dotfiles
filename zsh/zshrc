@@ -1,8 +1,10 @@
 # Rushy Panchal
 # ~/.zshrc is only sourced for interactive shells.
 
-if (( ${+ZSH_PROFILE_STARTUP} )); then
-	zmodload zsh/zprof
+# For profiling zsh, see: https://unix.stackexchange.com/a/329719/27109.
+# Execute 'ZSH_PROFILE_RC=true zsh -i -c exit' and run 'zprof' to get the details.
+if [[ -n "${ZSH_PROFILE_RC+1}" ]]; then
+    zmodload zsh/zprof
 fi
 
 if [[ $TERM == "dumb" ]]; then
@@ -129,13 +131,12 @@ if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
 fi
 
-if (( ${+ZSH_PROFILE_STARTUP} )); then
-    zprof
-fi
-
-# iterm2 integration.
+# iterm2 and ghostty integration.
 if [ -f "${HOME}/.iterm2_shell_integration.zsh" ]; then
     source "${HOME}/.iterm2_shell_integration.zsh"
+fi
+if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
+    source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
 fi
 
 # Enable the powerlevel10k theme.
@@ -146,4 +147,8 @@ fi
 # To customize prompt, run `p10k configure` or edit p10k.zsh.
 if [[ -f "$DOTFILES/zsh/p10k.zsh" ]]; then
      source "$DOTFILES/zsh/p10k.zsh"
+fi
+
+if [[ -n "${ZSH_PROFILE_RC+1}" ]]; then
+    zprof
 fi
