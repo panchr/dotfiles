@@ -1,37 +1,22 @@
-# Text & colors
+# Theming.
 font-family = Monaco
 font-size = 12
 
-# Color palette (copied from iTerm2)
-# TODO(rushy_panchal): Clean these up.
-palette = 0=#000000
-palette = 1=#bb0000
-palette = 2=#00bb00
-palette = 3=#bbbb00
-palette = 4=#0000bb
-palette = 5=#bb00bb
-palette = 6=#00bbbb
-palette = 7=#bbbbbb
-palette = 8=#555555
-palette = 9=#ff5555
-palette = 10=#55ff55
-palette = 11=#ffff55
-palette = 12=#5555ff
-palette = 13=#ff55ff
-palette = 14=#55ffff
-palette = 15=#ffffff
-
-background = #000000
+theme = Seti
+background = #101010
 foreground = #32c3f2
-cursor-color = #bbbbbb
-cursor-text = #ffffff
+cursor-color = #BBBBBB
+cursor-text = #FFFFFF
 selection-background = #628db2
 selection-foreground = #000000
 
-# Cursor
+# Cursor.
 cursor-style = bar
 cursor-style-blink = true
+adjust-cursor-thickness = 2
+cursor-click-to-move = true
 
-# Misc
-mouse-hide-while-typing = true
+# Misc.
+maximize = true
 window-save-state = always
+mouse-hide-while-typing = true
