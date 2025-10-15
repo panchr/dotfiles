@@ -1,6 +1,7 @@
 # Terminal
 brew "zsh"
 brew "tmux"
+cask "ghostty"
 
 # Terminal utilities
 brew "tree"
