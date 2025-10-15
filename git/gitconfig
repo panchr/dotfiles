@@ -1,0 +1,9 @@
+[user]
+        name = Rushy Panchal
+[pull]
+        ff = only
+[push]
+        default = current
+[rerere]
+        enabled = true
+        autoupdate = true

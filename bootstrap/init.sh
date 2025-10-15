@@ -8,6 +8,9 @@ CONFIG_DIR=$(realpath "$SCRIPT_DIR/..")
 git -C "$CONFIG_DIR" submodule init
 git -C "$CONFIG_DIR" submodule update
 
+# Clean up old configuration that may now be stale.
+$SCRIPT_DIR/clean.sh
+
 # Dotfiles are symlinked so they are kept up-to-date when the repository is
 # pulled.
 ln -s -f "$CONFIG_DIR/zsh/sh_functions" ~/.sh_functions
@@ -24,6 +27,14 @@ if [ ! -d ~/.tmux/plugins/tpm ]; then
     ~/.tmux/plugins/tpm/bin/install_plugins
 fi
 ~/.tmux/plugins/tpm/bin/clean_plugins
+
+# Configure git.
+git config set --global --all --fixed-value --value="$CONFIG_DIR/git/gitconfig" include.path "$CONFIG_DIR/git/gitconfig"
+if command -v delta; then
+    # Configure the 'delta' git differ.
+    # See: https://github.com/dandavison/delta.
+    git config set --global --all --fixed-value --value="$CONFIG_DIR/git/diffconfig" include.path "$CONFIG_DIR/git/diffconfig"
+fi
 
 # Claude settings.
 mkdir -p ~/.claude
@@ -43,17 +54,6 @@ Darwin)
     defaults write com.googlecode.iterm2.plist NoSyncNeverRemindPrefsChangesLostForFile_selection -int 2
     ;;
 esac
-
-# Configure the 'delta' git differ.
-# See: https://github.com/dandavison/delta.
-if command -v delta; then
-    git config --global core.pager delta
-    git config --global interactive.diffFilter 'delta --color-only'
-    git config --global delta.navigate true
-    git config --global delta.line-numbers true
-    git config --global delta.side-by-side false
-    git config --global merge.conflictStyle zdiff3
-fi
 
 readonly INIT_DOOM="${INIT_DOOM:-1}"
 if [ "$INIT_DOOM" = "1" ]; then
