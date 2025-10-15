@@ -21,3 +21,5 @@ maximize = true
 window-save-state = always
 mouse-hide-while-typing = true
 mouse-scroll-multiplier = 0.5
+
+keybind = super+i=prompt_surface_title
