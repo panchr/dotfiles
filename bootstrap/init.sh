@@ -30,7 +30,7 @@ fi
 
 # Configure git.
 git config set --global --all --fixed-value --value="$CONFIG_DIR/git/gitconfig" include.path "$CONFIG_DIR/git/gitconfig"
-if command -v riff; then
+if command -v riff >/dev/null; then
     # Configure the 'riff' git differ.
     # See: https://github.com/walles/riff.
     git config set --global --all --fixed-value --value="$CONFIG_DIR/git/diffconfig" include.path "$CONFIG_DIR/git/diffconfig"

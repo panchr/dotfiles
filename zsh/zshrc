@@ -81,6 +81,10 @@ fi
 export TERM=xterm-256color
 export CLICOLOR=1
 export PAGER='less -R'
+if command -v moor >/dev/null; then
+    export PAGER='moor'
+    alias less="$PAGER"
+fi
 
 # Load functions.
 zcompile ~/.sh_functions

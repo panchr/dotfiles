@@ -28,5 +28,6 @@ export PAGER="less"
 # limiting.
 ulimit -S -n 2048
 
-# Theme for bat and delta.
+# Themes for tools.
 export BAT_THEME=OneHalfDark
+export MOOR="-style=nordic -wrap -quit-if-one-screen"

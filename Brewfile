@@ -19,6 +19,7 @@ brew "fzf"
 brew "fd"
 brew "bat"
 brew "riff"
+brew "moor"
 brew "prettier"
 
 # Git
