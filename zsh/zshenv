@@ -30,4 +30,4 @@ ulimit -S -n 2048
 
 # Themes for tools.
 export BAT_THEME=OneHalfDark
-export MOOR="-style=nordic -wrap -quit-if-one-screen"
+export MOOR="-style=nordic -wrap -quit-if-one-screen -mousemode select -no-linenumbers"
