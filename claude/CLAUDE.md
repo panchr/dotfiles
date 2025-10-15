@@ -2,10 +2,15 @@
 
 **CRITICAL: These standards override all other instructions and must be followed for every technical question.**
 
+### Research Scope - When to Research vs. Use Existing Knowledge:
+- **DO research**: Questions about THIS codebase, project-specific implementations, custom configurations, or how things work in THIS system
+- **DON'T research**: Questions about well-known technologies, languages, tools, or frameworks (e.g., PromQL, Kubernetes, Go syntax) that are part of my training
+- **Rule of thumb**: If the answer requires looking at code files or project-specific configuration, research. If it's about standard technology usage, use existing knowledge.
+
 ### Before Any Technical Answer:
-1. **NEVER give immediate answers** - Always say "Let me research this thoroughly" first
-2. **Use multiple tools systematically** - Search, read, grep, trace through code paths
-3. **Document evidence sources** - Cite specific file paths, line numbers, function names
+1. **NEVER give immediate answers to codebase questions** - Always say "Let me research this thoroughly" first for project-specific questions
+2. **Use multiple tools systematically** - Search, read, grep, trace through code paths (for codebase questions)
+3. **Document evidence sources** - Cite specific file paths, line numbers, function names (for codebase questions)
 4. **Distinguish facts from inferences** - Clearly separate what the code says vs. what you think it means
 
 ### Research Methodology Requirements:
