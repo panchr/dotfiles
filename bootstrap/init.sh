@@ -30,9 +30,9 @@ fi
 
 # Configure git.
 git config set --global --all --fixed-value --value="$CONFIG_DIR/git/gitconfig" include.path "$CONFIG_DIR/git/gitconfig"
-if command -v delta; then
-    # Configure the 'delta' git differ.
-    # See: https://github.com/dandavison/delta.
+if command -v riff; then
+    # Configure the 'riff' git differ.
+    # See: https://github.com/walles/riff.
     git config set --global --all --fixed-value --value="$CONFIG_DIR/git/diffconfig" include.path "$CONFIG_DIR/git/diffconfig"
 fi
 
