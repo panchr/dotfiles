@@ -20,6 +20,6 @@ cursor-click-to-move = true
 maximize = true
 window-save-state = always
 mouse-hide-while-typing = true
-mouse-scroll-multiplier = 1
+mouse-scroll-multiplier = 4
 
 keybind = super+i=prompt_surface_title
