@@ -1,14 +1,33 @@
 # Theming.
+# TODO(rushy_panchal): Use a thinner font stroke if possible.
 font-family = Monaco
 font-size = 12
 
-theme = Seti
-background = #101010
-foreground = #32c3f2
+term = xterm-256color
+palette = 0=#000000
+palette = 1=#b83019
+palette = 2=#51bf37
+palette = 3=#c6c43d
+palette = 4=#0c24bf
+palette = 5=#b93ec1
+palette = 6=#53c2c5
+palette = 7=#c7c7c7
+palette = 8=#676767
+palette = 9=#ef766d
+palette = 10=#8cf67a
+palette = 11=#fefb7e
+palette = 12=#6a71f6
+palette = 13=#f07ef8
+palette = 14=#8ef9fd
+palette = 15=#feffff
+
+background = #0A0A0A
+foreground = #69cbf0
 cursor-color = #BBBBBB
 cursor-text = #FFFFFF
-selection-background = #628db2
+selection-background = #7d9dbc
 selection-foreground = #000000
+bold-color = #7cf464
 
 # Cursor.
 cursor-style = bar
@@ -21,5 +40,6 @@ maximize = true
 window-save-state = always
 mouse-hide-while-typing = true
 mouse-scroll-multiplier = 4
+auto-update = check
 
 keybind = super+i=prompt_surface_title
