@@ -102,7 +102,9 @@ side effects or warnings when a package isn't present."
               scroll-preserve-screen-position 'always
               confirm-kill-emacs nil
               ;; Allow scrolling to the end of a buffer even if we're close to the end.
-              scroll-error-top-bottom t)
+              scroll-error-top-bottom t
+              ;; Slow down mouse scrolling.
+              mouse-wheel-scroll-amount '(0.01))
 
 ;; Always show line numbers.
 (global-display-line-numbers-mode 1)
@@ -188,6 +190,11 @@ side effects or warnings when a package isn't present."
   (when *tty*
     (setq centaur-tabs-set-close-button nil
           centaur-tabs-set-icons nil)))
+
+;; Vertico
+(when-package vertico
+  :config
+  (global-set-key (kbd "M-s s") '+vertico/project-search))
 
 ;; ibuffer.
 (when-package ibuffer
