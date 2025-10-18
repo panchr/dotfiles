@@ -80,7 +80,6 @@ if command -v fzf >/dev/null; then
 fi
 
 ### User configuration ###
-export TERM=xterm-256color
 export CLICOLOR=1
 export PAGER='less -R'
 if command -v moor >/dev/null; then
@@ -132,9 +131,10 @@ if [ -f ~/.zshrc.local ]; then
 fi
 
 # iterm2 and ghostty integration.
-if [ -f "${HOME}/.iterm2_shell_integration.zsh" ]; then
-    source "${HOME}/.iterm2_shell_integration.zsh"
-fi
+# TODO(rushy_panchal): Remove this when no longer using iTerm2.
+# if [ -f "${HOME}/.iterm2_shell_integration.zsh" ]; then
+#     source "${HOME}/.iterm2_shell_integration.zsh"
+# fi
 if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
     source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
 fi

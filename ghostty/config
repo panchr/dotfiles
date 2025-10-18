@@ -3,6 +3,7 @@
 font-family = Monaco
 font-size = 12
 
+# xterm-ghostty is not recognized by some programs, e.g. the Emacs server.
 term = xterm-256color
 palette = 0=#000000
 palette = 1=#b83019
