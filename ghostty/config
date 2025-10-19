@@ -3,6 +3,9 @@
 font-family = Monaco
 font-size = 12
 
+# Use a custom icon, which is loaded from ~/.config/ghostty/Ghostty.icns.
+macos-icon = custom
+
 # xterm-ghostty is not recognized by some programs, e.g. the Emacs server.
 term = xterm-256color
 palette = 0=#000000
