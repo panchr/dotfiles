@@ -1,4 +1,9 @@
 #!/bin/bash
+#
+# init.sh sets up configuration. Packages should be installed first, using
+# install-packages.sh.
+#
+# Note the script may need to be run twice, once zshenv and zshrc are setup.
 
 set -ex
 
@@ -7,9 +12,6 @@ CONFIG_DIR=$(realpath "$SCRIPT_DIR/..")
 
 git -C "$CONFIG_DIR" submodule init
 git -C "$CONFIG_DIR" submodule update
-
-# Clean up old configuration that may now be stale.
-$SCRIPT_DIR/clean.sh
 
 # Dotfiles are symlinked so they are kept up-to-date when the repository is
 # pulled.
