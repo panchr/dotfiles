@@ -1,13 +1,16 @@
-# Theming.
-# TODO(rushy_panchal): Use a thinner font stroke if possible.
+### Theming ###
 font-family = Monaco
 font-size = 12
+# Render characters slightly closer together.
+adjust-cell-width = -5%
+font-thicken = true
 
 # Use a custom icon, which is loaded from ~/.config/ghostty/Ghostty.icns.
 macos-icon = custom
 
 # xterm-ghostty is not recognized by some programs, e.g. the Emacs server.
 term = xterm-256color
+# theme = Japanesque or Seti
 palette = 0=#000000
 palette = 1=#b83019
 palette = 2=#51bf37
@@ -33,17 +36,18 @@ selection-background = #7d9dbc
 selection-foreground = #000000
 bold-color = #7cf464
 
-# Cursor.
+### Cursor ###
 cursor-style = bar
 cursor-style-blink = true
-adjust-cursor-thickness = 2
+adjust-cursor-thickness = 3
 cursor-click-to-move = true
 
-# Misc.
+### Misc. ###
 maximize = true
 window-save-state = always
 mouse-hide-while-typing = true
 mouse-scroll-multiplier = 4
 auto-update = check
 
+### Keybindings ###
 keybind = super+i=prompt_surface_title
