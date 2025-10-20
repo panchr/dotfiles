@@ -8,7 +8,7 @@ You can clone the repository wherever you want. (I like to keep it in `~/Project
 git clone https://github.com/panchr/dotfiles.git && cd dotfiles && bootstrap/init.sh
 ```
 
-### Install Homebrew formulae
+### Install Homebrew formula
 
 When setting up a new Mac, you may want to install some common [Homebrew](https://brew.sh/) formulae. This will install Homebrew and some standard packages:
 
