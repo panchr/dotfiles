@@ -3,7 +3,6 @@ font-family = Monaco
 font-size = 12
 # Render characters slightly closer together.
 adjust-cell-width = -5%
-font-thicken = true
 
 # Use a custom icon, which is loaded from ~/.config/ghostty/Ghostty.icns.
 macos-icon = custom
