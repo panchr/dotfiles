@@ -224,9 +224,6 @@ side effects or warnings when a package isn't present."
   (setq ibuffer-filter-group-name-face 'font-lock-doc-face))
 
 ;; LSP configuration.
-(when-package lsp-python-ms
-  :config
-  (setq lsp-python-ms-auto-install-server t))
 (when-package lsp-mode
   :config
   (setq lsp-file-watch-threshold 2500))
