@@ -89,7 +89,10 @@ if command -v moor >/dev/null; then
 
 fi
 if command -v bat >/dev/null; then
-   alias bat="bat --plain"
+    alias bat="bat --plain"
+    # ...This hacky mess is recommended by bat.
+    # See: https://github.com/sharkdp/bat?tab=readme-ov-file#man.
+    export MANPAGER="sh -c 'awk '\''{ gsub(/\x1B\[[0-9;]*m/, \"\", \$0); gsub(/.\x08/, \"\", \$0); print }'\'' | bat -p -lman'"
 fi
 
 # Load functions.
