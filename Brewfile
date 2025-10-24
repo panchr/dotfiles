@@ -39,6 +39,7 @@ brew "readline"
 brew "sqlite3"
 brew "xz"
 brew "zlib"
+brew "ruff"
 
 # Languages
 brew "node"

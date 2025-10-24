@@ -191,7 +191,7 @@ side effects or warnings when a package isn't present."
     (setq centaur-tabs-set-close-button nil
           centaur-tabs-set-icons nil)))
 
-;; Vertico
+;; Vertico.
 (when-package vertico
   :config
   (global-set-key (kbd "M-s s") '+vertico/project-search))
@@ -235,6 +235,42 @@ side effects or warnings when a package isn't present."
 (when-package terraform-mode
   :after
   (company-terraform-init))
+
+(when-package flycheck
+  :config
+  (flycheck-define-checker python-ruff
+                           "A Python syntax and style checker using the ruff.
+To override the path to the ruff executable, set
+`flycheck-python-ruff-executable'.
+
+See URL `https://beta.ruff.rs/docs/'."
+                           :command ("ruff"
+                                     "check"
+                                     "--output-format=text"
+                                     "--stdin-filename" source-original
+                                     "-")
+                           :standard-input t
+                           :error-filter (lambda (errors)
+                                           (let ((errors (flycheck-sanitize-errors errors)))
+                                             (seq-map #'flycheck-flake8-fix-error-level errors)))
+                           :error-patterns
+                           ((warning line-start
+                                     (file-name) ":" line ":" (optional column ":") " "
+                                     (id (one-or-more (any alpha)) (one-or-more digit)) " "
+                                     (message (one-or-more not-newline))
+                                     line-end))
+                           :modes (python-mode python-ts-mode))
+  (defun python-flycheck-ruff-setup ()
+    (flycheck-select-checker 'python-ruff))
+  :after
+  (add-to-list 'flycheck-checkers 'python-ruff)
+  (add-hook 'python-mode-local-vars-hook #'python-flycheck-ruff-setup 'append))
+
+(when-package flymake-ruff
+  :config
+  (setq-global python-flymake-command '("ruff" "--quiet" "--stdin-filename=stdin" "-"))
+  :after
+  (add-hook 'python-mode-hook #'flymake-ruff-load))
 
 ;; Support zsh in sh-mode.
 (dolist (pattern '("\\.zsh\\'"

@@ -63,3 +63,4 @@
 ;; Other languages.
 (package! bazel)
 (package! terraform-mode)
+(package! flymake-ruff)
