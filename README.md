@@ -33,6 +33,7 @@ This is forked from the original https://github.com/mathiasbynens/dotfiles.
 
 ### Emacs
 - [ ] Install emacs server daemon as a systemd service
+- [ ] Install ruff or black as a Python formatter with flymake
 - [x] Fix emacs inserting random characters into the buffer before it is ready
 - [x] Fix emacs word wrapping
 - [x] Install pyright LSP server

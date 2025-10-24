@@ -81,10 +81,15 @@ fi
 
 ### User configuration ###
 export CLICOLOR=1
+
 export PAGER='less -R'
 if command -v moor >/dev/null; then
     export PAGER='moor'
     alias less="$PAGER"
+
+fi
+if command -v bat >/dev/null; then
+   alias bat="bat --plain"
 fi
 
 # Load functions.
