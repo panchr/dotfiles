@@ -79,6 +79,3 @@ go install golang.org/x/tools/gopls@latest
 npm install -g pyright
 npm install -g bash-language-server
 npm install -g typescript-language-server typescript
-
-# iterm2 shell integration.
-bash "$DIR/install-iterm2-sh-integration.sh" >/dev/null

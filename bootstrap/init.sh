@@ -45,18 +45,6 @@ ln -s -f "$CONFIG_DIR/claude/settings.json" ~/.claude/settings.json
 ln -s -f "$CONFIG_DIR/claude/CLAUDE.md" ~/.claude/CLAUDE.md
 ln -s -f "$CONFIG_DIR/claude/commands/address-comments.md" ~/.claude/commands/address-comments.md
 
-# Configure iTerm2 on MacOS.
-case $(uname) in
-Darwin)
-    # Read iTerm2 plist from this directory.
-    defaults write com.googlecode.iterm2.plist PrefsCustomFolder "$CONFIG_DIR/iterm2"
-    defaults write com.googlecode.iterm2.plist LoadPrefsFromCustomFolder -bool true
-    # Auto-save the plist.
-    defaults write com.googlecode.iterm2.plist NoSyncNeverRemindPrefsChangesLostForFile -bool true
-    defaults write com.googlecode.iterm2.plist NoSyncNeverRemindPrefsChangesLostForFile_selection -int 2
-    ;;
-esac
-
 # Configure ghostty.
 if [ ! -L ~/.config/ghostty ]; then
     ln -s -f "$CONFIG_DIR/ghostty" ~/.config/ghostty

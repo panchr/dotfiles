@@ -137,11 +137,7 @@ if [ -f ~/.zshrc.local ]; then
     source ~/.zshrc.local
 fi
 
-# iterm2 and ghostty integration.
-# TODO(rushy_panchal): Remove this when no longer using iTerm2.
-# if [ -f "${HOME}/.iterm2_shell_integration.zsh" ]; then
-#     source "${HOME}/.iterm2_shell_integration.zsh"
-# fi
+# ghostty integration.
 if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
     source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
 fi
