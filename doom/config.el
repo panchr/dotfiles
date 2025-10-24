@@ -226,7 +226,9 @@ side effects or warnings when a package isn't present."
 ;; LSP configuration.
 (when-package lsp-mode
   :config
-  (setq lsp-file-watch-threshold 2500))
+  (setq lsp-file-watch-threshold 2500)
+  ;; Use C-c l instead of s-l as the prefix for lsp commands.
+  (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
 
 ;; Other language configuration.
 (when-package bazel
