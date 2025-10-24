@@ -58,7 +58,15 @@ Darwin)
 esac
 
 # Configure ghostty.
-ln -s -f "$CONFIG_DIR/ghostty" ~/.config/ghostty
+if [ ! -L ~/.config/ghostty ]; then
+    ln -s -f "$CONFIG_DIR/ghostty" ~/.config/ghostty
+fi
+
+# Mise (environment management).
+if [ ! -L ~/.config/mise ]; then
+    mise trust "$CONFIG_DIR/mise/config.toml"
+    ln -s -f "$CONFIG_DIR/mise" ~/.config/mise
+fi
 
 readonly INIT_DOOM="${INIT_DOOM:-1}"
 if [ "$INIT_DOOM" = "1" ]; then

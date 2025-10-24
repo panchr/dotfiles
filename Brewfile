@@ -22,6 +22,7 @@ brew "bat"
 brew "riff"
 brew "moor"
 brew "prettier"
+brew "mise"
 
 # Git
 brew "gh"

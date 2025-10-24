@@ -57,6 +57,7 @@ Linux)
 		bat
 
 	bash "$DIR/install-emacs30-ubuntu.sh"
+	curl https://mise.run | sh
 	;;
 FreeBSD)
 	# do nothing
@@ -80,4 +81,4 @@ npm install -g bash-language-server
 npm install -g typescript-language-server typescript
 
 # iterm2 shell integration.
-bash "$DIR/install-iterm2-sh-integration.sh"
+bash "$DIR/install-iterm2-sh-integration.sh" >/dev/null

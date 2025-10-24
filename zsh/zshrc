@@ -96,7 +96,6 @@ alias reload="exec zsh"
 alias grep="grep --color=auto"
 alias edit="$EDITOR"
 alias view="view_file"
-alias python="python3"
 
 case `uname` in
     Darwin)
@@ -138,6 +137,9 @@ fi
 if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
     source "${GHOSTTY_RESOURCES_DIR}/shell-integration/zsh/ghostty-integration"
 fi
+
+# Mise, the package manager. See: https://mise.jdx.dev/.
+eval "$(mise activate zsh)"
 
 # Enable the powerlevel10k theme.
 if [[ -f "$DOTFILES/zsh/powerlevel10k/powerlevel10k.zsh-theme" ]]; then
