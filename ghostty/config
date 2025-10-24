@@ -9,31 +9,12 @@ macos-icon = custom
 
 # xterm-ghostty is not recognized by some programs, e.g. the Emacs server.
 term = xterm-256color
-# theme = Japanesque or Seti
-palette = 0=#000000
-palette = 1=#b83019
-palette = 2=#51bf37
-palette = 3=#c6c43d
-palette = 4=#0c24bf
-palette = 5=#b93ec1
-palette = 6=#53c2c5
-palette = 7=#c7c7c7
-palette = 8=#676767
-palette = 9=#ef766d
-palette = 10=#8cf67a
-palette = 11=#fefb7e
-palette = 12=#6a71f6
-palette = 13=#f07ef8
-palette = 14=#8ef9fd
-palette = 15=#feffff
+theme = Tomorrow Night
 
 background = #0A0A0A
 foreground = #69cbf0
-cursor-color = #BBBBBB
-cursor-text = #FFFFFF
 selection-background = #7d9dbc
 selection-foreground = #000000
-bold-color = #7cf464
 
 ### Cursor ###
 cursor-style = bar
