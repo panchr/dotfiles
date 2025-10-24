@@ -67,6 +67,7 @@ if [ ! -L ~/.config/mise ]; then
     mise trust "$CONFIG_DIR/mise/config.toml"
     ln -s -f "$CONFIG_DIR/mise" ~/.config/mise
 fi
+mise install
 
 readonly INIT_DOOM="${INIT_DOOM:-1}"
 if [ "$INIT_DOOM" = "1" ]; then

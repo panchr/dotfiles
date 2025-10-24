@@ -33,8 +33,6 @@ tap "d12frosted/emacs-plus"
 brew "d12frosted/emacs-plus/emacs-plus@30"
 
 # Python
-brew "pyenv"
-brew "python@3.11"
 brew "openssl"
 brew "readline"
 brew "sqlite3"
@@ -42,11 +40,9 @@ brew "xz"
 brew "zlib"
 
 # Languages
-brew "node"
 brew "bazelisk"
 brew "buildifier"
 brew "clang-format"
-brew "go"
 brew "rust"
 brew "shellcheck"
 brew "shfmt"

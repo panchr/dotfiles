@@ -1,72 +1,9 @@
 #!/bin/bash
 # Rushy Panchal
-# shell functions
+# Misc shell functions.
 
-# Set the tab title.
-function title {
-    echo -ne "\033]0;"$*"\007"
-}
-
-function view_file() {
+view_file() {
     emacsclient --alternate-editor='' --create-frame -nw --eval "(view-file \"$1\")"
-}
-
-_init_pyenv() {
-    export PYENV_ROOT="$HOME/.pyenv"
-    export PATH="$PYENV_ROOT/shims:$PATH"
-
-    eval "$(command pyenv init -)"
-    if python -m certifi; then
-        local certifi_path=$(python -m certifi)
-        export SSL_CERT_FILE="$certifi_path"
-        export REQUEST_CA_BUNDLE="$certifi_path"
-    fi
-}
-
-pyenv() {
-    unset -f pyenv pipenv
-
-    _init_pyenv
-    pyenv "$@"
-}
-
-pipenv() {
-    unset -f pyenv pipenv
-
-    _init_pyenv
-    pipenv "$@"
-}
-
-goenv() {
-    unset -f goenv
-
-    export GOENV_ROOT="$HOME/.goenv"
-    export PATH="$GOENV_ROOT/bin:$PATH"
-    eval "$(goenv init -)"
-}
-
-nvm() {
-    unset -f nvm
-
-    export NVM_DIR="$HOME/.nvm"
-    [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion
-    nvm "$@"
-}
-
-rbenv() {
-    unset -f rbenv
-
-    eval "$(command rbenv init -)"
-    rbenv "$@"
-}
-
-# opam configuration
-opam() {
-    unset -f opam
-
-    eval "$(command opam config env)"
-    opam "$@"
 }
 
 find_git_branch() {
@@ -82,7 +19,7 @@ find_git_branch() {
     fi
 }
 
-function del-squashed() {
+del_squashed() {
     local branch=${1:-master}
 
     git checkout $branch &&
