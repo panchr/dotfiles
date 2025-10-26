@@ -143,7 +143,9 @@ if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
 fi
 
 # Mise, the package manager. See: https://mise.jdx.dev/.
-eval "$(mise activate zsh)"
+if command -v mise >/dev/null; then
+    eval "$(mise activate zsh)"
+fi
 
 # Enable the powerlevel10k theme.
 if [[ -f "$DOTFILES/zsh/powerlevel10k/powerlevel10k.zsh-theme" ]]; then

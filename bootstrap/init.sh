@@ -30,14 +30,6 @@ if [ ! -d ~/.tmux/plugins/tpm ]; then
 fi
 ~/.tmux/plugins/tpm/bin/clean_plugins
 
-# Configure git.
-git config set --global --all --fixed-value --value="$CONFIG_DIR/git/gitconfig" include.path "$CONFIG_DIR/git/gitconfig"
-if command -v riff >/dev/null; then
-    # Configure the 'riff' git differ.
-    # See: https://github.com/walles/riff.
-    git config set --global --all --fixed-value --value="$CONFIG_DIR/git/diffconfig" include.path "$CONFIG_DIR/git/diffconfig"
-fi
-
 # Claude settings.
 mkdir -p ~/.claude
 mkdir -p ~/.claude/commands
@@ -60,4 +52,14 @@ mise install
 readonly INIT_DOOM="${INIT_DOOM:-1}"
 if [ "$INIT_DOOM" = "1" ]; then
     $SCRIPT_DIR/init-doom.sh
+fi
+
+# Configure git.
+# TODO(rushy_panchal): This fails when PATH does not properly point to Homebrew, because it
+# relies on a newer version of Git than MacOS installs.
+git config set --global --all --fixed-value --value="$CONFIG_DIR/git/gitconfig" include.path "$CONFIG_DIR/git/gitconfig"
+if command -v riff >/dev/null; then
+    # Configure the 'riff' git differ.
+    # See: https://github.com/walles/riff.
+    git config set --global --all --fixed-value --value="$CONFIG_DIR/git/diffconfig" include.path "$CONFIG_DIR/git/diffconfig"
 fi
