@@ -53,6 +53,8 @@
 (when (package! visual-regexp)
   (package! visual-regexp-steroids))
 
+(package! rg)
+
 ;; Themes.
 (package! color-theme-sanityinc-tomorrow)
 

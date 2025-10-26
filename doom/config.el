@@ -128,6 +128,10 @@ side effects or warnings when a package isn't present."
 (global-set-key (kbd "C-x C-_") 'comment-line)
 (global-set-key (kbd "C-c w") 'kill-ring-save)
 
+(when-package rg
+  :config
+  (global-set-key (kbd "M-?") 'rg-project))
+
 ;; Treat the shell as interactive, in order to load ~/.zshrc.
 (setq shell-command-switch "-ic")
 
