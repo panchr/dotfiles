@@ -83,9 +83,11 @@ fi
 export CLICOLOR=1
 
 export PAGER='less -R'
+alias yaml="$PAGER"
 if command -v moor >/dev/null; then
     export PAGER='moor'
     alias less="$PAGER"
+    alias yaml="$PAGER -lang=yaml"
 
 fi
 if command -v bat >/dev/null; then
