@@ -148,6 +148,15 @@ view_json() {
 base64url::encode() { base64 -w0 | tr '+/' '-_' | tr -d '='; }
 base64url::decode() { awk '{ if (length($0) % 4 == 3) print $0"="; else if (length($0) % 4 == 2) print $0"=="; else print $0; }' | tr -- '-_' '+/' | base64 -d; }
 
+## MacOS Utilities
+power_getchargingwattage() {
+    pmset -g ac | grep -E -o "Wattage = (\d+)W"
+}
+
+power_getchargestate() {
+    pmset -g batt | grep -Eo "\d+%" | cut -d% -f1
+}
+
 ### WSL 2
 if command -v wslpath >/dev/null 2>&1; then
     explorer() {
