@@ -84,6 +84,10 @@
 - **Go**
   - Format all Go code with `gofmt`
 
+## Git Usage
+- **Never use `git -C`** when already in the correct repository directory - just run git commands directly
+- The working directory is already set correctly, so `git status` is preferred over `git -C /path/to/repo status`
+
 ## GitHub CLI Usage
 - **Use `gh` CLI for PR management** instead of web interface for consistency and automation
 - Common commands:
