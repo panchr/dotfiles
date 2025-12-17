@@ -53,8 +53,6 @@ side effects or warnings when a package isn't present."
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function.
 (setq doom-theme 'sanityinc-tomorrow-night)
-;; (custom-theme-set-faces! 'doom-one
-;;   '(default :background "#000000"))
 
 ;; Start in full screen and blink the cursor in GUI mode.
 (unless *tty*
@@ -121,6 +119,17 @@ side effects or warnings when a package isn't present."
     ;; line.
     (setq-default truncate-lines nil)
     ))
+
+(when-package apheleia
+  :config
+  (setq +format-on-save-disabled-modes
+        '(sql-mode           ; sqlformat is currently broken
+          tex-mode           ; latexindent is broken
+          latex-mode
+          LaTeX-mode
+          org-msg-edit-mode  ; doesn't need a formatter
+          yaml-mode)         ; formatter ruins existing files
+        ))
 
 ;; Delete a selection when inserting into it.
 (delete-selection-mode)
