@@ -40,6 +40,13 @@ ln -s -f "$CONFIG_DIR/claude/commands/address-comments.md" ~/.claude/commands/ad
 ln -s -f "$CONFIG_DIR/claude/commands/review.md" ~/.claude/commands/review.md
 ln -s -f "$CONFIG_DIR/claude/agents/style-reviewer.md" ~/.claude/agents/style-reviewer.md
 
+# Prevent Claude from prompting on basic settings.
+if [ -f ~/.claude.json ]; then
+    jq '.theme = "dark" | .hasCompletedOnboarding = true' ~/.claude.json >~/.claude.json.tmp && mv ~/.claude.json.tmp ~/.claude.json
+else
+    echo '{"theme": "dark", "hasCompletedOnboarding": true}' >~/.claude.json
+fi
+
 # Configure ghostty.
 if [ ! -L ~/.config/ghostty ]; then
     ln -s -f "$CONFIG_DIR/ghostty" ~/.config/ghostty

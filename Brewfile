@@ -32,6 +32,9 @@ brew "git"
 tap "d12frosted/emacs-plus"
 brew "d12frosted/emacs-plus/emacs-plus@30"
 
+# Claude
+cask "claude-code"
+
 # Python
 brew "openssl"
 brew "readline"
