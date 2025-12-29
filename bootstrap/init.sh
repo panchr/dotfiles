@@ -52,6 +52,10 @@ if [ ! -L ~/.config/ghostty ]; then
     ln -s -f "$CONFIG_DIR/ghostty" ~/.config/ghostty
 fi
 
+# Configure Codex CLI.
+mkdir -p ~/.codex
+ln -s -f "$CONFIG_DIR/codex/settings.toml" ~/.codex/config.toml
+
 # Mise (environment management).
 if [ ! -L ~/.config/mise ]; then
     mise trust "$CONFIG_DIR/mise/config.toml"
