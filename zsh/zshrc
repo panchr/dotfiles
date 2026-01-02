@@ -7,6 +7,10 @@ if [[ -n "${ZSH_PROFILE_RC+1}" ]]; then
     zmodload zsh/zprof
 fi
 
+# Zsh on MacOS will append a number of paths after zshenv is already
+# loaded, so Homebrew paths must be explicitly re-added here.
+export PATH="/opt/homebrew/bin:$PATH"
+
 if [[ $TERM == "dumb" ]]; then
     # Set up a basic prompt.
     autoload -U colors
