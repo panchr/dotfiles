@@ -59,6 +59,7 @@ ln -s -f "$CONFIG_DIR/codex/settings.toml" ~/.codex/config.toml
 # Configure OpenCode.
 mkdir -p ~/.config/opencode
 ln -s -f "$CONFIG_DIR/opencode/opencode.jsonc" ~/.config/opencode/opencode.jsonc
+ln -s -f "$CONFIG_DIR/opencode/AGENTS.md" ~/.config/opencode/AGENTS.md
 ln -s -f "$CONFIG_DIR/opencode/agent" ~/.config/opencode/agent
 ln -s -f "$CONFIG_DIR/opencode/guidelines" ~/.config/opencode/guidelines
 

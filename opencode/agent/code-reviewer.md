@@ -38,6 +38,7 @@ Load language-specific guidance based on the diff:
 - Python: @guidelines/python.md
 - JavaScript/TypeScript: @guidelines/js-ts.md
 - React (JS/TS): @guidelines/react.md
+- Shell: @guidelines/shell.md
 
 # Review Process
 
