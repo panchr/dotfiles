@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -euxo pipefail
 
 # The Emacs version to install.
 EMACS_VERSION=30.1
@@ -14,18 +14,18 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 # Add deb-src so that emacs' build dependencies can be installed.
-echo "deb-src http://archive.ubuntu.com/ubuntu jammy main restricted universe multiverse" >> /etc/apt/sources.list
-echo "deb-src http://archive.ubuntu.com/ubuntu jammy-updates main restricted universe multiverse" >> /etc/apt/sources.list
-echo "deb-src http://security.ubuntu.com/ubuntu jammy-security main restricted universe multiverse" >> /etc/apt/sources.list
+echo "deb-src http://archive.ubuntu.com/ubuntu jammy main restricted universe multiverse" >>/etc/apt/sources.list
+echo "deb-src http://archive.ubuntu.com/ubuntu jammy-updates main restricted universe multiverse" >>/etc/apt/sources.list
+echo "deb-src http://security.ubuntu.com/ubuntu jammy-security main restricted universe multiverse" >>/etc/apt/sources.list
 
 apt update
 
 # Stop apt-get from complaining about postfix.
 echo "postfix postfix/mailname string my.hostname.example" | debconf-set-selections
 echo "postfix postfix/main_mailer_type string 'Internet Site'" | debconf-set-selections
-DEBIAN_FRONTEND=noninteractive
+export DEBIAN_FRONTEND=noninteractive
 
-apt-get build-dep emacs && \
+apt-get build-dep emacs &&
 	apt install imagemagick \
 		libmagickwand-dev \
 		libmagickcore-dev \
@@ -41,7 +41,9 @@ mkdir -p ~/misc/emacs
 cd ~/misc/emacs
 
 # Re-clone emacs from scratch if it already exists.
-rm -rf emacs/
+if [ -d emacs ]; then
+	rm -rf -- emacs
+fi
 git clone --depth 1 --branch emacs-$EMACS_VERSION https://github.com/emacs-mirror/emacs.git
 cd emacs
 
@@ -52,4 +54,4 @@ export CC=gcc-10
 make -j$(nproc --ignore=2)
 make -j$(nproc --ignore=2) install
 
-ln -f /usr/local/bin/emacs-$EMACS_VERSION /usr/bin/emacs
+ln -sf /usr/local/bin/emacs-$EMACS_VERSION /usr/bin/emacs

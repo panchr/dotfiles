@@ -5,10 +5,10 @@
 #
 # Note the script may need to be run twice, once zshenv and zshrc are setup.
 
-set -ex
+set -euxo pipefail
 
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
-CONFIG_DIR=$(realpath "$SCRIPT_DIR/..")
+CONFIG_DIR=$(cd -- "$SCRIPT_DIR/.." && pwd -P)
 
 git -C "$CONFIG_DIR" submodule init
 git -C "$CONFIG_DIR" submodule update
@@ -48,6 +48,7 @@ else
 fi
 
 # Configure ghostty.
+mkdir -p ~/.config
 if [ ! -L ~/.config/ghostty ]; then
 	ln -s -f "$CONFIG_DIR/ghostty" ~/.config/ghostty
 fi

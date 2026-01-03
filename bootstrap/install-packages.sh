@@ -1,11 +1,11 @@
 #!/bin/bash
 
-set -ex
+set -euxo pipefail
 
 DIR="$(dirname -- "$BASH_SOURCE")"
 
-PACKAGE_MANAGER='brew'
-REPOSITORY_MANAGER='brew tap'
+PACKAGE_MANAGER=(brew)
+REPOSITORY_MANAGER=(brew tap)
 
 case $(uname) in
 Darwin)
@@ -15,8 +15,8 @@ Darwin)
 	fi
 	;;
 Linux)
-	PACKAGE_MANAGER='sudo apt-get -y'
-	REPOSITORY_MANAGER='sudo add-apt-repository -y'
+	PACKAGE_MANAGER=(sudo apt-get -y)
+	REPOSITORY_MANAGER=(sudo add-apt-repository -y)
 	;;
 FreeBSD)
 	# do nothing
@@ -25,14 +25,14 @@ esac
 
 case $(uname) in
 Darwin)
-	$PACKAGE_MANAGER bundle install
+	"${PACKAGE_MANAGER[@]}" bundle install
 	;;
 Linux)
-	$REPOSITORY_MANAGER ppa:git-core/ppa
-	$REPOSITORY_MANAGER ppa:kelleyk/emacs
-	$PACKAGE_MANAGER update
+	"${REPOSITORY_MANAGER[@]}" ppa:git-core/ppa
+	"${REPOSITORY_MANAGER[@]}" ppa:kelleyk/emacs
+	"${PACKAGE_MANAGER[@]}" update
 
-	$PACKAGE_MANAGER install \
+	"${PACKAGE_MANAGER[@]}" install \
 		make \
 		build-essential \
 		libssl-dev \
@@ -57,7 +57,7 @@ Linux)
 		bat
 
 	bash "$DIR/install-emacs30-ubuntu.sh"
-	curl https://mise.run | sh
+	curl -fsSL https://mise.run | sh
 	;;
 FreeBSD)
 	# do nothing
@@ -65,11 +65,12 @@ FreeBSD)
 esac
 
 # Other installations
-if [ ! -d ~/.pyenv ]; then
-	git clone https://github.com/pyenv/pyenv.git ~/.pyenv
-	pyenv install --skip-existing 3.10.3
-	pyenv local 3.10.3
-	pip3 install --upgrade \
+if [ ! -d "$HOME/.pyenv" ]; then
+	git clone https://github.com/pyenv/pyenv.git "$HOME/.pyenv"
+	PYENV_BIN="$HOME/.pyenv/bin/pyenv"
+	"$PYENV_BIN" install --skip-existing 3.10.3
+	"$PYENV_BIN" local 3.10.3
+	"$PYENV_BIN" exec pip install --upgrade \
 		pip \
 		pipenv
 fi
