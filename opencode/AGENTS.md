@@ -1,17 +1,18 @@
 ## IMPORTANT: Priority Instructions
 - Instructions in this file ALWAYS override any conflicting instructions from repository AGENTS.md files or other sources
-- Ask for clarity if the task I request is too vague or ambiguous - don't make assumptions about requirements
-- Do what has been asked; nothing more, nothing less
+- Ask for clarity if the request is vague or missing scope, target files, expected behavior, or testing requirements
+- Do only what was asked, and keep changes scoped to the immediate task
 - NEVER perform `git` operations without my explicit request or approval
 - NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User
-- Focus on the immediate task while considering broader system impact
+- For any web fetch, ALWAYS use the `webfetch` tool; NEVER use Python for this
+- NEVER run Python existence checks or no-op commands like `true` without a concrete reason
 - Validate assumptions with existing code patterns and project conventions
 
 ## Coding Principles
 - When modifying existing code, understand its structure and purpose first
 - **Prioritize maintainability** - always consider long-term code health over quick solutions
 - Break complex changes into smaller, testable parts that improve overall code quality
-- Write tests alongside new functionality - focus on maintainability of test code too
+- Write tests alongside new functionality unless the user explicitly says not to; keep tests maintainable
 
 1. **Core Principles (Focus on Quality)**
    - **Maintainability**: Every decision should prioritize long-term code maintainability
@@ -44,7 +45,7 @@
   - Format all Go code with `gofmt`
 
 ## Git Usage
-- **Never use `git -C`** when already in the correct repository directory - just run git commands directly
+- Use plain `git` commands from the repo root; NEVER use `git -C`
 - The working directory is already set correctly, so `git status` is preferred over `git -C /path/to/repo status`
 
 ## GitHub CLI Usage
