@@ -30,15 +30,24 @@ if [ ! -d ~/.tmux/plugins/tpm ]; then
 fi
 ~/.tmux/plugins/tpm/bin/clean_plugins
 
-# Claude settings.
+# Configure ghostty.
+mkdir -p ~/.config
+if [ ! -L ~/.config/ghostty ]; then
+	ln -s -f "$CONFIG_DIR/ghostty" ~/.config/ghostty
+fi
+
+# Claude.
 mkdir -p ~/.claude
 mkdir -p ~/.claude/commands
 mkdir -p ~/.claude/agents
 ln -s -f "$CONFIG_DIR/claude/settings.json" ~/.claude/settings.json
 ln -s -f "$CONFIG_DIR/claude/CLAUDE.md" ~/.claude/CLAUDE.md
-ln -s -f "$CONFIG_DIR/claude/commands/address-comments.md" ~/.claude/commands/address-comments.md
-ln -s -f "$CONFIG_DIR/claude/commands/review.md" ~/.claude/commands/review.md
-ln -s -f "$CONFIG_DIR/claude/agents/style-reviewer.md" ~/.claude/agents/style-reviewer.md
+for file in "$CONFIG_DIR/claude/commands/"*; do
+	[ -f "$file" ] && ln -s -f "$file" ~/.claude/commands/
+done
+for file in "$CONFIG_DIR/claude/agents/"*; do
+	[ -f "$file" ] && ln -s -f "$file" ~/.claude/agents/
+done
 
 # Prevent Claude from prompting on basic settings.
 if [ -f ~/.claude.json ]; then
@@ -47,22 +56,22 @@ else
 	echo '{"theme": "dark", "hasCompletedOnboarding": true}' >~/.claude.json
 fi
 
-# Configure ghostty.
-mkdir -p ~/.config
-if [ ! -L ~/.config/ghostty ]; then
-	ln -s -f "$CONFIG_DIR/ghostty" ~/.config/ghostty
-fi
-
-# Configure Codex CLI.
+# Codex.
 mkdir -p ~/.codex
 ln -s -f "$CONFIG_DIR/codex/settings.toml" ~/.codex/config.toml
 
-# Configure OpenCode.
+# OpenCode.
 mkdir -p ~/.config/opencode
+mkdir -p ~/.config/opencode/agent
+mkdir -p ~/.config/opencode/guidelines
 ln -s -f "$CONFIG_DIR/opencode/opencode.jsonc" ~/.config/opencode/opencode.jsonc
 ln -s -f "$CONFIG_DIR/opencode/AGENTS.md" ~/.config/opencode/AGENTS.md
-ln -s -f "$CONFIG_DIR/opencode/agent" ~/.config/opencode/agent
-ln -s -f "$CONFIG_DIR/opencode/guidelines" ~/.config/opencode/guidelines
+for file in "$CONFIG_DIR/opencode/agent/"*; do
+	[ -f "$file" ] && ln -s -f "$file" ~/.config/opencode/agent/
+done
+for file in "$CONFIG_DIR/opencode/guidelines/"*; do
+	[ -f "$file" ] && ln -s -f "$file" ~/.config/opencode/guidelines/
+done
 
 # Mise (environment management).
 if [ ! -L ~/.config/mise ]; then
