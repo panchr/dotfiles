@@ -32,6 +32,12 @@ brew "git"
 tap "d12frosted/emacs-plus"
 brew "d12frosted/emacs-plus/emacs-plus@30"
 
+# Codex
+cask "codex"
+
+# OpenCode
+brew "opencode"
+
 # Claude
 cask "claude-code"
 
