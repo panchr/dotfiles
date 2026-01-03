@@ -7,9 +7,12 @@
       "git diff *": "allow",
       "git grep *": "allow",
       "git log *": "allow",
+      "rg *": "allow",
+      "grep *": "allow",
       "ls *": "allow",
       "pwd": "allow",
-      "printenv": "deny"
+      "printenv": "deny",
+      "*": "ask"
     },
     "skill": "allow",
     "webfetch": "allow",

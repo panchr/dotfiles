@@ -64,6 +64,7 @@ ln -s -f "$CONFIG_DIR/codex/settings.toml" ~/.codex/config.toml
 mkdir -p ~/.config/opencode
 mkdir -p ~/.config/opencode/agent
 mkdir -p ~/.config/opencode/guidelines
+mkdir -p ~/.config/opencode/plugin
 ln -s -f "$CONFIG_DIR/opencode/opencode.jsonc" ~/.config/opencode/opencode.jsonc
 ln -s -f "$CONFIG_DIR/opencode/AGENTS.md" ~/.config/opencode/AGENTS.md
 for file in "$CONFIG_DIR/opencode/agent/"*; do
@@ -71,6 +72,9 @@ for file in "$CONFIG_DIR/opencode/agent/"*; do
 done
 for file in "$CONFIG_DIR/opencode/guidelines/"*; do
 	[ -f "$file" ] && ln -s -f "$file" ~/.config/opencode/guidelines/
+done
+for file in "$CONFIG_DIR/opencode/plugin/"*; do
+	[ -f "$file" ] && ln -s -f "$file" ~/.config/opencode/plugin/
 done
 
 # Mise (environment management).
