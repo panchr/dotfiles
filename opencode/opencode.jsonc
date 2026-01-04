@@ -12,7 +12,10 @@
       "grep *": "allow",
       "ls *": "allow",
       "pwd": "allow",
+      "cat": "allow",
+      "mkdir *": "allow",
       "printenv": "deny",
+      "rm *": "deny",
       "*": "ask"
     },
     "skill": "allow",
@@ -197,5 +200,15 @@
     }
   },
   "model": "openai/gpt-5.2-codex-high",
-  "small_model": "openai/gpt-5.2-codex-medium"
+  "small_model": "openai/gpt-5.2-codex-medium",
+  "mcp": {
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "@playwright/mcp@latest"],
+      "enabled": true
+    }
+  },
+  "tools": {
+    "playright*": false
+  }
 }
