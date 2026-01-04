@@ -23,6 +23,8 @@ brew "riff"
 brew "moor"
 brew "prettier"
 brew "mise"
+tap "sourcegraph/src-cli"
+brew "src-cli"
 
 # Git
 brew "gh"
