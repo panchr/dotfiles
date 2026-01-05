@@ -34,12 +34,10 @@ Examples (subjects):
 
 Example (full message):
 ```
-opencode: add commit message command
+claude: add commit message command
 
 We need a reusable commit helper so commit messages stay consistent
-without manual formatting each time. This adds the command and ensures
-init links the command directory so it is installed with the rest of the
-OpenCode config.
+without manual formatting each time.
 ```
 
 Before committing, run:
