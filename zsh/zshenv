@@ -31,3 +31,6 @@ ulimit -S -n 2048
 # Themes for tools.
 export BAT_THEME=OneHalfDark
 export MOOR="-style=nordic -wrap -quit-if-one-screen -mousemode select -no-linenumbers"
+
+# Use mcp-cli with Claude.
+export ENABLE_EXPERIMENTAL_MCP_CLI=1
