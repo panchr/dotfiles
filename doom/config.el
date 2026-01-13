@@ -243,6 +243,14 @@ side effects or warnings when a package isn't present."
   ;; Use C-c l instead of s-l as the prefix for lsp commands.
   (define-key lsp-mode-map (kbd "C-c l") lsp-command-map))
 
+(when-package python
+  :config
+  (defun +python-disable-flymake ()
+    "Disable Python's built-in Flymake backend in favor of LSP diagnostics."
+    (remove-hook 'flymake-diagnostic-functions #'python-flymake t))
+  (add-hook 'python-mode-hook #'+python-disable-flymake)
+  (add-hook 'python-ts-mode-hook #'+python-disable-flymake))
+
 ;; Other language configuration.
 (when-package bazel
   :config
