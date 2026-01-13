@@ -10,6 +10,7 @@
       "*.env": "deny"
     },
     "bash": {
+      "*": "ask",
       "git status *": "allow",
       "git diff *": "allow",
       "git grep *": "allow",
@@ -22,8 +23,7 @@
       "cat": "allow",
       "mkdir *": "allow",
       "printenv": "deny",
-      "rm *": "deny",
-      "*": "ask"
+      "rm *": "deny"
     },
     "skill": "allow",
     "webfetch": "allow",
