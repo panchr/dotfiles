@@ -72,6 +72,7 @@ Return a short report with:
 - Verify: hover no longer rotates; ensure no layout shift; ensure reduced-motion still respected if implemented.
 
 ## Guardrails
+- Always call `playwright_browser_close` after finishing to release the lock.
 - Prefer minimal, surgical changes.
 - Avoid recommending brittle selectors tied to hashed classnames.
 - If animation is intentional elsewhere, recommend scoping the change to this icon only.
