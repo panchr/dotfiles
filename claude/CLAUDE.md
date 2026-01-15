@@ -88,6 +88,15 @@
 - **Never use `git -C`** when already in the correct repository directory - just run git commands directly
 - The working directory is already set correctly, so `git status` is preferred over `git -C /path/to/repo status`
 
+### Commit Messages
+- **Focus on the WHY, not the WHAT** - The diff shows what changed; the message explains why it matters
+- **Never write laundry lists** - Bullet points of files/changes are useless noise
+- **Be concise** - 1-3 sentences in the body is usually enough
+- **Good commit message body**: "Route traffic to AZ-local cells to reduce cross-AZ latency. CIDR blocks are dynamically pulled from VPC state so routing stays current."
+- **Bad commit message body**: "- Add file X\n- Modify file Y\n- Update Z to do A\n- Create resource for B"
+- Subject line: `area: brief description` in active voice, <=72 chars
+- If you can't explain why the change matters in 1-2 sentences, you don't understand it well enough
+
 ## GitHub CLI Usage
 - **Use `gh` CLI for PR management** instead of web interface for consistency and automation
 - Common commands:
