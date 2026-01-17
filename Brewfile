@@ -23,8 +23,12 @@ brew "riff"
 brew "moor"
 brew "prettier"
 brew "mise"
+
 tap "sourcegraph/src-cli"
 brew "src-cli"
+
+tap "teamookla/speedtest"
+brew "teamookla/speedtest/speedtest"
 
 # Git
 brew "gh"
@@ -34,14 +38,12 @@ brew "git"
 tap "d12frosted/emacs-plus"
 brew "d12frosted/emacs-plus/emacs-plus@30"
 
-# Codex
+# Agentic coding tools
 cask "codex"
-
-# OpenCode
-brew "opencode"
-
-# Claude
 cask "claude-code"
+brew "opencode"
+tap "steveyegge/beads"
+brew "steveyegge/beads/bd"
 
 # Python
 brew "openssl"
