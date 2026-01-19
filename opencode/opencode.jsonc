@@ -27,6 +27,7 @@
       "pwd": "allow",
       "cat": "allow",
       "mkdir *": "allow",
+      "bd *": "allow",
       "printenv": "deny",
       "rm *": "deny"
     },
@@ -35,6 +36,7 @@
     "doom_loop": "ask",
     "external_directory": "allow"
   },
+  "plugin": ["opencode-beads"],
   "model": "openai/gpt-5.2-codex",
   "small_model": "openai/gpt-5.1-codex",
   "mcp": {
