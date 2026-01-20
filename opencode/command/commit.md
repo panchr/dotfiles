@@ -49,4 +49,7 @@ Before committing, run:
 If there are no staged changes, stop and explain.
 
 Then run:
-- git commit -m "<subject>" -m "<body>"
+- git commit -m "<subject>" -m "<body>**
+
+NEVER ask to push the commit.
+

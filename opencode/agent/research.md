@@ -1,7 +1,7 @@
 ---
 description: Researches codebases and provides evidence-backed answers
 mode: subagent
-model: openai/gpt-5.2-codex-high
+model: openai/gpt-5.2-codex
 tools:
   read: true
   grep: true
