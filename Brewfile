@@ -25,7 +25,7 @@ brew "prettier"
 brew "mise"
 
 tap "sourcegraph/src-cli"
-brew "src-cli"
+brew "sourcegraph/src-cli/src-cli"
 
 tap "teamookla/speedtest"
 brew "teamookla/speedtest/speedtest"
