@@ -80,3 +80,5 @@ go install golang.org/x/tools/gopls@latest
 npm install -g pyright
 npm install -g bash-language-server
 npm install -g typescript-language-server typescript
+
+bun install -g tokscale@latest

@@ -52,6 +52,10 @@ brew "sqlite3"
 brew "xz"
 brew "zlib"
 
+# JS / TypeScript
+tap "oven-sh/bun"
+brew "oven-sh/bun/bun"
+
 # Languages
 brew "bazelisk"
 brew "buildifier"
