@@ -48,3 +48,5 @@ If there are no staged changes, stop and explain.
 
 Then run:
 - git commit -m "<subject>" -m "<body>"
+
+NEVER ask to push the commit or mention pushing in the final response.
