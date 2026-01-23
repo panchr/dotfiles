@@ -83,7 +83,6 @@ done
 
 # Mise (environment management).
 if [ ! -L ~/.config/mise ]; then
-	mise trust "$CONFIG_DIR/mise/config.toml"
 	ln -s -f "$CONFIG_DIR/mise" ~/.config/mise
 fi
 mise install

@@ -64,17 +64,6 @@ FreeBSD)
 	;;
 esac
 
-# Other installations
-if [ ! -d "$HOME/.pyenv" ]; then
-	git clone https://github.com/pyenv/pyenv.git "$HOME/.pyenv"
-	PYENV_BIN="$HOME/.pyenv/bin/pyenv"
-	"$PYENV_BIN" install --skip-existing 3.10.3
-	"$PYENV_BIN" local 3.10.3
-	"$PYENV_BIN" exec pip install --upgrade \
-		pip \
-		pipenv
-fi
-
 # Install language servers.
 go install golang.org/x/tools/gopls@latest
 npm install -g pyright

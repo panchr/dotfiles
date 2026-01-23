@@ -24,6 +24,9 @@ fi
 export EDITOR="emacsclient --alternate-editor='' --create-frame -nw"
 export PAGER="less"
 
+# Trust global mise configuration.
+export MISE_TRUSTED_CONFIG_PATHS="$DOTFILES/mise/config.toml"
+
 # Increase max open files limit. On MacOS, this defaults to 256, which is very
 # limiting.
 ulimit -S -n 2048
