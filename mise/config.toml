@@ -1,6 +1,21 @@
-# Standard tools.
 [tools]
 go = "1.25"
+
 node = "25"
+bun = "latest"
+
 python = "3.14"
 uv = "0.9.24"
+
+# Language servers
+"go:golang.org/x/tools/gopls" = "latest"
+"npm:bash-language-server" = "latest"
+"npm:pyright" = "latest"
+"npm:typescript" = "latest"
+"npm:typescript-language-server" = "latest"
+
+# Other tools
+"npm:tokscale" = "latest"
+
+[settings]
+npm.package_manager = "bun"
