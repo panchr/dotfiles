@@ -29,7 +29,7 @@ Darwin)
 	;;
 Linux)
 	"${REPOSITORY_MANAGER[@]}" ppa:git-core/ppa
-	"${REPOSITORY_MANAGER[@]}" ppa:kelleyk/emacs
+	# "${REPOSITORY_MANAGER[@]}" ppa:kelleyk/emacs
 	"${PACKAGE_MANAGER[@]}" update
 
 	"${PACKAGE_MANAGER[@]}" install \
@@ -50,13 +50,13 @@ Linux)
 		tk-dev \
 		libffi-dev \
 		liblzma-dev \
-		python-openssl \
+		python3-openssl \
 		git \
 		silversearcher-ag \
 		fzf \
 		bat
 
-	bash "$DIR/install-emacs30-ubuntu.sh"
+	sudo bash "$DIR/install-emacs30-ubuntu.sh"
 	curl -fsSL https://mise.run | sh
 	;;
 FreeBSD)
