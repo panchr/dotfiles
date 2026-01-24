@@ -4,6 +4,8 @@ go = "1.25"
 node = "25"
 bun = "latest"
 
+rust = "latest"
+
 python = "3.14"
 uv = "0.9.24"
 
