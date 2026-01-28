@@ -47,6 +47,7 @@
 ## Git Usage
 - Use plain `git` commands from the repo root; NEVER use `git -C`
 - The working directory is already set correctly, so `git status` is preferred over `git -C /path/to/repo status`
+- NEVER sign commits or PRs with AI attribution (e.g., "Generated with Claude", "Co-authored-by: Claude", etc.)
 
 ## GitHub CLI Usage
 - **Use `gh` CLI for PR management** instead of web interface for consistency and automation
