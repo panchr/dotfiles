@@ -68,6 +68,15 @@ setopt APPEND_HISTORY 	      # append to the history file, don't overwrite it
 setopt INC_APPEND_HISTORY     # add commands to HISTFILE immediately in order of execution
 setopt SHARE_HISTORY          # share command history data
 
+# Incognito mode for avoiding leaking sensitive commands.
+incognito() {
+    setopt HIST_NO_STORE
+    unsetopt APPEND_HISTORY INC_APPEND_HISTORY SHARE_HISTORY
+    HISTFILE=/dev/null
+    HISTSIZE=0
+    SAVEHIST=0
+}
+
 # Use fzf for fuzzy history search.
 if command -v fzf >/dev/null; then
     source <(fzf --zsh)
