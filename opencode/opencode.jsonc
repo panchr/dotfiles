@@ -36,7 +36,12 @@
     "doom_loop": "ask",
     "external_directory": "allow"
   },
-  "plugin": ["opencode-beads"],
+  "plugin": ["opencode-beads", "@slkiser/opencode-quota"],
+  "experimental": {
+    "quotaToast": {
+      "enabledProviders": ["openai"]
+    }
+  },
   "model": "openai/gpt-5.2-codex",
   "small_model": "openai/gpt-5.1-codex",
   "mcp": {
