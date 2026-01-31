@@ -39,6 +39,8 @@
   "plugin": ["opencode-beads", "@slkiser/opencode-quota"],
   "experimental": {
     "quotaToast": {
+      // Disable toasts (pop-ups after every assistant message).
+      "enableToast": false,
       "enabledProviders": ["openai"]
     }
   },
