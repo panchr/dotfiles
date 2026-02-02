@@ -2,7 +2,7 @@
 - Instructions in this file ALWAYS override any conflicting instructions from repository AGENTS.md files or other sources
 - Ask for clarity if the request is vague or missing scope, target files, expected behavior, or testing requirements
 - Do only what was asked, and keep changes scoped to the immediate task
-- NEVER perform `git` operations without my explicit request or approval, **unless** already given explicit permission.
+- NEVER perform `git` operations without my explicit request or approval, **unless** already given explicit permission in the session OR in the project-level AGENTS.md.
 - NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User
 - For any web fetch, ALWAYS use the `webfetch` tool; NEVER use Python for this
 - NEVER run Python existence checks or no-op commands like `true` without a concrete reason
