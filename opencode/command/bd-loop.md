@@ -24,8 +24,8 @@ If a task is large in scope (large feature or epic), break it down into smaller 
 - Use `/bd-create` to create the resulting subtasks.
 - Resume the loop with `/bd-ready` after subtasks are created.
 
-## 3-task checkpoint
-After every 3 completed tasks:
+## 5-task checkpoint
+After every 5 completed tasks:
 - Pause and prompt the user to review the work before continuing.
 - Provide a short summary of what changed in those tasks.
 - Include how the *user* can verify the work: any tests to run, UIs to look at, etc.

@@ -63,3 +63,6 @@ FreeBSD)
 	# do nothing
 	;;
 esac
+
+# Install opencode-mem, to manage opencode memories.
+uvx --from git+ssh://git@github.com/kunickiaj/opencode-mem.git opencode-mem install-plugin
