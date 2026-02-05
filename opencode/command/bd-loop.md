@@ -5,7 +5,7 @@ description: Loop through ready bd tasks and commit
 Repeatedly pop ready tasks from bd using `/bd-ready`, complete each task, and create well-scoped commits.
 
 ## Arguments
-- No arguments.
+- Instructions on specific types of tasks to focus on. If given, only work on those tasks.
 
 ## Workflow
 1. Run `/bd-ready` to fetch the next ready task.
