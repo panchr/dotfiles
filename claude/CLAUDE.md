@@ -42,6 +42,7 @@
 ## Tool Usage
 - For any web fetch, ALWAYS use the WebFetch tool; NEVER use Python for this
 - NEVER run Python existence checks or no-op commands like `true` without a concrete reason
+- **ALWAYS use Python instead of Bash** for data analysis, text processing, or any script longer than a simple one-liner. Bash is for system commands (git, docker, npm, etc.) and simple file operations only. If the task involves loops, conditionals, parsing, or data manipulation, use Python.
 
 ## IMPORTANT: Priority Instructions
 - Instructions in this file ALWAYS override any conflicting instructions from repository CLAUDE.md files or other sources
@@ -51,6 +52,7 @@
 - NEVER proactively create documentation files (*.md) or README files. Only create documentation files if explicitly requested by the User
 - Focus on the immediate task while considering broader system impact
 - Validate assumptions with existing code patterns and project conventions
+- **NEVER use Bash for data analysis or complex scripting** — use Python. This applies to ALL agents including subagents.
 
 ## Coding Principles
 - When modifying existing code, understand its structure and purpose first
