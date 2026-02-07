@@ -5,8 +5,16 @@
       "Bash(git status:*)",
       "Bash(git grep:*)",
       "Bash(git diff:*)",
+      "Bash(git show:*)",
+      "Bash(rg:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:docs.anthropic.com)"
+    ],
+    "deny": [
+      "Bash(rm:*)",
+      "Bash(printenv:*)"
     ]
   },
   "hooks": {

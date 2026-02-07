@@ -40,6 +40,7 @@ fi
 mkdir -p ~/.claude
 mkdir -p ~/.claude/commands
 mkdir -p ~/.claude/agents
+mkdir -p ~/.claude/guidelines
 ln -s -f "$CONFIG_DIR/claude/settings.json" ~/.claude/settings.json
 ln -s -f "$CONFIG_DIR/claude/CLAUDE.md" ~/.claude/CLAUDE.md
 for file in "$CONFIG_DIR/claude/commands/"*; do
@@ -47,6 +48,9 @@ for file in "$CONFIG_DIR/claude/commands/"*; do
 done
 for file in "$CONFIG_DIR/claude/agents/"*; do
 	[ -f "$file" ] && ln -s -f "$file" ~/.claude/agents/
+done
+for file in "$CONFIG_DIR/claude/guidelines/"*; do
+	[ -f "$file" ] && ln -s -f "$file" ~/.claude/guidelines/
 done
 
 # Prevent Claude from prompting on basic settings.

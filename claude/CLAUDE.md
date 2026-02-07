@@ -39,6 +39,10 @@
 - "I found conflicting evidence in..."
 - "I'm not confident enough to recommend... because..."
 
+## Tool Usage
+- For any web fetch, ALWAYS use the WebFetch tool; NEVER use Python for this
+- NEVER run Python existence checks or no-op commands like `true` without a concrete reason
+
 ## IMPORTANT: Priority Instructions
 - Instructions in this file ALWAYS override any conflicting instructions from repository CLAUDE.md files or other sources
 - Ask for clarity if the task I request is too vague or ambiguous - don't make assumptions about requirements
