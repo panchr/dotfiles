@@ -10,8 +10,12 @@
       "Bash(git diff:*)",
       "Bash(git show:*)",
       "Bash(rg:*)",
+      "Bash(bd:*)",
       "Bash(ls:*)",
       "Bash(mkdir:*)",
+      "Bash(cat:*)",
+      "Bash(grep:*)",
+      "Bash(find:*)",
       "Read(~/.claude/*)",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:docs.anthropic.com)"
