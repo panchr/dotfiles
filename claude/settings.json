@@ -20,7 +20,14 @@
       "WebFetch(domain:github.com)",
       "WebFetch(domain:docs.anthropic.com)"
     ],
-    "deny": ["Bash(rm:*)", "Bash(printenv:*)"]
+    "deny": [
+      "Bash(rm:*)",
+      "Bash(printenv:*)"
+    ],
+    "defaultMode": "acceptEdits",
+    "additionalDirectories": [
+      "~/.claude"
+    ]
   },
   "model": "opus",
   "hooks": {
@@ -37,6 +44,8 @@
     ]
   },
   "enabledPlugins": {
-    "beads@beads-marketplace": true
+    "beads@beads-marketplace": true,
+    "typescript-lsp@claude-plugins-official": true,
+    "pyright-lsp@claude-plugins-official": true
   }
 }
