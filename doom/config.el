@@ -259,6 +259,9 @@ side effects or warnings when a package isn't present."
   :after
   (company-terraform-init))
 
+;; Treat .mdx files as markdown.
+(add-to-list 'auto-mode-alist '("\\.mdx\\'" . markdown-mode))
+
 ;; Support zsh in sh-mode.
 (dolist (pattern '("\\.zsh\\'"
                    "zlogin\\'"
