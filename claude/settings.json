@@ -4,30 +4,30 @@
   },
   "permissions": {
     "allow": [
-      "Bash(git log:*)",
-      "Bash(git status:*)",
-      "Bash(git grep:*)",
-      "Bash(git diff:*)",
-      "Bash(git show:*)",
-      "Bash(rg:*)",
-      "Bash(bd:*)",
-      "Bash(ls:*)",
-      "Bash(mkdir:*)",
-      "Bash(cat:*)",
-      "Bash(grep:*)",
-      "Bash(find:*)",
+      "Bash(git log *)",
+      "Bash(git status *)",
+      "Bash(git grep *)",
+      "Bash(git diff *)",
+      "Bash(git show *)",
+      "Bash(rg *)",
+      "Bash(bd *)",
+      "Bash(ls *)",
+      "Bash(wc *)",
+      "Bash(mkdir *)",
+      "Bash(cat *)",
+      "Bash(grep *)",
+      "Bash(find *)",
+      "Bash(* --version)",
+      "Bash(* --help *)",
       "Read(~/.claude/*)",
+      "Edit(~/.claude/*)",
+      "WebSearch",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:docs.anthropic.com)"
     ],
-    "deny": [
-      "Bash(rm:*)",
-      "Bash(printenv:*)"
-    ],
+    "deny": ["Bash(rm *)", "Bash(printenv *)"],
     "defaultMode": "acceptEdits",
-    "additionalDirectories": [
-      "~/.claude"
-    ]
+    "additionalDirectories": ["~/.claude"]
   },
   "sandbox": {
     "enabled": true,
