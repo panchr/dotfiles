@@ -21,17 +21,22 @@
       "Bash(* --help *)",
       "Read(~/.claude/*)",
       "Edit(~/.claude/*)",
+      "Read(~/.beads/*)",
+      "Write(~/.beads/*)",
       "WebSearch",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:docs.anthropic.com)"
     ],
     "deny": ["Bash(rm *)", "Bash(printenv *)"],
     "defaultMode": "acceptEdits",
-    "additionalDirectories": ["~/.claude"]
+    "additionalDirectories": ["~/.claude", "~/.beads"]
   },
   "sandbox": {
     "enabled": true,
-    "autoAllowBashIfSandboxed": true
+    "autoAllowBashIfSandboxed": true,
+    "network": {
+      "allowUnixSockets": [".beads/bd.sock"]
+    }
   },
   "model": "opus",
   "hooks": {
