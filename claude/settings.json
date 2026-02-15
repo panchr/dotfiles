@@ -29,7 +29,7 @@
     ],
     "deny": ["Bash(rm *)", "Bash(printenv *)"],
     "defaultMode": "acceptEdits",
-    "additionalDirectories": ["~/.claude", "~/.beads"]
+    "additionalDirectories": ["~/.claude", "~/.beads", "/tmp/claude"]
   },
   "sandbox": {
     "enabled": true,
