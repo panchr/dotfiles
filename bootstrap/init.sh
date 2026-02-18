@@ -60,10 +60,6 @@ else
 	echo '{"theme": "dark", "hasCompletedOnboarding": true}' >~/.claude.json
 fi
 
-# Codex.
-mkdir -p ~/.codex
-ln -s -f "$CONFIG_DIR/codex/settings.toml" ~/.codex/config.toml
-
 # OpenCode.
 mkdir -p ~/.config/opencode
 mkdir -p ~/.config/opencode/agent
