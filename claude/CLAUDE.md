@@ -114,6 +114,22 @@
   - `gh api repos/OWNER/REPO/pulls/PR_NUMBER/comments` - View line-level comments with file/line details
   - `gh api repos/OWNER/REPO/pulls/PR_NUMBER/comments --method POST --field body="🤖 **Claude here!** [reply text]" --field in_reply_to=COMMENT_ID` - Reply to line comment (identify as Claude)
 
+## Beads Dependency Model
+
+`bd dep add <issue> <depends-on>` means: `<issue>` **depends on** `<depends-on>`. Equivalently, `<depends-on>` **blocks** `<issue>`.
+
+Think in terms of "what must finish before what":
+- **Epic with children**: The epic depends on its children. Children block the epic.
+  `bd dep add <epic> <child>` — child must finish before epic can close.
+- **Parent epic with sub-epic**: The parent depends on the sub-epic.
+  `bd dep add <parent-epic> <sub-epic>` — sub-epic must finish before parent can close.
+- **Sequential tasks**: Later task depends on earlier task.
+  `bd dep add <later-task> <earlier-task>` — earlier task must finish first.
+
+**Common mistake**: `bd dep add <child> <epic>` is WRONG — that says the child can't start until the epic closes, which is backwards.
+
+**Mental model**: Read `bd dep add A B` as "A is waiting on B" or "B blocks A".
+
 ## Continuous Improvement
 Claude should proactively suggest updates to CLAUDE.md files (both personal and project-specific) when discovering:
 - New development patterns or conventions worth documenting
