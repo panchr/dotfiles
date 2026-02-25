@@ -19,6 +19,8 @@
       "Bash(find *)",
       "Bash(* --version)",
       "Bash(* --help *)",
+      "Bash(timeout *)",
+      "Bash(echo *)",
       "Read(~/.claude/*)",
       "Edit(~/.claude/*)",
       "Read(~/.beads/*)",
