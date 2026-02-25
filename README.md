@@ -20,25 +20,3 @@ When setting up a new Mac, you may want to install some common [Homebrew](https:
 
 This is forked from the original https://github.com/mathiasbynens/dotfiles.
 
-## Todos
-- [ ] Reorganize bootstrap scripts
-- [ ] Install MacOS settings in init.sh
-- [ ] Fix [powerlevel10k resizing issue](https://github.com/romkatv/powerlevel10k?tab=readme-ov-file#mitigation)
-- [ ] Modernize Docker installation (or use Podman)
-- [ ] Add GitHub actions for testing package installation on Ubuntu
-- [x] Switch prompt with [powerlevel10k](https://github.com/romkatv/powerlevel10k)
-- [x] Automatically install the iTerm2 profile and [manage all other settings] (https://stratus3d.com/blog/2015/02/28/sync-iterm2-profile-with-dotfiles-repository/)
-- [x] Use a Brewfile for managing MacOS packages
-- [x] Install iTerm2 shell integration automatically
-- [x] Use fzf for shell history
-- [x] Use fzf for cmd completions
-
-### Emacs
-- [ ] Install emacs server daemon as a systemd service
-- [ ] Install ruff or black as a Python formatter with flymake
-- [x] Fix emacs inserting random characters into the buffer before it is ready
-- [x] Fix emacs word wrapping
-- [x] Install pyright LSP server
-- [x] Install gopls LSP server
-- [x] Install javascript LSP server
-- [x] Install sh LSP server
