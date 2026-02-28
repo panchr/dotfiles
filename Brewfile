@@ -44,6 +44,7 @@ tap "anomalyco/tap"
 brew "anomalyco/tap/opencode"
 tap "steveyegge/beads"
 brew "steveyegge/beads/bd"
+cask "steipete/tap/codexbar"
 
 # Python
 brew "openssl"
@@ -61,6 +62,9 @@ brew "shfmt"
 brew "terraform"
 brew "tflint"
 brew "llvm"
+
+# Containers
+brew "podman"
 
 # Misc
 brew "awscli"
