@@ -67,7 +67,7 @@ mkdir -p ~/.config/opencode/guidelines
 mkdir -p ~/.config/opencode/plugin
 mkdir -p ~/.config/opencode/command
 ln -s -f "$CONFIG_DIR/opencode/opencode.jsonc" ~/.config/opencode/opencode.jsonc
-ln -s -f "$CONFIG_DIR/opencode/AGENTS.md" ~/.config/opencode/AGENTS.md
+ln -s -f "$CONFIG_DIR/claude/CLAUDE.md" ~/.config/opencode/AGENTS.md
 for file in "$CONFIG_DIR/opencode/agent/"*; do
 	[ -f "$file" ] && ln -s -f "$file" ~/.config/opencode/agent/
 done

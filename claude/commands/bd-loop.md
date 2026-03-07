@@ -13,8 +13,7 @@ Repeatedly pop ready tasks from bd using `/bd-ready`, complete each task, and cr
 3. Mark the task as in-progress immediately, before starting.
 4. Execute the task end-to-end following repo conventions and any CLAUDE.md instructions. **IMPORTANT**: do not ask if the task should be done, go ahead and do it.
 5. Stage only the files that belong to the task. If unsure, ask before staging.
-6. Create a single, well-scoped commit for the task. **IMPORTANT**: you already have permission to do this, do *not* ask for separate permission for `git` commands.
-   - Ask for explicit approval before any git operations.
+6. Create a single, well-scoped commit for the task.
    - Use the commit style described in the `/commit` command.
 7. Repeat from step 1.
 
