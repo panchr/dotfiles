@@ -44,7 +44,6 @@ tap "anomalyco/tap"
 brew "anomalyco/tap/opencode"
 tap "steveyegge/beads"
 brew "steveyegge/beads/bd"
-cask "steipete/tap/codexbar"
 
 # Python
 brew "openssl"
