@@ -44,6 +44,8 @@ tap "anomalyco/tap"
 brew "anomalyco/tap/opencode"
 tap "steveyegge/beads"
 brew "steveyegge/beads/bd"
+tap "allthingsclaude/battery"
+cask "allthingsclaude/battery/claude-battery"
 
 # Python
 brew "openssl"
