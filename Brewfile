@@ -42,6 +42,7 @@ brew "d12frosted/emacs-plus/emacs-plus@30"
 cask "claude-code"
 tap "anomalyco/tap"
 brew "anomalyco/tap/opencode"
+brew "dolt" # needed for beads
 tap "steveyegge/beads"
 brew "steveyegge/beads/bd"
 tap "allthingsclaude/battery"
