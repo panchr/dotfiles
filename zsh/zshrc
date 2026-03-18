@@ -117,6 +117,7 @@ source ~/.sh_functions
 # Aliases
 alias reload="exec zsh"
 alias grep="grep --color=auto"
+alias htop="btop" # btop is a better replacement for htop
 alias edit="$EDITOR"
 alias view="view_file"
 
