@@ -49,19 +49,19 @@
 ;; (unpin! t)
 
 ;; TODO(rushy_panchal): Consider fetching these from GitHub, not from melpa.
-(package! pcre2el)
-(when (package! visual-regexp)
-  (package! visual-regexp-steroids))
+(package! pcre2el :pin "b4d846d")
+(when (package! visual-regexp :pin "48457d4")
+  (package! visual-regexp-steroids :pin "a6420b2"))
 
-(package! rg)
+(package! rg :pin "a614e7d")
 
 ;; Themes.
-(package! color-theme-sanityinc-tomorrow)
+(package! color-theme-sanityinc-tomorrow :pin "7aec77e")
 
 ;; Language servers.
-(package! lsp-java)
-(package! lsp-python-ms)
+(package! lsp-java :pin "0a9f4d0")
+(package! lsp-python-ms :pin "7bda327")
 
 ;; Other languages.
-(package! bazel)
-(package! terraform-mode)
+(package! bazel :pin "769b30d")
+(package! terraform-mode :pin "01635df")

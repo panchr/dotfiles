@@ -2,6 +2,9 @@
 
 set -euxo pipefail
 
+# Pinned Doom Emacs version (commit hash from doomemacs/doomemacs).
+DOOM_PIN="d8d7544"
+
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 CONFIG_DIR=$(cd -- "$SCRIPT_DIR/.." && pwd -P)
 
@@ -32,8 +35,9 @@ ln -s -f "$CONFIG_DIR/doom" ~/.config/doom
 
 # Install Doom if it does not exist.
 if [ ! -d ~/.config/emacs ]; then
-	echo "Installing Doom"
-	git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+	echo "Installing Doom (pinned to $DOOM_PIN)"
+	git clone https://github.com/doomemacs/doomemacs ~/.config/emacs
+	git -C ~/.config/emacs checkout "$DOOM_PIN"
 	~/.config/emacs/bin/doom install --no-env
 fi
 
