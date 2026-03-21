@@ -23,6 +23,7 @@ brew "riff"
 brew "moor"
 brew "prettier"
 brew "mise"
+brew "asciinema"
 
 tap "sourcegraph/src-cli"
 brew "sourcegraph/src-cli/src-cli"
