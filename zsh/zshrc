@@ -68,13 +68,16 @@ setopt APPEND_HISTORY 	      # append to the history file, don't overwrite it
 setopt INC_APPEND_HISTORY     # add commands to HISTFILE immediately in order of execution
 setopt SHARE_HISTORY          # share command history data
 
-# Incognito mode for avoiding leaking sensitive commands.
+# Incognito mode: keeps existing history searchable but new commands
+# stay in memory only and don't touch the real history file.
 incognito() {
-    setopt HIST_NO_STORE
-    unsetopt APPEND_HISTORY INC_APPEND_HISTORY SHARE_HISTORY
+    unsetopt SHARE_HISTORY INC_APPEND_HISTORY APPEND_HISTORY
     HISTFILE=/dev/null
-    HISTSIZE=0
     SAVEHIST=0
+    # Change prompt char color to red as a visual indicator.
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_OK_{VIINS,VICMD,VIVIS,VIOWR}_FOREGROUND=245
+    typeset -g POWERLEVEL9K_PROMPT_CHAR_{OK,ERROR}_VIINS_CONTENT_EXPANSION='ʃ'
+    p10k reload
 }
 
 # Use fzf for fuzzy history search.
