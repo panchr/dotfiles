@@ -19,6 +19,10 @@
 [[ ! -o 'no_brace_expand' ]] || p10k_config_opts+=('no_brace_expand')
 'builtin' 'setopt' 'no_aliases' 'no_sh_glob' 'brace_expand'
 
+function prompt_incognito_indicator() {
+    (( _INCOGNITO )) && p10k segment -f 245 -t 'ʃ'
+}
+
 () {
   emulate -L zsh -o extended_glob
 
@@ -38,6 +42,7 @@
     # =========================[ Line #2 ]=========================
     newline                 # \n
     prompt_char             # prompt symbol
+    incognito_indicator     # shown in incognito mode, hidden by default
   )
 
   # The list of segments shown on the right. Fill it with less important segments.
@@ -220,6 +225,12 @@
   typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=
   # No surrounding whitespace.
   typeset -g POWERLEVEL9K_PROMPT_CHAR_LEFT_{LEFT,RIGHT}_WHITESPACE=
+
+  # Incognito indicator: same styling as prompt_char so it sits in the same spot.
+  typeset -g POWERLEVEL9K_INCOGNITO_INDICATOR_BACKGROUND=
+  typeset -g POWERLEVEL9K_INCOGNITO_INDICATOR_LEFT_PROMPT_LAST_SEGMENT_END_SYMBOL=
+  typeset -g POWERLEVEL9K_INCOGNITO_INDICATOR_LEFT_PROMPT_FIRST_SEGMENT_START_SYMBOL=
+  typeset -g POWERLEVEL9K_INCOGNITO_INDICATOR_LEFT_{LEFT,RIGHT}_WHITESPACE=
 
   ##################################[ dir: current directory ]##################################
   # Default current directory color.
