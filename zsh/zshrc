@@ -68,6 +68,12 @@ setopt APPEND_HISTORY 	      # append to the history file, don't overwrite it
 setopt INC_APPEND_HISTORY     # add commands to HISTFILE immediately in order of execution
 setopt SHARE_HISTORY          # share command history data
 
+# SHARE_HISTORY only syncs when a command is executed, not on empty enters.
+# This forces a re-read on every prompt so other sessions' history is always
+# available for recall.
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd () { fc -R }
+
 # Incognito mode: keeps existing history searchable but new commands
 # stay in memory only and don't touch the real history file.
 incognito() {
@@ -93,6 +99,11 @@ if command -v fzf >/dev/null; then
     --walker-skip .git,node_modules,target
     --preview 'bat -n --color=always {}'
     --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+    # Wrap fzf's ctrl+r to re-read the history file first, so we always
+    # search the latest history from all sessions.
+    fzf-history-widget-with-reload() { fc -R; fzf-history-widget }
+    zle -N fzf-history-widget-with-reload
+    bindkey '^R' fzf-history-widget-with-reload
 fi
 
 ### User configuration ###
