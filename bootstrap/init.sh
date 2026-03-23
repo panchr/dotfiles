@@ -81,10 +81,13 @@ for file in "$CONFIG_DIR/opencode/command/"*; do
 	[ -f "$file" ] && ln -s -f "$file" ~/.config/opencode/command/
 done
 
+# btop (system monitor).
+mkdir -p ~/.config/btop
+ln -s -f "$CONFIG_DIR/misc/btop.conf" ~/.config/btop/btop.conf
+
 # Mise (environment management).
-if [ ! -L ~/.config/mise ]; then
-	ln -s -f "$CONFIG_DIR/mise" ~/.config/mise
-fi
+mkdir -p ~/.config/mise
+ln -s -f "$CONFIG_DIR/misc/mise.toml" ~/.config/mise/config.toml
 mise install
 
 readonly INIT_DOOM="${INIT_DOOM:-1}"
