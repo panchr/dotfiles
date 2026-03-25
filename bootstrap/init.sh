@@ -10,6 +10,9 @@ set -euxo pipefail
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 CONFIG_DIR=$(cd -- "$SCRIPT_DIR/.." && pwd -P)
 
+# Forward flags (--agents, --misc) to install-packages.sh.
+"$SCRIPT_DIR/install-packages.sh" "$@"
+
 git -C "$CONFIG_DIR" submodule init
 git -C "$CONFIG_DIR" submodule update
 

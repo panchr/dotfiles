@@ -3,6 +3,18 @@
 set -euxo pipefail
 
 DIR="$(dirname -- "$BASH_SOURCE")"
+CONFIG_DIR=$(cd -- "$DIR/.." && pwd -P)
+
+INSTALL_AGENTS=0
+INSTALL_MISC=0
+
+for arg in "$@"; do
+	case "$arg" in
+	--agents) INSTALL_AGENTS=1 ;;
+	--misc) INSTALL_MISC=1 ;;
+	*) echo "Unknown flag: $arg" && exit 1 ;;
+	esac
+done
 
 PACKAGE_MANAGER=(brew)
 REPOSITORY_MANAGER=(brew tap)
@@ -25,7 +37,15 @@ esac
 
 case $(uname) in
 Darwin)
-	"${PACKAGE_MANAGER[@]}" bundle install
+	"${PACKAGE_MANAGER[@]}" bundle install --file="$CONFIG_DIR/brew/core.Brewfile"
+
+	if [ "$INSTALL_AGENTS" = "1" ]; then
+		"${PACKAGE_MANAGER[@]}" bundle install --file="$CONFIG_DIR/brew/agents.Brewfile"
+	fi
+
+	if [ "$INSTALL_MISC" = "1" ]; then
+		"${PACKAGE_MANAGER[@]}" bundle install --file="$CONFIG_DIR/brew/misc.Brewfile"
+	fi
 	;;
 Linux)
 	"${REPOSITORY_MANAGER[@]}" ppa:git-core/ppa
