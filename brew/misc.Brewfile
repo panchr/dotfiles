@@ -3,6 +3,8 @@ brew "vnstat"
 brew "telnet"
 brew "asciinema"
 
+brew "mise"
+
 tap "sourcegraph/src-cli"
 brew "sourcegraph/src-cli/src-cli"
 
