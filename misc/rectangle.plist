@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SUEnableAutomaticChecks</key>
+	<false/>
+	<key>SUHasLaunchedBefore</key>
+	<true/>
+	<key>SULastCheckTime</key>
+	<date>2026-04-01T03:44:25Z</date>
+	<key>SUUpdateGroupIdentifier</key>
+	<integer>2897196379</integer>
+	<key>allowAnyShortcut</key>
+	<true/>
+	<key>alternateDefaultShortcuts</key>
+	<false/>
+	<key>hideMenubarIcon</key>
+	<false/>
+	<key>installVersion</key>
+	<string>100</string>
+	<key>internalTilingNotified</key>
+	<true/>
+	<key>landscapeSnapAreas</key>
+	<string>null</string>
+	<key>lastVersion</key>
+	<string>100</string>
+	<key>launchOnLogin</key>
+	<true/>
+	<key>portraitSnapAreas</key>
+	<string>null</string>
+	<key>reflowTodo</key>
+	<dict>
+		<key>keyCode</key>
+		<integer>45</integer>
+		<key>modifierFlags</key>
+		<integer>786432</integer>
+	</dict>
+	<key>subsequentExecutionMode</key>
+	<integer>1</integer>
+	<key>toggleTodo</key>
+	<dict>
+		<key>keyCode</key>
+		<integer>11</integer>
+		<key>modifierFlags</key>
+		<integer>786432</integer>
+	</dict>
+</dict>
+</plist>

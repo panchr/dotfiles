@@ -100,6 +100,9 @@ fi
 mkdir -p ~/.config/btop
 ln -s -f "$CONFIG_DIR/misc/btop.conf" ~/.config/btop/btop.conf
 
+# Rectangle (window management).
+defaults import com.knollsoft.Rectangle "$CONFIG_DIR/misc/rectangle.plist"
+
 if [ "$INSTALL_MISC" = "1" ]; then
 	# Mise (environment management).
 	mkdir -p ~/.config/mise

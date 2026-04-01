@@ -3,6 +3,9 @@ brew "zsh"
 brew "tmux"
 cask "ghostty"
 
+# Window management
+cask "rectangle"
+
 # Terminal utilities
 brew "tree"
 brew "watch"
