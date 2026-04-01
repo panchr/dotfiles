@@ -42,3 +42,18 @@ if [ ! -d ~/.config/emacs ]; then
 fi
 
 ~/.config/emacs/bin/doom sync -!
+
+# On macOS, disable the "Input Sources" keyboard shortcuts (Select the previous
+# input source / Select next source in Input menu) so Ctrl+Space reaches
+# terminal Emacs as set-mark instead of being swallowed by the OS.
+# The XML plist form is required because the old-style form writes strings
+# instead of bool/int, and the hotkey daemon ignores it.
+if [[ "$(uname)" == "Darwin" ]]; then
+	defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys \
+		-dict-add 60 \
+		'<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>262144</integer></array><key>type</key><string>standard</string></dict></dict>'
+	defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys \
+		-dict-add 61 \
+		'<dict><key>enabled</key><false/><key>value</key><dict><key>parameters</key><array><integer>32</integer><integer>49</integer><integer>786432</integer></array><key>type</key><string>standard</string></dict></dict>'
+	/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
+fi
