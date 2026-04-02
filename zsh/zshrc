@@ -188,6 +188,7 @@ fi
 # Syntax highlighting. Must be sourced at end of zshrc.
 if [[ -f "$DOTFILES/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
     source "$DOTFILES/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    ZSH_HIGHLIGHT_STYLES[path]='none'
 fi
 
 if [[ -n "${ZSH_PROFILE_RC+1}" ]]; then
