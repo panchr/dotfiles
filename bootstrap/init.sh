@@ -10,18 +10,7 @@ set -euxo pipefail
 SCRIPT_DIR=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" &>/dev/null && pwd)
 CONFIG_DIR=$(cd -- "$SCRIPT_DIR/.." && pwd -P)
 
-INSTALL_AGENTS=0
-INSTALL_MISC=0
-
-for arg in "$@"; do
-	case "$arg" in
-	--agents) INSTALL_AGENTS=1 ;;
-	--misc) INSTALL_MISC=1 ;;
-	esac
-done
-
-# Forward flags (--agents, --misc) to install-packages.sh.
-"$SCRIPT_DIR/install-packages.sh" "$@"
+"$SCRIPT_DIR/install-packages.sh"
 
 git -C "$CONFIG_DIR" submodule init
 git -C "$CONFIG_DIR" submodule update
@@ -49,52 +38,50 @@ if [ ! -L ~/.config/ghostty ]; then
 	ln -s -f "$CONFIG_DIR/ghostty" ~/.config/ghostty
 fi
 
-if [ "$INSTALL_AGENTS" = "1" ]; then
-	# Claude.
-	mkdir -p ~/.claude
-	mkdir -p ~/.claude/commands
-	mkdir -p ~/.claude/agents
-	mkdir -p ~/.claude/guidelines
-	ln -s -f "$CONFIG_DIR/claude/settings.json" ~/.claude/settings.json
-	ln -s -f "$CONFIG_DIR/claude/CLAUDE.md" ~/.claude/CLAUDE.md
-	for file in "$CONFIG_DIR/claude/commands/"*; do
-		[ -f "$file" ] && ln -s -f "$file" ~/.claude/commands/
-	done
-	for file in "$CONFIG_DIR/claude/agents/"*; do
-		[ -f "$file" ] && ln -s -f "$file" ~/.claude/agents/
-	done
-	for file in "$CONFIG_DIR/claude/guidelines/"*; do
-		[ -f "$file" ] && ln -s -f "$file" ~/.claude/guidelines/
-	done
+# Claude.
+mkdir -p ~/.claude
+mkdir -p ~/.claude/commands
+mkdir -p ~/.claude/agents
+mkdir -p ~/.claude/guidelines
+ln -s -f "$CONFIG_DIR/claude/settings.json" ~/.claude/settings.json
+ln -s -f "$CONFIG_DIR/claude/CLAUDE.md" ~/.claude/CLAUDE.md
+for file in "$CONFIG_DIR/claude/commands/"*; do
+	[ -f "$file" ] && ln -s -f "$file" ~/.claude/commands/
+done
+for file in "$CONFIG_DIR/claude/agents/"*; do
+	[ -f "$file" ] && ln -s -f "$file" ~/.claude/agents/
+done
+for file in "$CONFIG_DIR/claude/guidelines/"*; do
+	[ -f "$file" ] && ln -s -f "$file" ~/.claude/guidelines/
+done
 
-	# Prevent Claude from prompting on basic settings.
-	if [ -f ~/.claude.json ]; then
-		jq '.theme = "dark" | .hasCompletedOnboarding = true' ~/.claude.json >~/.claude.json.tmp && mv ~/.claude.json.tmp ~/.claude.json
-	else
-		echo '{"theme": "dark", "hasCompletedOnboarding": true}' >~/.claude.json
-	fi
-
-	# OpenCode.
-	mkdir -p ~/.config/opencode
-	mkdir -p ~/.config/opencode/agent
-	mkdir -p ~/.config/opencode/guidelines
-	mkdir -p ~/.config/opencode/plugin
-	mkdir -p ~/.config/opencode/command
-	ln -s -f "$CONFIG_DIR/opencode/opencode.jsonc" ~/.config/opencode/opencode.jsonc
-	ln -s -f "$CONFIG_DIR/claude/CLAUDE.md" ~/.config/opencode/AGENTS.md
-	for file in "$CONFIG_DIR/opencode/agent/"*; do
-		[ -f "$file" ] && ln -s -f "$file" ~/.config/opencode/agent/
-	done
-	for file in "$CONFIG_DIR/opencode/guidelines/"*; do
-		[ -f "$file" ] && ln -s -f "$file" ~/.config/opencode/guidelines/
-	done
-	for file in "$CONFIG_DIR/opencode/plugin/"*; do
-		[ -f "$file" ] && ln -s -f "$file" ~/.config/opencode/plugin/
-	done
-	for file in "$CONFIG_DIR/opencode/command/"*; do
-		[ -f "$file" ] && ln -s -f "$file" ~/.config/opencode/command/
-	done
+# Prevent Claude from prompting on basic settings.
+if [ -f ~/.claude.json ]; then
+	jq '.theme = "dark" | .hasCompletedOnboarding = true' ~/.claude.json >~/.claude.json.tmp && mv ~/.claude.json.tmp ~/.claude.json
+else
+	echo '{"theme": "dark", "hasCompletedOnboarding": true}' >~/.claude.json
 fi
+
+# OpenCode.
+mkdir -p ~/.config/opencode
+mkdir -p ~/.config/opencode/agent
+mkdir -p ~/.config/opencode/guidelines
+mkdir -p ~/.config/opencode/plugin
+mkdir -p ~/.config/opencode/command
+ln -s -f "$CONFIG_DIR/opencode/opencode.jsonc" ~/.config/opencode/opencode.jsonc
+ln -s -f "$CONFIG_DIR/claude/CLAUDE.md" ~/.config/opencode/AGENTS.md
+for file in "$CONFIG_DIR/opencode/agent/"*; do
+	[ -f "$file" ] && ln -s -f "$file" ~/.config/opencode/agent/
+done
+for file in "$CONFIG_DIR/opencode/guidelines/"*; do
+	[ -f "$file" ] && ln -s -f "$file" ~/.config/opencode/guidelines/
+done
+for file in "$CONFIG_DIR/opencode/plugin/"*; do
+	[ -f "$file" ] && ln -s -f "$file" ~/.config/opencode/plugin/
+done
+for file in "$CONFIG_DIR/opencode/command/"*; do
+	[ -f "$file" ] && ln -s -f "$file" ~/.config/opencode/command/
+done
 
 # btop (system monitor).
 mkdir -p ~/.config/btop
@@ -103,12 +90,10 @@ ln -s -f "$CONFIG_DIR/misc/btop.conf" ~/.config/btop/btop.conf
 # Rectangle (window management).
 defaults import com.knollsoft.Rectangle "$CONFIG_DIR/misc/rectangle.plist"
 
-if [ "$INSTALL_MISC" = "1" ]; then
-	# Mise (environment management).
-	mkdir -p ~/.config/mise
-	ln -s -f "$CONFIG_DIR/misc/mise.toml" ~/.config/mise/config.toml
-	mise install
-fi
+# Mise (environment management).
+mkdir -p ~/.config/mise
+ln -s -f "$CONFIG_DIR/misc/mise.toml" ~/.config/mise/config.toml
+mise install
 
 readonly INIT_DOOM="${INIT_DOOM:-1}"
 if [ "$INIT_DOOM" = "1" ]; then

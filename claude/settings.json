@@ -30,7 +30,7 @@
       "WebFetch(domain:docs.anthropic.com)"
     ],
     "deny": ["Bash(rm *)", "Bash(printenv *)"],
-    "defaultMode": "auto",
+    "defaultMode": "acceptEdits",
     "additionalDirectories": ["~/.claude", "~/.beads", "/tmp/claude"]
   },
   "sandbox": {
