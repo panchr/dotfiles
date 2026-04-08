@@ -44,8 +44,6 @@ brew "d12frosted/emacs-plus/emacs-plus@30"
 
 # Agentic coding tools
 cask "claude-code"
-tap "anomalyco/tap"
-brew "anomalyco/tap/opencode"
 brew "dolt"
 tap "steveyegge/beads"
 brew "steveyegge/beads/bd"
