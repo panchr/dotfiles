@@ -43,7 +43,7 @@ tap "d12frosted/emacs-plus"
 brew "d12frosted/emacs-plus/emacs-plus@30"
 
 # Agentic coding tools
-cask "claude-code"
+cask "claude-code@latest"
 brew "dolt"
 tap "steveyegge/beads"
 brew "steveyegge/beads/bd"
