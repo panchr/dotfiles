@@ -75,13 +75,31 @@ autoload -Uz add-zsh-hook
 add-zsh-hook precmd () { fc -R }
 
 # Incognito mode: keeps existing history searchable but new commands
-# stay in memory only and don't touch the real history file.
+# stay in memory only and don't touch the real history file. Persists
+# across child shells via the INCOGNITO env var; in tmux, also propagates
+# to new panes/windows in the current session.
 incognito() {
     unsetopt SHARE_HISTORY INC_APPEND_HISTORY APPEND_HISTORY
     HISTFILE=/dev/null
     SAVEHIST=0
     typeset -gi _INCOGNITO=1
-    p10k display '*/prompt_char'=hide
+    export INCOGNITO=1
+    if [[ -n "$TMUX" ]] && command -v tmux >/dev/null; then
+        tmux set-environment INCOGNITO 1 2>/dev/null
+    fi
+    # The prompt_char segment's CONTENT_EXPANSION reads $_INCOGNITO each render,
+    # so the prompt symbol disappears automatically on the next prompt.
+}
+
+# unincognito clears the incognito marker from this shell, child env, and the
+# tmux session so future shells/panes start fresh. The current shell's history
+# stays in-memory-only to avoid leaking already-typed incognito commands to
+# disk -- run `exec zsh` if you want a fully clean shell.
+unincognito() {
+    unset _INCOGNITO INCOGNITO
+    if [[ -n "$TMUX" ]] && command -v tmux >/dev/null; then
+        tmux set-environment -u INCOGNITO 2>/dev/null
+    fi
 }
 
 # Use fzf for fuzzy history search.
@@ -184,6 +202,11 @@ fi
 # To customize prompt, run `p10k configure` or edit p10k.zsh.
 if [[ -f "$DOTFILES/zsh/p10k.zsh" ]]; then
      source "$DOTFILES/zsh/p10k.zsh"
+fi
+
+# Re-apply incognito mode if inherited from a parent shell or tmux session.
+if [[ "$INCOGNITO" == "1" ]]; then
+    incognito
 fi
 
 # Syntax highlighting. Must be sourced at end of zshrc.
