@@ -2,22 +2,19 @@
 description: Commit staged changes with a context-focused message
 ---
 
-Commit the currently staged changes.
+Commit the work just performed.
 
 ## Arguments
-- `--stage`: Stage all relevant changed files before committing. If unsure whether a file is relevant, ask.
-- Any other text in $ARGUMENTS is used as the commit subject.
+- Any text in $ARGUMENTS is used as the commit subject.
 
 ## Workflow
 
-**If `--stage` is in $ARGUMENTS:**
-1. Run `git status` to see all changed files
-2. Run `git diff` to understand the unstaged changes
-3. Stage files that are clearly related to a cohesive change using `git add <file>`
-4. If unsure whether a file belongs in this commit, ask before staging
-5. Continue to the commit step below
+1. Run `git status` to see all changed files.
+2. Run `git diff` to understand the unstaged changes and `git diff --staged` for staged ones.
+3. Stage the files that are clearly related to a cohesive change using `git add <file>`, based on the work just done. Use your own judgment based on context — do not ask. Leave unrelated changes (e.g., stray untracked files, unrelated edits) alone.
+4. Re-run `git diff --staged` to confirm the final commit scope.
 
-**Commit step:**
+## Commit step
 
 Use this commit style:
 - Subject: "package: action" in active voice, target <=72 chars.
@@ -40,11 +37,7 @@ We need a reusable commit helper so commit messages stay consistent
 without manual formatting each time.
 ```
 
-Before committing, run:
-- git status
-- git diff --staged
-
-If there are no staged changes, stop and explain.
+If there are no relevant changes to stage, stop and explain.
 
 Then run:
 - git commit -m "<subject>" -m "<body>"
