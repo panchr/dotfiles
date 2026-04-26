@@ -45,6 +45,7 @@ mkdir -p ~/.claude/agents
 mkdir -p ~/.claude/guidelines
 ln -s -f "$CONFIG_DIR/claude/settings.json" ~/.claude/settings.json
 ln -s -f "$CONFIG_DIR/claude/CLAUDE.md" ~/.claude/CLAUDE.md
+ln -s -f "$CONFIG_DIR/claude/statusline.sh" ~/.claude/statusline.sh
 for file in "$CONFIG_DIR/claude/commands/"*; do
 	[ -f "$file" ] && ln -s -f "$file" ~/.claude/commands/
 done
