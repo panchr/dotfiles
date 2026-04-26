@@ -20,3 +20,4 @@ Thumbs.db
 .dolt/
 *.db
 .beads/.beads-credential-key
+.beads/export-state.json
