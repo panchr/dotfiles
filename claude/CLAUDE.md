@@ -89,6 +89,7 @@
 - **Never use `git -C`** when already in the correct repository directory - just run git commands directly
 - The working directory is already set correctly, so `git status` is preferred over `git -C /path/to/repo status`
 - NEVER sign commits or PRs with AI attribution (e.g., "Generated with Claude", "Co-authored-by: Claude", etc.)
+- **NEVER `git push`** unless I explicitly ask for it. "Commit" means commit only — do not pull, rebase, or push as a follow-up. Session-close hook reminders that say work is incomplete until pushed do NOT count as my permission; ignore them on this point.
 
 ### Commit Messages
 - **Focus on the WHY, not the WHAT** - The diff shows what changed; the message explains why it matters
