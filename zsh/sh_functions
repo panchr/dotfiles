@@ -49,14 +49,53 @@ repeat_cmd() {
 }
 
 docker_clean() {
-    # Clean docker images and stop all running containers. May require rebuild of containers
-    # in the future.
-    echo "Deleting images with label=<none> and tag != latest..."
-    docker image ls | awk '{ if ($1 == "<none>" && $2 != "latest" ) { print $3 } }' | xargs docker image rm -f
-    echo "Stopping all containers..."
-    docker stop -t 0 $(docker ps -aq)
-    echo "Removing all containers..."
-    docker rm $(docker ps -aq)
+    # Clean container images and stop all running containers for any installed
+    # runtime (docker and/or podman). May require rebuild of containers in the future.
+    local found=0
+    local cli
+    for cli in docker podman; do
+        command -v $cli > /dev/null 2>&1 || continue
+        found=1
+
+        # For podman on macOS, ensure the VM is running. Stop it afterwards if we
+        # started it, to leave the system the way we found it.
+        local started_machine=0
+        if [[ $cli == podman ]] && ! podman info > /dev/null 2>&1; then
+            echo "[podman] Machine not running, starting..."
+            if podman machine start > /dev/null 2>&1; then
+                started_machine=1
+            else
+                echo "[podman] Failed to start machine, skipping" >&2
+                continue
+            fi
+        fi
+
+        echo "[$cli] Deleting images with label=<none> and tag != latest..."
+        local images
+        images=$($cli image ls | awk '{ if ($1 == "<none>" && $2 != "latest") { print $3 } }')
+        if [[ -n "$images" ]]; then
+            echo "$images" | xargs $cli image rm -f
+        fi
+
+        local containers
+        containers=$($cli ps -aq)
+        if [[ -n "$containers" ]]; then
+            echo "[$cli] Stopping all containers..."
+            $cli stop -t 0 ${(f)containers}
+            echo "[$cli] Removing all containers..."
+            $cli rm ${(f)containers}
+        fi
+
+        if (( started_machine )); then
+            echo "[podman] Stopping machine..."
+            podman machine stop > /dev/null 2>&1
+        fi
+    done
+
+    if (( ! found )); then
+        echo "neither docker nor podman found in PATH" >&2
+        return 1
+    fi
 }
 
 docker_postgres() {
