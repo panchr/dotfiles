@@ -1,0 +1,50 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "edit": "allow",
+    "list": "allow",
+    "grep": "allow",
+    "glob": "allow",
+    "read": {
+      "*": "allow",
+      "*.env": "deny"
+    },
+    "bash": {
+      "*": "ask",
+      "git status *": "allow",
+      "git -C * status *": "allow",
+      "git diff *": "allow",
+      "git -C * diff *": "allow",
+      "git grep *": "allow",
+      "git -C * grep *": "allow",
+      "git log *": "allow",
+      "git -C * log *": "allow",
+      "git show *": "allow",
+      "git -C * show *": "allow",
+      "rg *": "allow",
+      "grep *": "allow",
+      "ls *": "allow",
+      "pwd": "allow",
+      "cat": "allow",
+      "mkdir *": "allow",
+      "bd *": "allow",
+      "printenv": "deny",
+      "rm *": "deny"
+    },
+    "skill": "allow",
+    "webfetch": "allow",
+    "doom_loop": "ask",
+    "external_directory": "allow"
+  },
+  "plugin": ["opencode-beads"],
+  "mcp": {
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "@playwright/mcp@latest", "--headless"],
+      "enabled": true
+    }
+  },
+  "tools": {
+    "playright*": false
+  }
+}
