@@ -25,7 +25,7 @@
       "grep *": "allow",
       "ls *": "allow",
       "pwd": "allow",
-      "cat": "allow",
+      "cat *": "deny",
       "mkdir *": "allow",
       "bd *": "allow",
       "printenv": "deny",
