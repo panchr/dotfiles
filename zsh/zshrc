@@ -54,6 +54,14 @@ bindkey "^[[1;5D" backward-word
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 
+# Move tty suspend from ctrl-z to ctrl-b: ctrl-z is the tmux prefix, and
+# hitting it outside tmux by mistake otherwise backgrounds the foreground
+# program. Only affects line-discipline susp, so zsh ZLE / tmux / full-screen
+# TUIs (vim, less, ...) keep their own ctrl-b bindings.
+if [[ -t 0 ]]; then
+    stty susp '^B'
+fi
+
 # History settings
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=1000000
