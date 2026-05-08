@@ -40,7 +40,6 @@
       "/tmp/claude"
     ]
   },
-  "model": "opus",
   "hooks": {
     "Notification": [
       {
@@ -142,5 +141,8 @@
   },
   "effortLevel": "high",
   "autoUpdatesChannel": "stable",
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "autoCompactEnabled": false,
+  "teammateMode": "auto",
+  "remoteControlAtStartup": false
 }
