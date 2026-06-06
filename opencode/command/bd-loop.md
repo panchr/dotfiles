@@ -6,6 +6,8 @@ Repeatedly pop ready tasks from bd using `/bd-ready`, complete each task, and cr
 
 ## Arguments
 - Instructions on specific types of tasks to focus on. If given, only work on those tasks.
+- A task count (e.g. "do 10 tasks"). If given, use it as the checkpoint interval instead of the default of 5.
+- "all tasks" (or similar): run until the queue is empty without pausing at checkpoints.
 
 ## Workflow
 1. Run `/bd-ready` to fetch the next ready task.
@@ -24,8 +26,10 @@ If a task is large in scope (large feature or epic), break it down into smaller 
 - Use `/bd-create` to create the resulting subtasks.
 - Resume the loop with `/bd-ready` after subtasks are created.
 
-## 5-task checkpoint
-After every 5 completed tasks:
+## Task checkpoint
+Skip checkpoints entirely if the user asked for all tasks; only summarize at the end.
+
+After every N completed tasks (default 5, or whatever count the user specified in the arguments or conversation):
 - Pause and prompt the user to review the work before continuing.
 - Provide a short summary of what changed in those tasks.
 - Include how the *user* can verify the work: any tests to run, UIs to look at, etc.
