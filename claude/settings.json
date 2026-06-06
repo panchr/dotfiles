@@ -139,10 +139,10 @@
       "Deciphering Aryabhata's mathematics"
     ]
   },
-  "effortLevel": "high",
+  "effortLevel": "xhigh",
   "autoUpdatesChannel": "stable",
-  "skipAutoPermissionPrompt": true,
   "autoCompactEnabled": false,
   "teammateMode": "auto",
-  "remoteControlAtStartup": false
+  "remoteControlAtStartup": false,
+  "skipAutoPermissionPrompt": true
 }
