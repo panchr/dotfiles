@@ -28,7 +28,7 @@ brew "prettier"
 brew "mise"
 brew "asciinema"
 
-tap "teamookla/speedtest"
+tap "teamookla/speedtest", trusted: true
 brew "teamookla/speedtest/speedtest"
 
 # Git
@@ -36,16 +36,16 @@ brew "gh"
 brew "git"
 
 # Emacs
-tap "d12frosted/emacs-plus"
+tap "d12frosted/emacs-plus", trusted: true
 brew "d12frosted/emacs-plus/emacs-plus@30"
 
 # Agentic coding tools
 cask "claude-code@latest"
-tap "anomalyco/tap"
+tap "anomalyco/tap", trusted: true
 brew "anomalyco/tap/opencode"
-tap "steveyegge/beads"
+tap "steveyegge/beads", trusted: true
 brew "steveyegge/beads/bd"
-tap "allthingsclaude/battery"
+tap "allthingsclaude/battery", trusted: true
 cask "allthingsclaude/battery/claude-battery"
 
 # Python
