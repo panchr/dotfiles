@@ -60,7 +60,8 @@
   "enabledPlugins": {
     "beads@beads-marketplace": true,
     "typescript-lsp@claude-plugins-official": true,
-    "pyright-lsp@claude-plugins-official": true
+    "pyright-lsp@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true
   },
   "sandbox": {
     "enabled": true,
