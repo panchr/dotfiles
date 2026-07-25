@@ -39,6 +39,18 @@ brew "git"
 tap "d12frosted/emacs-plus", trusted: true
 brew "d12frosted/emacs-plus/emacs-plus@30"
 
+# emacs-plus@30 declares libjpeg as build-only, but the built binary links against
+# it at runtime. Brew therefore considers it removable and autoremove drops it,
+# leaving Emacs unable to start. Pin it explicitly so it survives cleanup.
+brew "jpeg"
+# Runtime deps of emacs-plus@30 that went missing alongside jpeg.
+brew "gcc"
+brew "libgccjit"
+brew "isl"
+brew "mpfr"
+brew "libmpc"
+brew "tree-sitter@0.25"
+
 # Agentic coding tools
 cask "claude-code@latest"
 tap "anomalyco/tap", trusted: true
