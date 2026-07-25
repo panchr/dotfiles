@@ -76,6 +76,7 @@ brew "shfmt"
 brew "terraform"
 brew "tflint"
 brew "llvm"
+brew "xcodegen"
 
 # Containers
 brew "podman"
