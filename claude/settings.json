@@ -147,5 +147,6 @@
   "autoCompactEnabled": false,
   "teammateMode": "auto",
   "remoteControlAtStartup": false,
+  "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true
 }

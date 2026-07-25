@@ -2,34 +2,26 @@
 description: Commit staged changes with a context-focused message
 ---
 
-Commit the work just performed.
+Commit the work just performed. `$ARGUMENTS`, if present, is the commit subject.
 
-## Arguments
-- Any text in $ARGUMENTS is used as the commit subject.
+## Staging
 
-## Workflow
+1. `git status`, then `git diff` and `git diff --staged` to understand what changed.
+2. Stage the files belonging to one cohesive change with `git add <file>`. Judge from the work just done — do not ask. Leave unrelated edits and stray untracked files alone.
+3. Re-run `git diff --staged` to confirm the scope.
 
-1. Run `git status` to see all changed files.
-2. Run `git diff` to understand the unstaged changes and `git diff --staged` for staged ones.
-3. Stage the files that are clearly related to a cohesive change using `git add <file>`, based on the work just done. Use your own judgment based on context — do not ask. Leave unrelated changes (e.g., stray untracked files, unrelated edits) alone.
-4. Re-run `git diff --staged` to confirm the final commit scope.
+If there's nothing relevant to stage, stop and explain.
 
-## Commit step
+## Message
 
-Use this commit style:
-- Subject: "package: action" in active voice, target <=72 chars.
-- Subject must match the actual change; avoid over-claiming.
-- Body: explain why the change was needed and any relevant context. Do not list changes.
-- Leave a blank line between subject and body.
+- Subject: `package: action`, active voice, <=72 chars. It must match what actually changed — don't over-claim.
+- Blank line, then body: why the change was needed. Never list the changes; the diff already shows them.
+- Derive the subject from the staged diff if `$ARGUMENTS` is empty; otherwise use `$ARGUMENTS`, conformed to the style above.
 
-If $ARGUMENTS is provided, use it as the subject and ensure it matches the style above.
-If $ARGUMENTS is empty, derive a subject from the staged diff.
+Subject examples: `math: introduce Sin function`, `server/models: migrate to UUID v7`
 
-Examples (subjects):
-- `math: introduce Sin function`
-- `server/models: migrate to UUID v7`
+Full example:
 
-Example (full message):
 ```
 claude: add commit message command
 
@@ -37,9 +29,8 @@ We need a reusable commit helper so commit messages stay consistent
 without manual formatting each time.
 ```
 
-If there are no relevant changes to stage, stop and explain.
+## Commit
 
-Then run:
-- git commit -m "<subject>" -m "<body>"
+Run `git commit -m "<subject>" -m "<body>"`.
 
-NEVER ask to push the commit or mention pushing in the final response.
+NEVER push, ask to push, or mention pushing in the final response.
