@@ -114,15 +114,16 @@
 
 `bd dep add <issue> <depends-on>` means: `<issue>` **depends on** `<depends-on>`. Equivalently, `<depends-on>` **blocks** `<issue>`.
 
-Think in terms of "what must finish before what":
-- **Epic with children**: The epic depends on its children. Children block the epic.
-  `bd dep add <epic> <child>` — child must finish before epic can close.
-- **Parent epic with sub-epic**: The parent depends on the sub-epic.
+**Epic → child-task hierarchy uses `--parent`, NOT `bd dep add`.** bd rejects a dependency edge from an epic to a task (`bd dep add <epic> <child-task>` errors with *"epics can only block other epics, not tasks"*). Attach a child task to its epic at creation time:
+  `bd create "<title>" --parent <epic> ...` — creates a native `parent-child` edge, a hierarchical id (`<epic>.N`), and a CHILDREN rollup on the epic. (Verified 2026-07-07.)
+
+For dependency edges between issues of compatible types, think in terms of "what must finish before what":
+- **Parent epic with sub-epic** (both epics): The parent depends on the sub-epic.
   `bd dep add <parent-epic> <sub-epic>` — sub-epic must finish before parent can close.
 - **Sequential tasks**: Later task depends on earlier task.
   `bd dep add <later-task> <earlier-task>` — earlier task must finish first.
 
-**Common mistake**: `bd dep add <child> <epic>` is WRONG — that says the child can't start until the epic closes, which is backwards.
+**Common mistake**: `bd dep add <child> <epic>` is WRONG — that says the child can't start until the epic closes, which is backwards (and for a child *task* under an epic, use `--parent` instead — see above).
 
 **Mental model**: Read `bd dep add A B` as "A is waiting on B" or "B blocks A".
 
