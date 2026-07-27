@@ -1,7 +1,4 @@
 {
-  "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
-  },
   "permissions": {
     "allow": [
       "Bash(git log *)",
@@ -145,7 +142,6 @@
   "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
   "autoCompactEnabled": false,
-  "teammateMode": "auto",
   "remoteControlAtStartup": false,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true

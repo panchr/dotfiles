@@ -29,6 +29,12 @@ For large or impactful design decisions you *do* make yourself, adversarially re
 - Instead of `rm`, use `git rm`. If the file isn't tracked and you must use `rm`, ask first.
 - Never proactively create documentation or README files. Only when I explicitly ask.
 
+## Subagents
+
+**Never pass `name` to the Agent tool.** A named agent is an agent-teams teammate: it goes idle instead of completing, so its result never comes back. Unnamed agents return their report via task notification — use them for all delegated work.
+
+Agent teams are disabled in settings.json. Don't re-enable them to work around this.
+
 ## Coding Principles
 
 Prioritize long-term maintainability over quick solutions. Prefer clarity over cleverness — code should be immediately understandable by a senior engineer who didn't write it.
