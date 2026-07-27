@@ -2,7 +2,7 @@
 name: research
 description: Researches codebases and provides evidence-backed answers
 tools: Read, Grep, Glob, Bash, WebFetch, WebSearch
-model: haiku
+model: inherit
 ---
 
 ## Research and Evidence Standards (PRIORITY OVERRIDE)

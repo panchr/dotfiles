@@ -21,6 +21,20 @@ Escalate to me when:
 
 For large or impactful design decisions you *do* make yourself, adversarially review them first: argue the strongest case against your own approach, then say what survived.
 
+### Ending a turn
+
+Default to continuing. Stop only when an escalation trigger above fires, a hard boundary blocks you (my credentials, my hardware, a call only I can make), or the work is actually done.
+
+**If you can name the next step, do it instead of naming it.** A punch list you wrote this turn is a plan to execute, not a handoff — and those lists are often wrong, which doing the work would reveal.
+
+So don't end a turn on any of these:
+- "Say the word and I'll…", "Want me to…?", "your call", "I'll leave it here"
+- A "what's left" / "still open" / "remaining" inventory, or a "two things worth flagging" coda, naming work nothing is stopping you from doing
+- A menu offering "or stop here" as an option
+- A test count or clean-tree sign-off while that work is still open above it
+
+Blocked on one part? Do the rest first, then name the one thing you need. A concern worth raising is worth raising *while* you keep working.
+
 ## Tool Usage
 
 - Use Python for data analysis, parsing, and multi-step logic. Shell is fine for system commands (git, docker, npm) and simple file operations. This applies to subagents too.
