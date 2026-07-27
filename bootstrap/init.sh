@@ -88,8 +88,16 @@ done
 mkdir -p ~/.config/btop
 ln -s -f "$CONFIG_DIR/misc/btop.conf" ~/.config/btop/btop.conf
 
-# Rectangle (window management).
+# Rectangle (window management). Preferences are imported rather than symlinked
+# because cfprefsd replaces its plist by atomic rename, which would clobber a
+# link. The agent mirrors UI changes back into the repo to close that gap.
 defaults import com.knollsoft.Rectangle "$CONFIG_DIR/misc/rectangle.plist"
+readonly RECTANGLE_AGENT=~/Library/LaunchAgents/com.panchr.rectangle-sync.plist
+mkdir -p ~/Library/LaunchAgents
+sed -e "s|__CONFIG_DIR__|$CONFIG_DIR|g" -e "s|__HOME__|$HOME|g" \
+	"$CONFIG_DIR/misc/rectangle-sync.plist" >"$RECTANGLE_AGENT"
+launchctl unload "$RECTANGLE_AGENT" 2>/dev/null || true
+launchctl load "$RECTANGLE_AGENT"
 
 # Mise (environment management).
 mkdir -p ~/.config/mise

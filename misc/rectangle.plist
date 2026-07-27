@@ -14,6 +14,24 @@
 	<true/>
 	<key>alternateDefaultShortcuts</key>
 	<false/>
+	<key>centerTwoThirds</key>
+	<dict/>
+	<key>firstThird</key>
+	<dict>
+		<key>keyCode</key>
+		<integer>123</integer>
+		<key>modifierFlags</key>
+		<integer>1572864</integer>
+	</dict>
+	<key>firstTwoThirds</key>
+	<dict>
+		<key>keyCode</key>
+		<integer>123</integer>
+		<key>modifierFlags</key>
+		<integer>1572864</integer>
+	</dict>
+	<key>hapticFeedbackOnSnap</key>
+	<integer>2</integer>
 	<key>hideMenubarIcon</key>
 	<false/>
 	<key>installVersion</key>
@@ -22,8 +40,22 @@
 	<true/>
 	<key>landscapeSnapAreas</key>
 	<string>null</string>
+	<key>lastThird</key>
+	<dict>
+		<key>keyCode</key>
+		<integer>124</integer>
+		<key>modifierFlags</key>
+		<integer>1572864</integer>
+	</dict>
+	<key>lastTwoThirds</key>
+	<dict>
+		<key>keyCode</key>
+		<integer>124</integer>
+		<key>modifierFlags</key>
+		<integer>1572864</integer>
+	</dict>
 	<key>lastVersion</key>
-	<string>100</string>
+	<string>104</string>
 	<key>launchOnLogin</key>
 	<true/>
 	<key>portraitSnapAreas</key>
@@ -37,6 +69,8 @@
 	</dict>
 	<key>subsequentExecutionMode</key>
 	<integer>1</integer>
+	<key>todo</key>
+	<integer>2</integer>
 	<key>toggleTodo</key>
 	<dict>
 		<key>keyCode</key>
