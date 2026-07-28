@@ -21,7 +21,7 @@
       "Read(~/.claude/*)",
       "Edit(~/.claude/*)",
       "Read(~/.beads/*)",
-      "Write(~/.beads/*)",
+      "Edit(~/.beads/*)",
       "WebSearch",
       "WebFetch(domain:github.com)",
       "WebFetch(domain:docs.anthropic.com)"
