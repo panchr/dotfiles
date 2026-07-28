@@ -15,15 +15,12 @@
       "Bash(grep *)",
       "Bash(find *)",
       "Bash(* --version)",
-      "Bash(* --help *)",
       "Bash(timeout *)",
       "Bash(echo *)",
-      "Read(~/.claude/*)",
       "Edit(~/.claude/*)",
-      "Read(~/.beads/*)",
-      "Edit(~/.beads/*)",
       "WebSearch",
       "WebFetch(domain:github.com)",
+      "WebFetch(domain:code.claude.com)",
       "WebFetch(domain:docs.anthropic.com)"
     ],
     "deny": [
