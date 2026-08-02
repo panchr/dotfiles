@@ -34,6 +34,7 @@
       "/tmp/claude"
     ]
   },
+  "model": "opus[1m]",
   "hooks": {
     "Notification": [
       {
