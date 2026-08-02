@@ -6,6 +6,10 @@ cask "ghostty"
 # Window management
 cask "rectangle"
 
+# Keep the machine awake on demand
+tap "panchr/tap", trusted: true
+cask "panchr/tap/espresso"
+
 # Terminal utilities
 brew "tree"
 brew "vnstat"
