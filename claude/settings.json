@@ -139,7 +139,10 @@
   "autoUpdatesChannel": "stable",
   "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
-  "autoCompactEnabled": false,
+  "autoCompactEnabled": true,
+  "env": {
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "70"
+  },
   "remoteControlAtStartup": false,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true
