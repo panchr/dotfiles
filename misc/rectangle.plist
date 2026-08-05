@@ -33,7 +33,7 @@
 	<key>hapticFeedbackOnSnap</key>
 	<integer>2</integer>
 	<key>hideMenubarIcon</key>
-	<false/>
+	<true/>
 	<key>installVersion</key>
 	<string>100</string>
 	<key>internalTilingNotified</key>
