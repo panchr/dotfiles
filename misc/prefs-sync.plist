@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.panchr.prefs-sync</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>__CONFIG_DIR__/misc/prefs-sync.sh</string>
+		<string>export</string>
+	</array>
+	<!-- Generated from `prefs-sync.sh watch-paths` by bootstrap/init.sh. -->
+	<key>WatchPaths</key>
+	<array>
+__WATCH_PATHS__
+	</array>
+	<!-- cfprefsd replaces these plists by rename rather than writing in place,
+	     which WatchPaths can miss, and it flushes lazily. The interval is a
+	     backstop so a missed event costs a few minutes of staleness instead of
+	     the change. -->
+	<key>StartInterval</key>
+	<integer>300</integer>
+	<key>RunAtLoad</key>
+	<true/>
+</dict>
+</plist>

@@ -88,16 +88,24 @@ done
 mkdir -p ~/.config/btop
 ln -s -f "$CONFIG_DIR/misc/btop.conf" ~/.config/btop/btop.conf
 
-# Rectangle (window management). Preferences are imported rather than symlinked
-# because cfprefsd replaces its plist by atomic rename, which would clobber a
-# link. The agent mirrors UI changes back into the repo to close that gap.
-defaults import com.knollsoft.Rectangle "$CONFIG_DIR/misc/rectangle.plist"
-readonly RECTANGLE_AGENT=~/Library/LaunchAgents/com.panchr.rectangle-sync.plist
+# Menubar app preferences (Rectangle for window management, Stats for system
+# monitoring). These are imported rather than symlinked because cfprefsd replaces
+# its plists by atomic rename, which would clobber a link. A single agent watches
+# every domain and mirrors UI changes back into the repo to close that gap. The
+# app list lives in prefs-sync.sh.
+readonly PREFS_SYNC="$CONFIG_DIR/misc/prefs-sync.sh"
+"$PREFS_SYNC" import
+
 mkdir -p ~/Library/LaunchAgents
-sed -e "s|__CONFIG_DIR__|$CONFIG_DIR|g" -e "s|__HOME__|$HOME|g" \
-	"$CONFIG_DIR/misc/rectangle-sync.plist" >"$RECTANGLE_AGENT"
-launchctl unload "$RECTANGLE_AGENT" 2>/dev/null || true
-launchctl load "$RECTANGLE_AGENT"
+readonly PREFS_AGENT=~/Library/LaunchAgents/com.panchr.prefs-sync.plist
+# The watch paths are spliced in with `r` because a sed replacement cannot span
+# newlines; `d` then drops the placeholder line itself.
+sed -e "/__WATCH_PATHS__/r "<("$PREFS_SYNC" watch-paths | sed -e 's|.*|\t\t<string>&</string>|') \
+	-e "/__WATCH_PATHS__/d" \
+	-e "s|__CONFIG_DIR__|$CONFIG_DIR|g" \
+	"$CONFIG_DIR/misc/prefs-sync.plist" >"$PREFS_AGENT"
+launchctl unload "$PREFS_AGENT" 2>/dev/null || true
+launchctl load "$PREFS_AGENT"
 
 # Mise (environment management).
 mkdir -p ~/.config/mise
