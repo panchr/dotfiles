@@ -6,6 +6,9 @@ cask "ghostty"
 # Window management
 cask "rectangle"
 
+# System monitor in the menubar
+cask "stats"
+
 # Keep the machine awake on demand
 tap "panchr/tap", trusted: true
 cask "panchr/tap/espresso"

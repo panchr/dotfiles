@@ -19,6 +19,7 @@ set -eu
 
 readonly DOMAINS="
 rectangle:com.knollsoft.Rectangle
+stats:eu.exelban.Stats
 "
 
 MISC_DIR="$(cd "$(dirname "$0")" && pwd)"
