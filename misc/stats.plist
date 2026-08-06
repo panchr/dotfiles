@@ -34,6 +34,12 @@
 	<string>mini</string>
 	<key>Clock_state</key>
 	<false/>
+	<key>CombinedModules</key>
+	<true/>
+	<key>CombinedModules_popup</key>
+	<true/>
+	<key>CombinedModules_spacing</key>
+	<string>none</string>
 	<key>Disk_state</key>
 	<false/>
 	<key>Disk_widget</key>
@@ -53,10 +59,36 @@
 	</dict>
 	<key>NSWindow Frame eu.exelban.Stats.Settings.WindowFrame</key>
 	<string>395 273 728 480 0 0 1512 949 </string>
+	<key>Network_label_position</key>
+	<integer>1</integer>
+	<key>Network_networkChart_position</key>
+	<integer>2</integer>
+	<key>Network_speed_icon</key>
+	<string>dots</string>
+	<key>Network_speed_iconAlignment</key>
+	<string>right</string>
+	<key>Network_speed_mode</key>
+	<string>twoRows</string>
+	<key>Network_speed_position</key>
+	<integer>0</integer>
+	<key>Network_speed_units</key>
+	<true/>
+	<key>Network_speed_valueColor</key>
+	<string>none</string>
 	<key>Network_state</key>
 	<true/>
+	<key>Network_state_position</key>
+	<integer>3</integer>
+	<key>Network_text_position</key>
+	<integer>4</integer>
+	<key>Network_updateICMPInterval</key>
+	<integer>30</integer>
+	<key>Network_usageReset</key>
+	<string>Once per week</string>
+	<key>Network_usageReset_next</key>
+	<integer>1786248000</integer>
 	<key>Network_widget</key>
-	<string>speed</string>
+	<string></string>
 	<key>RAM_barChart_position</key>
 	<integer>2</integer>
 	<key>RAM_label_position</key>
@@ -82,6 +114,10 @@
 	<key>RAM_widget</key>
 	<string>mini</string>
 	<key>Sensors_state</key>
+	<false/>
+	<key>dockIcon</key>
+	<false/>
+	<key>keep_menubar_positions</key>
 	<false/>
 	<key>runAtLoginInitialized</key>
 	<true/>
