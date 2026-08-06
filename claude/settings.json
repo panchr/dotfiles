@@ -145,5 +145,6 @@
   },
   "remoteControlAtStartup": false,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "leftArrowOpensAgents": false
 }
