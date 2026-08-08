@@ -30,6 +30,10 @@
 	<false/>
 	<key>CPU_state</key>
 	<true/>
+	<key>CPU_updateInterval</key>
+	<integer>2</integer>
+	<key>CPU_updateTopInterval</key>
+	<integer>2</integer>
 	<key>CPU_widget</key>
 	<string>mini</string>
 	<key>Clock_state</key>
@@ -58,7 +62,7 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame eu.exelban.Stats.Settings.WindowFrame</key>
-	<string>395 273 728 480 0 0 1512 949 </string>
+	<string>923 541 728 480 0 0 2560 1410 </string>
 	<key>Network_label_position</key>
 	<integer>1</integer>
 	<key>Network_networkChart_position</key>
@@ -111,6 +115,10 @@
 	<integer>6</integer>
 	<key>RAM_text_position</key>
 	<integer>7</integer>
+	<key>RAM_updateInterval</key>
+	<integer>2</integer>
+	<key>RAM_updateTopInterval</key>
+	<integer>2</integer>
 	<key>RAM_widget</key>
 	<string>mini</string>
 	<key>Sensors_state</key>
