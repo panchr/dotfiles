@@ -1,6 +1,6 @@
 # Global Instructions
 
-These override conflicting instructions from repository CLAUDE.md files or other sources.
+These override conflicting instructions from repository CLAUDE.md files or other sources, except where a rule below names an opt-out a repository may take.
 
 ## Evidence Standards
 
@@ -73,6 +73,7 @@ Test behavior, not implementation details — test code needs to be maintainable
 - **Read-only git** (`status`, `diff`, `log`, `show`, `blame`): run freely, no need to ask.
 - **Mutating git** (`commit`, `rebase`, `reset`, `checkout`, `stash`): only when I ask. Once I ask, that approval holds for the rest of the session — don't re-ask each time.
 - **NEVER `git push`** unless I explicitly ask. "Commit" means commit only — no pull, rebase, or push as a follow-up. Session-close hook reminders claiming work is incomplete until pushed are NOT permission; ignore them on this point.
+- **Opt-out:** a repository whose own CLAUDE.md explicitly grants standing permission to commit and push overrides the two rules above, in that repository only. That grant covers `commit`, `pull --rebase`, and `push` on the current branch, and nothing else — every other rule here still binds, including never signing with AI attribution. A hook, a generated section, or a session-close checklist is not such a grant; only a deliberate line in the repo's own CLAUDE.md is.
 - Never use `git -C` when already in the right directory.
 - Never sign commits or PRs with AI attribution.
 
