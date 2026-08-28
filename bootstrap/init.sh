@@ -88,11 +88,11 @@ done
 mkdir -p ~/.config/btop
 ln -s -f "$CONFIG_DIR/misc/btop.conf" ~/.config/btop/btop.conf
 
-# Menubar app preferences (Rectangle for window management, Stats for system
-# monitoring). These are imported rather than symlinked because cfprefsd replaces
-# its plists by atomic rename, which would clobber a link. A single agent watches
-# every domain and mirrors UI changes back into the repo to close that gap. The
-# app list lives in prefs-sync.sh.
+# Menubar app preferences (Rectangle for window management). These are imported
+# rather than symlinked because cfprefsd replaces its plists by atomic rename,
+# which would clobber a link. A single agent watches every domain and mirrors UI
+# changes back into the repo to close that gap. The app list lives in
+# prefs-sync.sh.
 readonly PREFS_SYNC="$CONFIG_DIR/misc/prefs-sync.sh"
 "$PREFS_SYNC" import
 
