@@ -58,8 +58,7 @@ brew "tree-sitter@0.25"
 # Agentic coding tools
 cask "claude-code@latest"
 cask "claude"
-tap "anomalyco/tap", trusted: true
-brew "anomalyco/tap/opencode"
+brew "opencode"
 tap "steveyegge/beads", trusted: true
 brew "steveyegge/beads/bd"
 tap "allthingsclaude/battery", trusted: true
