@@ -35,6 +35,10 @@ brew "asciinema"
 tap "teamookla/speedtest", trusted: true
 brew "teamookla/speedtest/speedtest"
 
+# YubiKey
+brew "ykman"
+cask "yubico-authenticator"
+
 # Git
 brew "gh"
 brew "git"
