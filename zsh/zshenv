@@ -1,23 +1,33 @@
 # Rushy Panchal
 # ~/.zshenv is sourced on all shells, not just interactive. PATH and other
 # environment variables should be set up here.
+#
+# This file runs for every zsh process (including scripts and subshells), so it
+# must stay fork-free: no $(...) command substitutions. $OSTYPE and the :A/:h
+# path modifiers replace uname, readlink, dirname and realpath.
 
 # Environment setup that must be performed before anything else.
-case $(uname) in
-Darwin)
-    export DOTFILES="$(realpath $(dirname $(readlink ${ZDOTDIR:-$HOME}/.zshrc))/..)"
+# :A resolves the ~/.zshrc symlink to its real path (like realpath/readlink -f),
+# and each :h strips a trailing path component, landing on the repository root.
+_zshenv_rc="${ZDOTDIR:-$HOME}/.zshrc"
+export DOTFILES="${_zshenv_rc:A:h:h}"
+unset _zshenv_rc
+case $OSTYPE in
+darwin*)
     export PATH="/opt/homebrew/bin:$PATH"
     ;;
-Linux)
-    export DOTFILES="$(realpath $(dirname $(readlink -f ${ZDOTDIR:-$HOME}/.zshrc))/..)"
+linux*)
+    # Ubuntu's /etc/zsh/zshrc otherwise runs a full, audited compinit before
+    # ~/.zshrc gets a chance to run its own cached one.
+    skip_global_compinit=1
     ;;
-FreeBSD)
+freebsd*)
     # do nothing
     ;;
 esac
 
 # Doom is typically installed here, so make the 'doom' CLI available everywhere.
-if [ -d ~/.config/emacs/bin ]; then
+if [[ -d ~/.config/emacs/bin ]]; then
     export PATH="$HOME/.config/emacs/bin:$PATH"
 fi
 

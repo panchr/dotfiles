@@ -21,3 +21,6 @@ Thumbs.db
 *.db
 .beads/.beads-credential-key
 .beads/export-state.json
+
+# Compiled zsh files (created on the fly by zshrc)
+*.zwc
