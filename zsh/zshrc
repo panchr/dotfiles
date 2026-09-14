@@ -80,7 +80,20 @@ setopt SHARE_HISTORY          # share command history data
 # This forces a re-read on every prompt so other sessions' history is always
 # available for recall.
 autoload -Uz add-zsh-hook
-add-zsh-hook precmd () { fc -R }
+
+# Note the named function: `add-zsh-hook precmd () { ... }` is zsh's
+# multi-name definition syntax, which defines add-zsh-hook and precmd rather
+# than registering a hook, clobbering add-zsh-hook for everything sourced
+# later.
+_zshrc_reload_history() { fc -R }
+add-zsh-hook precmd _zshrc_reload_history
+
+# zsh caches $PATH lookups in a hash table, so a CLI installed mid-session
+# stays invisible to completion and to syntax highlighting (which reads
+# $commands) until the table is rebuilt. Clearing it costs microseconds;
+# repopulation is lazy, ~5ms on the next completion.
+_zshrc_rehash_commands() { rehash }
+add-zsh-hook precmd _zshrc_rehash_commands
 
 # Incognito mode: keeps existing history searchable but new commands
 # stay in memory only and don't touch the real history file. Persists
