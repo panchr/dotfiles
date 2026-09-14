@@ -31,6 +31,7 @@ brew "moor"
 brew "prettier"
 brew "mise"
 brew "asciinema"
+brew "hyperfine"
 
 tap "teamookla/speedtest", trusted: true
 brew "teamookla/speedtest/speedtest"
