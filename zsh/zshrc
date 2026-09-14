@@ -32,15 +32,34 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 ### Completions ###
-autoload -U compinit
+autoload -Uz compinit
 
-# Only load compinit once per day, see
-# https://gist.github.com/ctechols/ca1035271ad134841284#gistcomment-2308206.
-for dump in ~/.zcompdump(N.mh+24); do
-    compinit
+# compinit's default audit of every fpath directory costs ~10ms, so trust the
+# cached dump (-C) and only rebuild it once a day. Parsing the ~50KB dump text
+# is another ~6ms, so keep a compiled copy next to it: zsh prefers a sibling
+# .zwc whenever it is at least as new as the source.
+_zshrc_compdump="${ZDOTDIR:-$HOME}/.zcompdump"
+for _zshrc_stale in $_zshrc_compdump(N.mh+24); do
+    # compinit only rewrites the dump when it changes, so remove it first;
+    # otherwise its mtime never advances and the full audit runs every day.
+    rm -f -- "$_zshrc_stale"
+    compinit -d "$_zshrc_compdump"
+    _zshrc_stale=done
 done
+[[ $_zshrc_stale == done ]] || compinit -C -d "$_zshrc_compdump"
+if [[ ! "$_zshrc_compdump.zwc" -nt "$_zshrc_compdump" ]]; then
+    zcompile -R -- "$_zshrc_compdump"
+fi
+unset _zshrc_compdump _zshrc_stale
 
-compinit -C
+# _zshrc_source_compiled sources a file through its compiled form, compiling
+# it first when the sibling .zwc is missing or older than the source.
+_zshrc_source_compiled() {
+    if [[ ! "$1.zwc" -nt "$1" ]]; then
+        zcompile -R -- "$1"
+    fi
+    source "$1"
+}
 
 # menu-style completion
 zstyle ':completion:*' menu select
@@ -124,8 +143,30 @@ unincognito() {
 }
 
 # Use fzf for fuzzy history search.
-if command -v fzf >/dev/null; then
-    source <(fzf --zsh)
+# Locate fzf by walking $path rather than via $commands[fzf]: the first
+# $commands access hashes every directory on PATH (~1.5ms), and the rehash
+# hook above throws that work away at each prompt anyway.
+_zshrc_fzf=
+for _zshrc_dir in $path; do
+    if [[ -x "$_zshrc_dir/fzf" ]]; then
+        _zshrc_fzf="$_zshrc_dir/fzf"
+        break
+    fi
+done
+unset _zshrc_dir
+if [[ -n "$_zshrc_fzf" ]]; then
+    # `fzf --zsh` prints static key-binding code, but forking fzf to ask for it
+    # costs ~5ms per shell. Cache it until the fzf binary itself changes.
+    _zshrc_fzf_cache="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/fzf.zsh"
+    if [[ ! "$_zshrc_fzf_cache" -nt "$_zshrc_fzf" ]]; then
+        mkdir -p -- "${_zshrc_fzf_cache:h}"
+        "$_zshrc_fzf" --zsh >"$_zshrc_fzf_cache"
+    fi
+    # fzf's completion setup forks `bindkey '^I'` to learn the fallback tab
+    # widget unless told; compinit above leaves tab on expand-or-complete.
+    fzf_default_completion=expand-or-complete
+    _zshrc_source_compiled "$_zshrc_fzf_cache"
+    unset _zshrc_fzf_cache
     # Use ctrl-y to copy the command when searching history.
     export FZF_CTRL_R_OPTS="
     --bind 'ctrl-y:execute-silent(echo -n {2..} | pbcopy)+abort'
@@ -142,6 +183,7 @@ if command -v fzf >/dev/null; then
     zle -N fzf-history-widget-with-reload
     bindkey '^R' fzf-history-widget-with-reload
 fi
+unset _zshrc_fzf
 
 ### User configuration ###
 export CLICOLOR=1
@@ -162,8 +204,7 @@ if command -v bat >/dev/null; then
 fi
 
 # Load functions.
-zcompile ~/.sh_functions
-source ~/.sh_functions
+_zshrc_source_compiled ~/.sh_functions
 
 # Aliases
 alias reload="exec zsh"
@@ -172,12 +213,12 @@ alias htop="btop" # btop is a better replacement for htop
 alias edit="$EDITOR"
 alias view="view_file"
 
-case `uname` in
-    Darwin)
+case $OSTYPE in
+    darwin*)
 	alias  ls='ls -a -G'
 	export LSCOLORS=HxfxBxdx
     ;;
-    Linux)
+    linux*)
 	alias ls='ls -a --color=auto'
 	export LS_COLORS='no=00;36:di=01;37:ex=01;31:ln=00;35'
 	export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
@@ -189,7 +230,7 @@ case `uname` in
 	export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 	export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
     ;;
-    FreeBSD)
+    freebsd*)
 	# do nothing
     ;;
 esac
@@ -210,19 +251,33 @@ if [ -n "${GHOSTTY_RESOURCES_DIR}" ]; then
 fi
 
 # Mise, the package manager. See: https://mise.jdx.dev/.
-# Uses --shims to avoid the ~22ms per-prompt hook cost.
-if command -v mise >/dev/null; then
-    eval "$(mise activate zsh --shims)"
+# Shims are used instead of `mise activate zsh` to avoid its ~22ms per-prompt
+# hook. `mise activate zsh --shims` itself only prints a PATH prepend of the
+# shims directory, and forking mise to ask costs ~13ms, so prepend it directly.
+_zshrc_mise_shims="${MISE_SHIMS_DIR:-${MISE_DATA_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/mise}/shims}"
+if [[ -d "$_zshrc_mise_shims" ]]; then
+    export PATH="$_zshrc_mise_shims:$PATH"
 fi
+unset _zshrc_mise_shims
 
 # Enable the powerlevel10k theme.
+# p10k detects SSH from $SSH_CLIENT/$SSH_TTY/$SSH_CONNECTION, then falls back
+# to forking `who -m` (~2.5ms) for the rare case of `su` on a remote host
+# dropping those variables. Local terminals never hit that case, so answer it
+# up front; p10k skips the probe when these two are already set for this TTY.
+# Child shells (tmux panes) inherit them with a stale TTY, so re-answer there
+# too rather than only when unset. A parent that did detect SSH is trusted.
+if [[ $P9K_SSH != 1 && -z $SSH_CLIENT && -z $SSH_TTY && -z $SSH_CONNECTION ]]; then
+    typeset -gix P9K_SSH=0
+    typeset -gx _P9K_SSH_TTY=$TTY
+fi
 if [[ -f "$DOTFILES/zsh/powerlevel10k/powerlevel10k.zsh-theme" ]]; then
     source "$DOTFILES/zsh/powerlevel10k/powerlevel10k.zsh-theme"
 fi
 
 # To customize prompt, run `p10k configure` or edit p10k.zsh.
 if [[ -f "$DOTFILES/zsh/p10k.zsh" ]]; then
-     source "$DOTFILES/zsh/p10k.zsh"
+    _zshrc_source_compiled "$DOTFILES/zsh/p10k.zsh"
 fi
 
 # Re-apply incognito mode if inherited from a parent shell or tmux session.
@@ -230,10 +285,46 @@ if [[ "$INCOGNITO" == "1" ]]; then
     incognito
 fi
 
-# Syntax highlighting. Must be sourced at end of zshrc.
-if [[ -f "$DOTFILES/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]]; then
-    source "$DOTFILES/zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+# Syntax highlighting. Must be sourced after every other widget is defined.
+_zshrc_load_syntax_highlighting() {
+    local dir="$DOTFILES/zsh/zsh-syntax-highlighting" f
+    [[ -f "$dir/zsh-syntax-highlighting.zsh" ]] || return
+    # Parsing the plugin's source costs ~4ms. It sources its highlighters
+    # itself, so compile those too; the plugin's .gitignore already excludes
+    # .zwc files.
+    if [[ ! "$dir/zsh-syntax-highlighting.zsh.zwc" -nt "$dir/zsh-syntax-highlighting.zsh" ]]; then
+        for f in "$dir/zsh-syntax-highlighting.zsh" "$dir"/highlighters/*/*-highlighter.zsh(N); do
+            zcompile -R -- "$f"
+        done
+    fi
+    source "$dir/zsh-syntax-highlighting.zsh"
     ZSH_HIGHLIGHT_STYLES[path]='none'
+}
+
+# Highlighting is cosmetic and re-applied on every redraw, so nothing is lost
+# by loading it after the first prompt instead of before it. The loader is
+# registered as a `zle -F` handler on an always-readable fd, which zle calls
+# as soon as it first waits for input; the handler unregisters itself.
+_zshrc_zle_idle_init() {
+    local fd=$1
+    zle -F "$fd"
+    exec {fd}<&-
+    _zshrc_load_syntax_highlighting
+    unfunction _zshrc_load_syntax_highlighting _zshrc_zle_idle_init
+}
+if [[ -o zle ]] && exec {_zshrc_zle_fd}</dev/null; then
+    zle -F "$_zshrc_zle_fd" _zshrc_zle_idle_init
+    unset _zshrc_zle_fd
+else
+    _zshrc_load_syntax_highlighting
+    unfunction _zshrc_load_syntax_highlighting _zshrc_zle_idle_init
+fi
+
+# Keep a compiled copy of this file as well; zsh prefers ~/.zshrc.zwc on the
+# next startup as long as it is not older than ~/.zshrc, so editing this file
+# simply triggers a recompile on the following startup.
+if [[ ! "${ZDOTDIR:-$HOME}/.zshrc.zwc" -nt "${ZDOTDIR:-$HOME}/.zshrc" ]]; then
+    zcompile -R -- "${ZDOTDIR:-$HOME}/.zshrc"
 fi
 
 if [[ -n "${ZSH_PROFILE_RC+1}" ]]; then
