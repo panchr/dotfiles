@@ -1,4 +1,7 @@
 {
+  "env": {
+    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "70"
+  },
   "permissions": {
     "allow": [
       "Bash(git log *)",
@@ -48,6 +51,7 @@
       }
     ]
   },
+  "disableAgentView": true,
   "statusLine": {
     "type": "command",
     "command": "/bin/bash ~/.claude/statusline.sh"
@@ -140,11 +144,7 @@
   "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
   "autoCompactEnabled": true,
-  "env": {
-    "CLAUDE_AUTOCOMPACT_PCT_OVERRIDE": "70"
-  },
   "remoteControlAtStartup": false,
   "agentPushNotifEnabled": true,
-  "skipAutoPermissionPrompt": true,
-  "disableAgentView": true
+  "skipAutoPermissionPrompt": true
 }
