@@ -14,7 +14,38 @@ export DOTFILES="${_zshenv_rc:A:h:h}"
 unset _zshenv_rc
 case $OSTYPE in
 darwin*)
-    export PATH="/opt/homebrew/bin:$PATH"
+    # /etc/zprofile and /etc/zshrc cost ~7ms per interactive shell: path_helper
+    # is a fork, and /etc/zshrc forks `locale` and loads terminfo to bind a few
+    # keys. no_global_rcs skips both; what they set up is replicated fork-free,
+    # PATH and LANG here, COMBINING_CHARS and the key bindings in zshrc.
+    setopt no_global_rcs
+    # path_helper puts /etc/paths first, then /etc/paths.d/* in numeric order,
+    # then whatever was already on PATH, dropping duplicates (-U does that).
+    # $(<file) is read by zsh itself, without a fork; :# drops blank lines.
+    typeset -U path
+    _zshenv_paths=( ${${(f)"$(</etc/paths)"}:#} )
+    for _zshenv_file in /etc/paths.d/*(N.n); do
+        _zshenv_paths+=( ${${(f)"$(<$_zshenv_file)"}:#} )
+    done
+    path=( /opt/homebrew/bin $_zshenv_paths $path )
+    # path_helper does the same for MANPATH, but only when it is already set.
+    if [[ -n $MANPATH ]]; then
+        typeset -U manpath
+        _zshenv_paths=( ${${(f)"$(</etc/manpaths)"}:#} )
+        for _zshenv_file in /etc/manpaths.d/*(N.n); do
+            _zshenv_paths+=( ${${(f)"$(<$_zshenv_file)"}:#} )
+        done
+        # A trailing colon (Ghostty sets one) means "then the defaults" to
+        # man(1); the array drops that empty element, so put it back.
+        _zshenv_manpath_tail=${(M)MANPATH%:}
+        manpath=( $_zshenv_paths $manpath )
+        [[ -n $_zshenv_manpath_tail ]] && manpath+=( '' )
+        unset _zshenv_manpath_tail
+    fi
+    unset _zshenv_paths _zshenv_file
+    if [[ -o login && -z $LANG ]]; then
+        export LANG=C.UTF-8
+    fi
     ;;
 linux*)
     # Ubuntu's /etc/zsh/zshrc otherwise runs a full, audited compinit before
@@ -28,7 +59,7 @@ esac
 
 # Doom is typically installed here, so make the 'doom' CLI available everywhere.
 if [[ -d ~/.config/emacs/bin ]]; then
-    export PATH="$HOME/.config/emacs/bin:$PATH"
+    path=( ~/.config/emacs/bin $path )
 fi
 
 export EDITOR="emacsclient --alternate-editor='' --create-frame -nw"

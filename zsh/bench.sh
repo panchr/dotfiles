@@ -7,11 +7,19 @@
 # measurement reflects steady state. Uses hyperfine when installed
 # (`brew install hyperfine`), otherwise a plain timing loop.
 #
-# Usage: zsh/bench.sh [runs]     (default 30)
+# The shell timed is $SHELL when that is a zsh, since that is what terminals
+# launch (/bin/zsh on macOS); `zsh` on PATH may be a different build, such as
+# Homebrew's, and the two do not share compiled caches.
+#
+# Usage: zsh/bench.sh [runs] [zsh]     (default 30 runs, $SHELL)
 emulate -L zsh
 zmodload zsh/datetime
 
 local runs=${1:-30}
+local zsh_bin=$2
+if [[ -z $zsh_bin ]]; then
+    [[ ${SHELL:t} == zsh ]] && zsh_bin=$SHELL || zsh_bin=zsh
+fi
 local zsh_dir="${DOTFILES:-${0:A:h:h}}/zsh"
 
 rm -f ~/.zcompdump.zwc ~/.zshrc.zwc ~/.sh_functions.zwc
@@ -20,18 +28,19 @@ rm -f "$zsh_dir"/p10k.zsh.zwc \
     "$zsh_dir"/zsh-syntax-highlighting/*.zwc(N) \
     "$zsh_dir"/zsh-syntax-highlighting/highlighters/*/*.zwc(N)
 
+print -r -- "shell: $zsh_bin ($($zsh_bin -c 'print $ZSH_VERSION $ZSH_PATCHLEVEL'))"
 if (( $+commands[hyperfine] )); then
-    exec hyperfine -N --warmup 5 --runs "$runs" 'zsh -i -c exit'
+    exec hyperfine -N --warmup 5 --runs "$runs" "$zsh_bin -i -c exit"
 fi
 
 local -a times
 local i start
 for i in {1..5}; do
-    zsh -i -c exit >/dev/null 2>&1
+    $zsh_bin -i -c exit >/dev/null 2>&1
 done
 for i in {1..$runs}; do
     start=$EPOCHREALTIME
-    zsh -i -c exit >/dev/null 2>&1
+    $zsh_bin -i -c exit >/dev/null 2>&1
     times+=( $(( (EPOCHREALTIME - start) * 1000 )) )
 done
 times=( ${(on)times} )
