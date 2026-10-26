@@ -18,6 +18,9 @@ uv = "0.9.24"
 
 # Other tools
 "npm:tokscale" = "latest"
+# bd, the issue tracker. Pinned so every machine writes .beads/issues.jsonl
+# the same way; bd versions disagree on its format and thrash the file.
+"aqua:steveyegge/beads" = "1.3.2"
 
 [settings]
 npm.package_manager = "bun"

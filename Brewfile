@@ -64,8 +64,6 @@ brew "tree-sitter@0.25"
 cask "claude-code@latest"
 cask "claude"
 brew "opencode"
-tap "steveyegge/beads", trusted: true
-brew "steveyegge/beads/bd"
 tap "allthingsclaude/battery", trusted: true
 cask "allthingsclaude/battery/claude-battery"
 

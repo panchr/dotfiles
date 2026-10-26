@@ -21,6 +21,8 @@ Thumbs.db
 *.db
 .beads/.beads-credential-key
 .beads/export-state.json
+# bd's flock files, kept beside .beads and never deleted.
+*.gate.lock*
 
 # Compiled zsh files (created on the fly by zshrc)
 *.zwc
