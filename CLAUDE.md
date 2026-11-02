@@ -1,14 +1,14 @@
 # Agent Instructions
 
-This project uses **bd** (beads) for issue tracking. Run `bd onboard` to get started.
+This project uses **tk** ([wedow/ticket](https://github.com/wedow/ticket)) for issue tracking. Run `tk help` to get started.
 
 ## Quick Reference
 
 ```bash
-bd ready              # Find available work
-bd show <id>          # View issue details
-bd update <id> --claim  # Claim work atomically
-bd close <id>         # Complete work
+tk ready              # Find available work
+tk show <id>          # View ticket details
+tk start <id>         # Claim work
+tk close <id>         # Complete work
 ```
 
 ## Non-Interactive Shell Commands
@@ -34,17 +34,19 @@ cp -rf source dest          # NOT: cp -r source dest
 - `ssh` - use `-o BatchMode=yes` to fail instead of prompting
 - `apt-get` - use `-y` flag
 - `brew` - use `HOMEBREW_NO_AUTO_UPDATE=1` env var
+- `tk edit` - opens `$EDITOR`; edit the ticket file in `.tickets/` directly instead
 
-<!-- BEGIN BEADS INTEGRATION profile:full hash:d4f96305 -->
-## Issue Tracking with bd (beads)
+## Issue Tracking with tk
 
-**IMPORTANT**: This project uses **bd (beads)** for ALL issue tracking. Do NOT use markdown TODOs, task lists, or other tracking methods.
+**IMPORTANT**: This project uses **tk** for ALL issue tracking. Do NOT use markdown TODOs, task lists, or other tracking methods.
 
-### Why bd?
+tk is one bash script with no database or daemon, installed by `misc/mise.toml`. Each ticket is a markdown file with YAML frontmatter in `.tickets/` at the repository root, named by its id, so a ticket is read with `tk show <id>` or by opening the file. Commit ticket files in the same commit as the change that opened, updated or closed them. `tk` finds `.tickets/` from any subdirectory, but run `tk create` from the repository root: it takes a new id's prefix from the current directory's name (`dot-` at the root).
 
-- Dependency-aware: Track blockers and relationships between issues
-- Git-friendly: JSONL-backed, version-controlled alongside code
-- Agent-optimized: JSON output, ready work detection, discovered-from links
+### Why tk?
+
+- Dependency-aware: Track blockers and relationships between tickets
+- Git-friendly: one markdown file per ticket, versioned and merged alongside the code
+- Agent-friendly: `tk query` emits JSON, `tk ready` finds unblocked work
 - Prevents duplicate tracking systems and confusion
 
 ### Quick Start
@@ -52,27 +54,31 @@ cp -rf source dest          # NOT: cp -r source dest
 **Check for ready work:**
 
 ```bash
-bd ready --json
+tk ready
 ```
 
-**Create new issues:**
+**Create new tickets:**
 
 ```bash
-bd create "Issue title" --description="Detailed context" -t bug|feature|task -p 0-4 --json
-bd create "Issue title" --description="What this issue is about" -p 1 --deps discovered-from:bd-123 --json
+tk create "Ticket title" -d "Detailed context" -t bug|feature|task -p 0-4 --tags zsh
+tk create "Found bug" -d "What this is about. Discovered from <parent-id>." -p 1
 ```
 
 **Claim and update:**
 
 ```bash
-bd update <id> --claim --json
-bd update bd-42 --priority 1 --json
+tk start <id>
+tk dep <id> <blocker-id>      # <id> waits on <blocker-id>
+tk link <id> <other-id>       # related tickets (symmetric)
 ```
+
+To change a field tk has no command for, such as `priority`, edit the ticket's frontmatter.
 
 **Complete work:**
 
 ```bash
-bd close bd-42 --reason "Completed" --json
+tk add-note <id> "Completed"
+tk close <id>
 ```
 
 ### Issue Types
@@ -93,33 +99,34 @@ bd close bd-42 --reason "Completed" --json
 
 ### Workflow for AI Agents
 
-1. **Check ready work**: `bd ready` shows unblocked issues
-2. **Claim your task atomically**: `bd update <id> --claim`
+1. **Check ready work**: `tk ready` shows unblocked tickets
+2. **Claim your task**: `tk start <id>`
 3. **Work on it**: Implement, test, document
-4. **Discover new work?** Create linked issue:
-   - `bd create "Found bug" --description="Details about what was found" -p 1 --deps discovered-from:<parent-id>`
-5. **Complete**: `bd close <id> --reason "Done"`
+4. **Discover new work?** Create a ticket and link it to the one you found it from:
+   - `tk create "Found bug" -d "Details about what was found. Discovered from <parent-id>." -p 1`, then `tk link <new-id> <parent-id>`
+5. **Complete**: `tk add-note <id> "Done"`, then `tk close <id>`
 
 ### Important Rules
 
-- ✅ Use bd for ALL task tracking
-- ✅ Always use `--json` flag for programmatic use
-- ✅ Link discovered work with `discovered-from` dependencies
-- ✅ Check `bd ready` before asking "what should I work on?"
+- ✅ Use tk for ALL task tracking
+- ✅ Use `tk query` (JSON, filtered with jq) for programmatic use
+- ✅ Link discovered work back to where it came from
+- ✅ Check `tk ready` before asking "what should I work on?"
+- ✅ Record why a ticket closed with `tk add-note` before `tk close`: tk keeps no close reason of its own
 - ❌ Do NOT create markdown TODO lists
 - ❌ Do NOT use external issue trackers
 - ❌ Do NOT duplicate tracking systems
 
-For more details, see README.md and docs/QUICKSTART.md.
+### Migrated from beads
+
+The tracker moved from beads (bd) to tk, keeping every issue's id, so commits that name an id such as `dotfiles-6ga` still resolve to `.tickets/dotfiles-6ga.md`. Each closed ticket's close reason is the last entry under its `## Notes`.
 
 ## Landing the Plane (Session Completion)
 
 **When ending a work session:**
 
-1. **File issues for remaining work** - Create issues for anything that needs follow-up
+1. **File tickets for remaining work** - Create tickets for anything that needs follow-up
 2. **Run quality gates** (if code changed) - Tests, linters, builds
-3. **Update issue status** - Close finished work, update in-progress items
+3. **Update ticket status** - Close finished work, update in-progress items
 4. **Clean up** - Clear stashes, prune remote branches
 5. **Hand off** - Provide context for next session
-
-<!-- END BEADS INTEGRATION -->
