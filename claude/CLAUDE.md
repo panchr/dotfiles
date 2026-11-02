@@ -99,21 +99,23 @@ gh api repos/OWNER/REPO/pulls/PR_NUMBER/comments --method POST \
   --field body="🤖 **Claude here!** [reply]" --field in_reply_to=COMMENT_ID
 ```
 
-## Beads Dependency Model
+## tk Dependency Model
 
-`bd dep add <A> <B>` means **A is waiting on B** — equivalently, B blocks A.
+`tk dep <A> <B>` means **A is waiting on B** — equivalently, B blocks A. `tk ready` lists A only once B is closed.
 
-**Epic → child task uses `--parent`, not `bd dep add`.** bd rejects an edge from an epic to a task (*"epics can only block other epics, not tasks"*). Attach children at creation:
+**Epic → child task uses `--parent`.** Attach children at creation, from the repository root (tk takes the id prefix from the current directory's name):
 
 ```bash
-bd create "<title>" --parent <epic>   # native parent-child edge, hierarchical id <epic>.N
+tk create "<title>" --parent <epic>   # records the hierarchy; the child gets its own id
 ```
 
-For edges between compatible types, think "what must finish before what":
-- Parent epic + sub-epic: `bd dep add <parent-epic> <sub-epic>` — sub-epic must finish first.
-- Sequential tasks: `bd dep add <later> <earlier>` — earlier must finish first.
+`--parent` blocks nothing. If the epic shouldn't be ready until its children close, also add `tk dep <epic> <child>`.
 
-Common mistake: `bd dep add <child> <epic>` is backwards — it says the child can't start until the epic closes.
+For ordering, think "what must finish before what":
+- Parent epic + sub-epic: `tk dep <parent-epic> <sub-epic>` — sub-epic must finish first.
+- Sequential tasks: `tk dep <later> <earlier>` — earlier must finish first.
+
+Common mistake: `tk dep <child> <epic>` is backwards — it says the child can't start until the epic closes.
 
 ## Continuous Improvement
 

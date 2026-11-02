@@ -14,7 +14,7 @@ A different interval in the arguments (e.g. "every 20m") overrides the 1h defaul
 
 Each wake-up, do this — silently, without asking permission to begin:
 
-1. **Orient.** What is the objective, and what is its actual state right now? Check reality (files, tests, `git status`, `bd ready`) rather than trusting your own last summary.
+1. **Orient.** What is the objective, and what is its actual state right now? Check reality (files, tests, `git status`, `tk ready`) rather than trusting your own last summary.
 2. **Pick the next most valuable step** and do it end to end. Prefer finishing something started over starting something new.
 3. **Decide, don't ask.** Make the call yourself and record the assumption you used. Only escalate under the rules in the global CLAUDE.md: a decision expensive to undo, one that changes the project's original goal, or a genuine ambiguity where two readings produce materially different work. For a large decision you make yourself, argue the strongest case against it before committing to it, then note what survived.
 4. **Verify.** Run the tests, linters, or build that actually cover what you changed. Report real results — if something fails, say so with the output.

@@ -27,7 +27,7 @@
       "pwd": "allow",
       "cat *": "deny",
       "mkdir *": "allow",
-      "bd *": "allow",
+      "tk *": "allow",
       "printenv": "deny",
       "rm *": "deny"
     },
@@ -36,7 +36,6 @@
     "doom_loop": "ask",
     "external_directory": "allow"
   },
-  "plugin": ["opencode-beads"],
   "mcp": {
     "playwright": {
       "type": "local",
