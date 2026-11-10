@@ -48,6 +48,15 @@
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;; (unpin! t)
 
+;; MELPA dropped its which-key recipe once which-key shipped with Emacs 30, so
+;; straight now resolves it to the GNU ELPA mirror, which lacks the commit our
+;; pinned Doom expects. This copies upstream Doom's fix (doomemacs 351c8c8);
+;; drop it once DOOM_PIN includes that commit.
+(package! which-key
+  :recipe (:host github :repo "emacs-straight/which-key")
+  :pin "78bf634e98ff989df3d86bceffe99b3278e32b12"
+  :built-in 'prefer)
+
 ;; TODO(rushy_panchal): Consider fetching these from GitHub, not from melpa.
 (package! pcre2el :pin "b4d846d")
 (when (package! visual-regexp :pin "48457d4")
