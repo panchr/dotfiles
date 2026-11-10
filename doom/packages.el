@@ -58,10 +58,6 @@
 ;; Themes.
 (package! color-theme-sanityinc-tomorrow :pin "7aec77e")
 
-;; Language servers.
-(package! lsp-java :pin "0a9f4d0")
-(package! lsp-python-ms :pin "7bda327")
-
-;; Other languages.
+;; Languages.
 (package! bazel :pin "769b30d")
 (package! terraform-mode :pin "01635df")

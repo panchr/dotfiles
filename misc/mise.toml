@@ -9,13 +9,6 @@ rust = "latest"
 python = "3.14"
 uv = "0.9.24"
 
-# Language servers
-"go:golang.org/x/tools/gopls" = "latest"
-"npm:bash-language-server" = "latest"
-"npm:pyright" = "latest"
-"npm:typescript" = "latest"
-"npm:typescript-language-server" = "latest"
-
 # Other tools
 "npm:tokscale" = "latest"
 # tk (wedow/ticket), the issue tracker: one bash script, with tickets as
