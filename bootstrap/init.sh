@@ -112,6 +112,15 @@ mkdir -p ~/.config/mise
 ln -s -f "$CONFIG_DIR/misc/mise.toml" ~/.config/mise/config.toml
 mise install
 
+# Build the unrushed.io monorepo's everyday tools (git-remote-s3 and others)
+# into its bin/, which zshenv puts on PATH. Trusting the checkout for this one
+# run covers its per-project mise.toml files too, since trusted paths are
+# prefixes.
+readonly UNRUSHED_IO=~/projects/unrushed.io
+if [ -d "$UNRUSHED_IO" ]; then
+	(cd "$UNRUSHED_IO" && MISE_TRUSTED_CONFIG_PATHS="$UNRUSHED_IO" mise run //:bin)
+fi
+
 readonly INIT_DOOM="${INIT_DOOM:-1}"
 if [ "$INIT_DOOM" = "1" ]; then
 	$SCRIPT_DIR/init-doom.sh
