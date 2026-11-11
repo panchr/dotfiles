@@ -57,6 +57,12 @@ freebsd*)
     ;;
 esac
 
+# Tools built from the unrushed.io monorepo (`mise run //:bin` there, such as
+# git-remote-s3) land in its bin/.
+if [[ -d ~/projects/unrushed.io/bin ]]; then
+    path=( ~/projects/unrushed.io/bin $path )
+fi
+
 # Doom is typically installed here, so make the 'doom' CLI available everywhere.
 if [[ -d ~/.config/emacs/bin ]]; then
     path=( ~/.config/emacs/bin $path )
