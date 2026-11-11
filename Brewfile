@@ -80,8 +80,6 @@ brew "buildifier"
 brew "clang-format"
 brew "shellcheck"
 brew "shfmt"
-brew "terraform"
-brew "tflint"
 brew "llvm"
 brew "xcodegen"
 
