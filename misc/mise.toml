@@ -10,7 +10,6 @@ python = "3.14"
 uv = "0.9.24"
 
 # Other tools
-"npm:tokscale" = "latest"
 # tk (wedow/ticket), the issue tracker: one bash script, with tickets as
 # markdown files in .tickets/. It publishes no release assets, so mise fetches
 # the script itself at the pinned tag. `tk query` needs jq.
