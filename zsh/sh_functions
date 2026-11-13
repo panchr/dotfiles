@@ -115,17 +115,17 @@ docker_postgres() {
 
 replace_all() {
     # Replace all occurrences of $1 with $2
-    ag -0 -l $1 | xargs -0 sed -i '' -e "s/$1/$2/g"
+    rg -0 -l $1 | xargs -0 sed -i '' -e "s/$1/$2/g"
 }
 
 replace_all_literal() {
     # Replace all occurrences of $1 with $2
-    ag -Q -0 -l $1 | xargs -0 sed -i '' -e "s/$1/$2/g"
+    rg -F -0 -l $1 | xargs -0 sed -i '' -e "s/$1/$2/g"
 }
 
 replace_all_literal_slash() {
     # Replace all occurrences of $1 with $2
-    ag -Q -0 -l $1 | xargs -0 sed -i '' -e "s+$1+$2+g"
+    rg -F -0 -l $1 | xargs -0 sed -i '' -e "s+$1+$2+g"
 }
 
 gi() {
@@ -163,7 +163,7 @@ ag_group() {
     end=$3
     shift 3
 
-    ag --nonumbers -o "$start\K$pattern(?=$end)" $@
+    rg -P --no-line-number -o "$start\K$pattern(?=$end)" $@
 }
 
 local_tcp_server() {

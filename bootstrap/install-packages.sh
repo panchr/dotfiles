@@ -74,7 +74,7 @@ Linux)
 		liblzma-dev \
 		python3-openssl \
 		git \
-		silversearcher-ag \
+		ripgrep \
 		fzf \
 		bat
 
