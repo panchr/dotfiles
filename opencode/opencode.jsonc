@@ -35,15 +35,5 @@
     "webfetch": "allow",
     "doom_loop": "ask",
     "external_directory": "allow"
-  },
-  "mcp": {
-    "playwright": {
-      "type": "local",
-      "command": ["npx", "@playwright/mcp@latest", "--headless"],
-      "enabled": true
-    }
-  },
-  "tools": {
-    "playright*": false
   }
 }
