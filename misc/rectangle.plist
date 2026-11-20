@@ -7,7 +7,7 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2026-04-01T03:44:25Z</date>
+	<date>2026-11-20T00:22:47Z</date>
 	<key>SUUpdateGroupIdentifier</key>
 	<integer>2897196379</integer>
 	<key>allowAnyShortcut</key>
@@ -39,7 +39,7 @@
 	<key>internalTilingNotified</key>
 	<true/>
 	<key>landscapeSnapAreas</key>
-	<string>null</string>
+	<string>[5,{"compound":-3},7,{"compound":-4},4,{"compound":-2},2,{"action":2},6,{"action":13},1,{"action":15},3,{"action":16},8,{"action":14}]</string>
 	<key>lastThird</key>
 	<dict>
 		<key>keyCode</key>
