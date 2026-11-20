@@ -59,6 +59,7 @@
     "enabled": true,
     "autoAllowBashIfSandboxed": true
   },
+  "feedbackDrafts": "off",
   "spinnerVerbs": {
     "mode": "replace",
     "verbs": [
@@ -137,8 +138,9 @@
   "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
   "autoCompactEnabled": true,
+  "teammateMode": "auto",
   "remoteControlAtStartup": false,
   "agentPushNotifEnabled": true,
   "skipAutoPermissionPrompt": true,
-  "teammateMode": "auto"
+  "switchModelsOnFlag": false
 }
