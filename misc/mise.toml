@@ -10,6 +10,8 @@ python = "3.14"
 uv = "0.9.24"
 
 # Other tools
+git-lfs = "3.8.1"
+
 # tk (wedow/ticket), the issue tracker: one bash script, with tickets as
 # markdown files in .tickets/. It publishes no release assets, so mise fetches
 # the script itself at the pinned tag. `tk query` needs jq.
