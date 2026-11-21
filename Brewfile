@@ -42,6 +42,7 @@ cask "yubico-authenticator"
 # Git
 brew "gh"
 brew "git"
+brew "git-filter-repo"
 
 # Emacs
 tap "d12frosted/emacs-plus", trusted: true
